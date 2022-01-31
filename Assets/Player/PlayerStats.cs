@@ -7,7 +7,7 @@ public class PlayerStats : MonoBehaviour
 {
     public int Currency = 0;
     public int TotalHealth = 100;
-    public int CurrentHealth = TotalHealth;
+    public int CurrentHealth = 0;
     public int CurrentShields = 0;
     public int TotalShields = 0;
 
@@ -41,6 +41,11 @@ public class PlayerStats : MonoBehaviour
 
     void ResetHealth() { CurrentHealth = TotalHealth; }
     void EnableShields() { hasShield = true; }
+
+    //Constructor
+    void Start() {
+        CurrentHealth = TotalHealth;
+    }
 
     //Called once every frame
     void Update() {
