@@ -15,14 +15,14 @@ public class PlayerStats : MonoBehaviour
     bool isDead = false;
 
 
-    void SubtractHealth(int Amount) {
+    public void SubtractHealth(int Amount) {
         CurrentHealth -= Amount;
         if (CurrentHealth <= 0) {
             isDead = true;
         }
     }
     
-    void AddCurrency(int Amount) {
+    public void AddCurrency(int Amount) {
         Currency += Amount;
         //Max Currency Check
         if (Currency > 999999) {
@@ -30,7 +30,7 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    bool SubtractCurrency(int Amount) {
+    public bool SubtractCurrency(int Amount) {
         if (Currency - Amount >= 0) {
             return true;
         }
@@ -40,7 +40,15 @@ public class PlayerStats : MonoBehaviour
     }
 
     void ResetHealth() { CurrentHealth = TotalHealth; }
-    void EnableShields() { hasShield = true; }
+    void ResetCurrency() { Currency = 0; }
+    void ResetShield() { CurrentShields = TotalShields; }
+    
+
+    void EnableShields() { 
+        hasShield = true;
+        CurrentShields = 50;
+        TotalShields = 100;
+    }
 
     //Constructor
     void Start() {
