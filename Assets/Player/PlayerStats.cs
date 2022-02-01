@@ -42,8 +42,8 @@ public class PlayerStats : MonoBehaviour
     void ResetHealth() { CurrentHealth = TotalHealth; }
     void ResetCurrency() { Currency = 0; }
     void ResetShield() { CurrentShields = TotalShields; }
-    
 
+    //Market screen callable function for when player purchases shields
     void EnableShields() { 
         hasShield = true;
         CurrentShields = 50;
