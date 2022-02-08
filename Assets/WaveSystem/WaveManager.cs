@@ -10,7 +10,6 @@ public class WaveManager : MonoBehaviour
     public int EnemyIndex;
     public int RemainingEnemyCount;
     public bool CanSpawnWave = true;
-    int[] EnemyValue = new int[] {1, 2, 3, 5, 10};
 
     //Used to reset wave manager or restart game
     public void ResetWaveManager() {
