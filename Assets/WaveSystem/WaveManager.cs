@@ -40,10 +40,34 @@ public class WaveManager : MonoBehaviour
         }
     }
 
-    void StartWave() {
+    //Handle all locations to spawn enemies 
+    GameObject[] SpawnLocations;
+    Vector2 LocationToSpawnEnemy;
+
+    //Find random spawn location - set spawn location for enemy at found location
+    Vector2 DetermineSpawnLocation() {
+        SpawnLocations = GameObject.FindGameObjectsWithTag("SpawnLocation");
+        int LocationsRange = SpawnLocations.Length;
+        int RandomSelector = Random.Range(0, LocationsRange - 1);
+        Vector2 WhereToSpawn = SpawnLocations[RandomSelector].transform.position;
+        return WhereToSpawn;
+    }
+
+    public void SpawnEnemyAtLocation(Vector2 Location) {
+        //Create new enemy gameobject here
+        Debug.Log("Vector2 location of enemy: " + Location);
+    }
+
+    public void StartWave() {
         CanSpawnWave = false;
         DetermineWave();
+
         //SpawnEnemy functions here
+        for (int i = 0; i < EnemyCount; i++) {
+            LocationToSpawnEnemy = DetermineSpawnLocation();
+            SpawnEnemyAtLocation(LocationToSpawnEnemy);
+        }
+
         //After SpawnEnemy decrease total count
         DecreaseEnemyCount();
 

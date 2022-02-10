@@ -14,6 +14,7 @@ public class PlayerStats : MonoBehaviour
     bool hasShield = false;
     bool isDead = false;
 
+    public WaveManager waveManager;
 
     public void SubtractHealth(int Amount) {
         CurrentHealth -= Amount;
@@ -62,6 +63,10 @@ public class PlayerStats : MonoBehaviour
         //We will implement death screen functionality later
         if (isDead) {
             Application.Quit();
+        }
+
+        if (Input.GetKey(KeyCode.Space)) {
+            waveManager.StartWave();
         }
     }
 }
