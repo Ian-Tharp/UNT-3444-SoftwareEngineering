@@ -8,4 +8,11 @@ public class ShootGun : MonoBehaviour
     void Update() {
 
     }
+    public void Fire()
+    {
+        Debug.Log("Fire!");
+
+    }
+
 }
+
