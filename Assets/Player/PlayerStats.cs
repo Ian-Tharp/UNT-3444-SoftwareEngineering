@@ -11,7 +11,7 @@ public class PlayerStats : MonoBehaviour
     public int CurrentShields = 0;
     public int TotalShields = 0;
 
-    bool hasShield = false;
+    public bool hasShield = false;
     bool isDead = false;
 
     public WaveManager waveManager;
@@ -45,7 +45,7 @@ public class PlayerStats : MonoBehaviour
     void ResetShield() { CurrentShields = TotalShields; }
 
     //Market screen callable function for when player purchases shields
-    void EnableShields() { 
+    public void EnableShields() { 
         hasShield = true;
         CurrentShields = 50;
         TotalShields = 100;
@@ -63,10 +63,6 @@ public class PlayerStats : MonoBehaviour
         //We will implement death screen functionality later
         if (isDead) {
             Application.Quit();
-        }
-
-        if (Input.GetKey(KeyCode.Space)) {
-            waveManager.StartWave();
         }
     }
 }
