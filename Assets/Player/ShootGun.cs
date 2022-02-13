@@ -12,12 +12,12 @@ public class ShootGun : MonoBehaviour
     {
         Debug.Log("Fire!");
 
-       // Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-       // RaycastHit hit;
+    //    Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+      //  RaycastHit hit;
 
       // if (Physics.Raycast(ray, out hit))
-       // {
-            //the object has been detected and hit, do what you want
+     //   {
+       //     //the object has been detected and hit, do what you want
        //     Debug.Log("Hit someone");
 
        // }
