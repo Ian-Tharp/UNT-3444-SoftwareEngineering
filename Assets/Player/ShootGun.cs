@@ -8,11 +8,20 @@ public class ShootGun : MonoBehaviour
     void Update() {
 
     }
-    public void Fire()
+    public void Fire() // called anytime player fires
     {
         Debug.Log("Fire!");
 
+        //Ray ray = camera.ScreenPointToRay(Input.mousePosition);
+      //  RaycastHit hit;
+
+       //if (Physics.Raycast(ray, out hit))
+       // {
+            //the object has been detected and hit, do what you want
+
+       // }
     }
+    
 
 }
 
