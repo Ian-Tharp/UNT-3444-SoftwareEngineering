@@ -16,18 +16,20 @@ public class PlayerStats : MonoBehaviour
 
     public WaveManager waveManager;
 
-    public void SubtractHealth(int Amount) {
-        CurrentHealth -= Amount;
-        if (CurrentHealth <= 0) {
-            isDead = true;
-        }
-    }
-    
     public void AddCurrency(int Amount) {
         Currency += Amount;
         //Max Currency Check
         if (Currency > 999999) {
             Currency = 999999;
+        }
+    }
+
+    //--------------------------------------------------------------------------------
+    //Subtractions
+    public void SubtractHealth(int Amount) {
+        CurrentHealth -= Amount;
+        if (CurrentHealth <= 0) {
+            isDead = true;
         }
     }
 
@@ -40,15 +42,29 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    
+
     void ResetHealth() { CurrentHealth = TotalHealth; }
     void ResetCurrency() { Currency = 0; }
-    void ResetShield() { CurrentShields = TotalShields; }
+    void ResetShields() { CurrentShields = TotalShields; }
 
     //Market screen callable function for when player purchases shields
-    public void EnableShields() { 
+    public void EnableMaxShields() {
+        hasShield = true;
+        CurrentShields = 100;
+        TotalShields = 100;
+    }
+    
+    public void EnableMediumShields() { 
         hasShield = true;
         CurrentShields = 50;
-        TotalShields = 100;
+        TotalShields = 50;
+    }
+
+    public void EnableSmallShields() {
+        hasShield = true;
+        CurrentShields = 25;
+        TotalShields = 25;
     }
 
     //Constructor
