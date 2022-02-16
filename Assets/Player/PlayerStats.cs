@@ -2,6 +2,7 @@ using System.Net.Mime;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class PlayerStats : MonoBehaviour
 
     public WaveManager waveManager;
 
+    //--------------------------------------------------------------------------------
+    //Additions
     public void AddCurrency(int Amount) {
         Currency += Amount;
         //Max Currency Check
@@ -24,16 +27,37 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void AddCurrentHealth(int Amount) {
+        CurrentHealth += Amount;
+        //Addition overflow check
+        if (CurrentHealth > TotalHealth) {
+            CurrentHealth = TotalHealth;
+        }
+    }
+
+    public void AddTotalHealth(int Amount) {
+        TotalHealth += Amount;
+        AddCurrentHealth(Amount);
+    }
+
     //--------------------------------------------------------------------------------
     //Subtractions
-    public void SubtractHealth(int Amount) {
+    public void SubtractCurrentHealth(int Amount) {
         CurrentHealth -= Amount;
         if (CurrentHealth <= 0) {
             isDead = true;
         }
     }
 
-    public bool SubtractCurrency(int Amount) {
+    public void SubtractTotalHealth(int Amount) {
+        TotalHealth -= Amount;
+        //Cannot reduce total health below 10
+        if (TotalHealth < 10) {
+            TotalHealth = 10;
+        }
+    }
+
+    public bool TryToSubtractCurrency(int Amount) {
         if (Currency - Amount >= 0) {
             return true;
         }
@@ -42,11 +66,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    
-
-    void ResetHealth() { CurrentHealth = TotalHealth; }
-    void ResetCurrency() { Currency = 0; }
-    void ResetShields() { CurrentShields = TotalShields; }
+    public void ResetHealth() { CurrentHealth = TotalHealth; }
+    public void ResetCurrency() { Currency = 0; }
+    public void ResetShields() { CurrentShields = TotalShields; }
 
     //Market screen callable function for when player purchases shields
     public void EnableMaxShields() {
