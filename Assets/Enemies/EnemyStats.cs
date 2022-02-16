@@ -8,17 +8,38 @@ public class EnemyStats : MonoBehaviour
     public int Damage = 0;
     public int EnemyType = 0;
     public int EnemyValue = 0;
-    int TypeSelector = 0;
+    public WaveManager waveManager;
 
     // Start is called before the first frame update
     void Start() {
-        //SetEnemyType();
+        SetEnemyType(GetEnemyType());
 
     }
 
+    //Public getters
+    public int GetEnemyType() {
+        int wave = waveManager.GetWaveNumber();
+        return wave;
+    }
+
+    public int GetEnemyValue() {
+        return EnemyValue;
+    }
+
+    public int GetEnemyHealth() {
+        return Health;
+    }
+
+    //Public functions to allow for enemy stats to change during gameplay
+    public void AddHealth(int Input) {
+        Health += Input;
+    }
+    public void AddDamage(int Input) {
+        Damage += Input;
+    }
+
     //Change enemy type function
-    void SetEnemyType(int TypeSelector) {
-        
+    void SetEnemyType(int TypeSelector) {  
         //switch case here for determining health, damage, and currency based on type
         //balancing values to be determined
         switch (TypeSelector) {

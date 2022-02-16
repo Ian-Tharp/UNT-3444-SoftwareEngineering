@@ -8,6 +8,7 @@ public class WaveManager : MonoBehaviour
     public int EnemyCount;
     public int TotalEnemyCount;
     public int EnemyIndex;
+    public int WaveScore;
     public int RemainingEnemyCount;
     public bool CanSpawnWave = true;
 
@@ -17,6 +18,7 @@ public class WaveManager : MonoBehaviour
         EnemyCount = 0;
         TotalEnemyCount = 0;
         RemainingEnemyCount = 0;
+        WaveScore = 0;
         CanSpawnWave = true;
     }
 
@@ -44,7 +46,7 @@ public class WaveManager : MonoBehaviour
     GameObject[] SpawnLocations;
     Vector2 LocationToSpawnEnemy;
 
-    //Find random spawn location - set spawn location for enemy at found location
+    //Find random spawn location -> set spawn location for enemy at found location
     Vector2 DetermineSpawnLocation() {
         SpawnLocations = GameObject.FindGameObjectsWithTag("SpawnLocation");
         int LocationsRange = SpawnLocations.Length;
@@ -72,10 +74,14 @@ public class WaveManager : MonoBehaviour
         DecreaseEnemyCount();
 
     }
-
+    //--------------------------------------------------------------------------------
     //Public Getters
     public int GetWaveNumber() {
         return WaveNumber;
+    }
+
+    public int GetWaveScore() {
+        return WaveScore;
     }
 
     // Start is called before the first frame update
