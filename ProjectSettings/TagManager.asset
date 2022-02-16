@@ -45,3 +45,12 @@ TagManager:
   - name: Base
     uniqueID: 2776080217
     locked: 0
+  - name: Enemies
+    uniqueID: 2546875031
+    locked: 0
+  - name: Projectiles
+    uniqueID: 2467125383
+    locked: 0
+  - name: UI
+    uniqueID: 1406098395
+    locked: 0
