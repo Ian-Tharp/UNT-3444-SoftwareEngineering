@@ -17,15 +17,8 @@ public class ShootGun : MonoBehaviour
     {
         Debug.Log("Fire!");
 
-    //    Ray ray = GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-      //  RaycastHit hit;
+        //vector2 mousePosition = playerInput.Player.Look.ReadValue<Vector2>;
 
-      // if (Physics.Raycast(ray, out hit))
-     //   {
-       //     //the object has been detected and hit, do what you want
-       //     Debug.Log("Hit someone");
-
-       // }
        //This is a test
     }
     
