@@ -26,6 +26,7 @@ public class ShootGun : MonoBehaviour
        //     Debug.Log("Hit someone");
 
        // }
+       //This is a test
     }
     
 
