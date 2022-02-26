@@ -293,7 +293,19 @@ MonoBehaviour:
     m_ActionId: 7be464ae-e394-407a-bc1b-3c4a23e50e0c
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1035284405}
+        m_TargetAssemblyTypeName: ShootGun, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 905baf1b-1bcf-4c86-a3ee-9d619791c7e0
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -8727,7 +8739,7 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 59079614}
+      - m_Target: {fileID: 1035284405}
         m_TargetAssemblyTypeName: ShootGun, Assembly-CSharp
         m_MethodName: Fire
         m_Mode: 1
@@ -8814,7 +8826,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035284401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557552a0a199bd54489e96b7149f73ac, type: 3}
   m_Name: 
