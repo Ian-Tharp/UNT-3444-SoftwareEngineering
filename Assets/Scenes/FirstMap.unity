@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 59079611}
   - component: {fileID: 59079613}
   - component: {fileID: 59079612}
+  - component: {fileID: 59079614}
   m_Layer: 0
   m_Name: HQ - Player
   m_TagString: Untagged
@@ -292,7 +293,19 @@ MonoBehaviour:
     m_ActionId: 7be464ae-e394-407a-bc1b-3c4a23e50e0c
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1035284405}
+        m_TargetAssemblyTypeName: ShootGun, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 905baf1b-1bcf-4c86-a3ee-9d619791c7e0
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -391,6 +404,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &59079614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59079607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 473f9d73f8382bd469151820fcb64ae7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &109773943
 GameObject:
   m_ObjectHideFlags: 0
@@ -8591,9 +8616,9 @@ GameObject:
   - component: {fileID: 1035284403}
   - component: {fileID: 1035284402}
   - component: {fileID: 1035284406}
-  - component: {fileID: 1035284405}
   - component: {fileID: 1035284407}
   - component: {fileID: 1035284408}
+  - component: {fileID: 1035284405}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -8777,7 +8802,7 @@ MonoBehaviour:
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1035284403}
 --- !u!114 &1035284407
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8801,7 +8826,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035284401}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 557552a0a199bd54489e96b7149f73ac, type: 3}
   m_Name: 
