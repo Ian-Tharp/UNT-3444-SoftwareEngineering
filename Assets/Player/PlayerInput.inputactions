@@ -29,8 +29,8 @@
                     "id": "905baf1b-1bcf-4c86-a3ee-9d619791c7e0",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "StartWave",
@@ -236,7 +236,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -247,7 +247,7 @@
                     "path": "<Touchscreen>/primaryTouch/tap",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Touch",
+                    "groups": "Touch",
                     "action": "Fire",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -708,7 +708,7 @@
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Keyboard&Mouse",
+                    "groups": "Keyboard&Mouse",
                     "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
