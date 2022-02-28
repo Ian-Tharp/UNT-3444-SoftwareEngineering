@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using System.Threading;
+
+
 
 public class ShootGun : MonoBehaviour
 {
@@ -15,22 +18,27 @@ public class ShootGun : MonoBehaviour
     public PlayerInput playerControls; // using the created PlayerInput class 
     private InputAction fire; // declaring an inputaction for fire function
 
+    public bool automatic = true; // false - single shot, true - automatic
+    public float fireRate = 600f; // rounds per minute
+    private float ROF = 0f; // variable converting fire rate to wait time
     public int ammo; // ammount of bullets currently in a mag
-    public int magSize = 10; // max size of a magazine
+    public int magSize = 30; // max size of a magazine
     public float reloadTime = 1.0f; // time it takes to reload
     private bool reloading; 
-    // Update is called once per frame
+    private bool firing; // while shooting
     
     // next three are necessary calls for new input system
     private void Awake()
     {
         playerControls = new PlayerInput();
+        
     }
     private void OnEnable()
     {
         fire = playerControls.Player.Fire;
         fire.Enable();
-        fire.performed += Fire;
+        
+        fire.performed += context => Fire();
     }
 
     private void OnDisable()
@@ -43,15 +51,19 @@ public class ShootGun : MonoBehaviour
     {
         ammo = magSize;
         reloading = false;
+        firing = false;
     }
     
-    void Update() {
+    //Fixed update is update but the same rate for every system
+    void FixedUpdate() {
         
-        if (reloading)
-        {
-            return;
+        ROF = 60/fireRate; //calculating rpm to actual wait time in between rounds fired
+
+        //if weapon is automatic and left click held down, fire
+        if(automatic && fire.IsPressed() && ammo > 0)
+        {   
+            Fire();
         }
-        
 
         mousePosition = Mouse.current.position.ReadValue();
     }
@@ -69,7 +81,14 @@ public class ShootGun : MonoBehaviour
 
     }
 
-    public void Fire(InputAction.CallbackContext context) // called anytime player fires
+    IEnumerator FiringWait()
+    {
+        firing = true;
+        yield return new WaitForSeconds(ROF);
+        firing = false;
+    }
+
+    public void Fire() // called anytime player fires
     {  
 
             if(reloading)
@@ -77,7 +96,7 @@ public class ShootGun : MonoBehaviour
                 Debug.Log("Still reloading..."); //trying to fire while reloading
             }
 
-            if (!reloading)
+            if (!reloading && !firing)
             {
                 if (ammo <= 0) //click to reload at 0
                 {
@@ -98,7 +117,10 @@ public class ShootGun : MonoBehaviour
                 {
                     Debug.Log("Raycast Hit");
                 }   
-            }      
+                StartCoroutine(FiringWait());
+            } 
+
+
     }
     
 
