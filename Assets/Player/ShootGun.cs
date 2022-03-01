@@ -87,7 +87,7 @@ public class ShootGun : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector3 targetDirection = mouseWorldPosition - transform.position;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        bulletDirection.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
+        bulletDirection.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90));
     }
 
     IEnumerator Reload ()
