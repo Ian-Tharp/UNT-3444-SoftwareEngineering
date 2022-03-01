@@ -18,7 +18,7 @@ public class MousePointer : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
-        moveSpeed = 15f;
+        moveSpeed = 15f; //follow speed
         sprite = GetComponent<SpriteRenderer>();
         //code to set sprite to chosen reticle from settings
     }
@@ -26,6 +26,7 @@ public class MousePointer : MonoBehaviour
     void Update()
     {
         //if mouse and keyboard input
+        //follow mouse 
         mousePos = Mouse.current.position.ReadValue();
         float distance = transform.position.z + Camera.main.transform.position.z;
         targetPos = new Vector3(mousePos[0], mousePos[1], distance);
@@ -33,18 +34,17 @@ public class MousePointer : MonoBehaviour
  
         Vector3 followXonly = new Vector3(targetPos.x, targetPos.y, transform.position.z);
         transform.position = Vector3.Lerp (transform.position, followXonly, moveSpeed * Time.deltaTime);
-        //transform.position = Camera.main.ScreenToWorldPoint(mousePosition + new Vector3(0f, 0f, 10f));
+
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
-        Debug.Log("Enemy");
-        if (col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy") // if touching enemy turn red
             sprite.color = new Color (.7f,0,0,1);
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        sprite.color = new Color (1,1,1,1);
+        sprite.color = new Color (1,1,1,1); // if not touching anything turn white
     }
 }

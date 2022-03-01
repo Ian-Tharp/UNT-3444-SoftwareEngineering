@@ -27,7 +27,7 @@ public class ShootGun : MonoBehaviour
     public bool automatic = true; // false - single shot, true - automatic
     public float fireRate = 600f; // rounds per minute
     private float ROF = 0f; // variable converting fire rate to wait time
-    public float recoil = 30; // recoil rate of the gun (1-low 30-high)
+    public float recoil = 3; // recoil rate of the gun (1-low 10-high)
     private float recoilBuildup = 0;  //variable of recoil building up over time and dropping
     public int ammo; // amount of bullets currently in a mag
     public int magSize = 30; // max size of a magazine
@@ -61,7 +61,7 @@ public class ShootGun : MonoBehaviour
         automatic = true;
         reloading = false;
         firing = false;
-        recoil = 10f;
+        recoil = 3f;
         recoilBuildup = 0f;
     }
     
@@ -76,10 +76,10 @@ public class ShootGun : MonoBehaviour
             Fire();
         }
 
-        if(recoilBuildup > 0 && !firing)
+        if(recoilBuildup > 0 && !firing) // if not shooting and recoil > 0, reduce buildup
         {
             recoilBuildup -= .9f;
-        }else if(recoilBuildup <= 0){
+        }else if(recoilBuildup <= 0){ // if buildup reduces below 0, set to 0
             recoilBuildup = 0f;
         }
 
@@ -87,7 +87,7 @@ public class ShootGun : MonoBehaviour
         Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
         Vector3 targetDirection = mouseWorldPosition - transform.position;
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
-        bulletDirection.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90 + (Random.Range(-recoilBuildup, recoilBuildup))));
+        bulletDirection.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90 + (Random.Range(-recoilBuildup, recoilBuildup)))); //point to mouse + recoil buildup
     }
 
     IEnumerator Reload ()
@@ -95,7 +95,7 @@ public class ShootGun : MonoBehaviour
         reloading = true;
         Debug.Log("Reloading...");
         
-        yield return new WaitForSeconds(reloadTime);
+        yield return new WaitForSeconds(reloadTime); //wait for reload
 
         ammo = magSize;
         reloading = false;
@@ -106,7 +106,7 @@ public class ShootGun : MonoBehaviour
     IEnumerator FiringWait()
     {
         firing = true;
-        yield return new WaitForSeconds(ROF);
+        yield return new WaitForSeconds(ROF); //rate of fire wait
         firing = false;
     }
 
@@ -126,16 +126,12 @@ public class ShootGun : MonoBehaviour
                     return;
                 }
 
-                recoilBuildup += recoil * .09f; //
-                //fireBullet(recoildBuildup)
+                recoilBuildup += recoil * .09f; //each shot adds recoil buildup over time
                 ammo = ammo - 1;
-                GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation);
+                GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation); //create bullet from hq
                 b.SetActive(true);
-                Debug.Log(recoilBuildup);
+                //Debug.Log(recoilBuildup);
                 Debug.Log("Fire! Ammo: " + ammo + "/" + magSize);
-                //Debug.Log("Input Mode:" + Input.GetMouseButtonDown(0)  + "Vector 2 location of Mouse: " + mousePosition);
-
-                
 
 
                 // if mousePosition is by enemy position, then hit
