@@ -5,28 +5,28 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 20f;
+    private float speed = 20f; // standard bullet speed, subject to change
 
-    private void OnEnable()
+    private void OnEnable() // allows for bullets to destroy after they are off map
     {
         StartCoroutine(DestroyBullet());
     }
 
-    IEnumerator DestroyBullet()
+    IEnumerator DestroyBullet() // destory bullet after its gone for so long
     {
         yield return new WaitForSeconds(3f);
 
         Destroy(gameObject);
     }
     
-    void Update()
+    void Update() 
     {
-        transform.Translate(Vector3.up * speed * Time.deltaTime);
+        transform.Translate(Vector3.up * speed * Time.deltaTime); // shoots projectile
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // triggers when runs into another collider
     {
-        if (other.gameObject.tag != "Player")
+        if (other.gameObject.tag != "Player") // for when bullet leaves player
         {
         Destroy(gameObject);
         }

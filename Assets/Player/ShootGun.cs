@@ -15,10 +15,10 @@ public class ShootGun : MonoBehaviour
     //    if so, deal damage and update enemy health
     
     [SerializeField]
-    private GameObject bullet;
+    private GameObject bullet; // bullet object
     
     [SerializeField]
-    private Transform bulletDirection;
+    private Transform bulletDirection; // bullet transform where bullet is spawned and shot from
 
     Vector2 mousePosition;
     public PlayerInput playerControls; // using the created PlayerInput class 
@@ -84,9 +84,9 @@ public class ShootGun : MonoBehaviour
         }
 
         mousePosition = Mouse.current.position.ReadValue();
-        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-        Vector3 targetDirection = mouseWorldPosition - transform.position;
-        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition); // calcuates position from world for mouse rather than from camera
+        Vector3 targetDirection = mouseWorldPosition - transform.position; // point from current location
+        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg; // angle to shot
         bulletDirection.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle - 90 + (Random.Range(-recoilBuildup, recoilBuildup)))); //point to mouse + recoil buildup
     }
 
