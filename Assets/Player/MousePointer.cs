@@ -7,14 +7,10 @@ using System.Threading;
 
 public class MousePointer : MonoBehaviour
 {
-    public Transform player;
-    private Rigidbody2D rb;
-    private Vector3 mousePosition;
-    private Vector2 Movement;
+    private Vector3 mousePos;
+    private Vector3 targetPos;
     public float moveSpeed = 15f;
-
-    // code somewhere to include recoil everytime a bullet is shot
-    // push cursor in a random direction based on weapon stats
+    SpriteRenderer sprite;
 
     //for mouse and keyboard, should have cursor follow mouse based on speed * distance/ some number
 
@@ -22,14 +18,32 @@ public class MousePointer : MonoBehaviour
     void Start()
     {
         Cursor.visible = false;
+        moveSpeed = 15f;
+        sprite = GetComponent<SpriteRenderer>();
         //code to set sprite to chosen reticle from settings
     }
 
     void Update()
     {
         //if mouse and keyboard input
-        mousePosition = Mouse.current.position.ReadValue();
-        transform.position = Camera.main.ScreenToWorldPoint(mousePosition + new Vector3(0f, 0f, 10f));
+        mousePos = Mouse.current.position.ReadValue();
+        float distance = transform.position.z + Camera.main.transform.position.z;
+        targetPos = new Vector3(mousePos[0], mousePos[1], distance);
+        targetPos = Camera.main.ScreenToWorldPoint(targetPos);
+ 
+        Vector3 followXonly = new Vector3(targetPos.x, targetPos.y, transform.position.z);
+        transform.position = Vector3.Lerp (transform.position, followXonly, moveSpeed * Time.deltaTime);
+        //transform.position = Camera.main.ScreenToWorldPoint(mousePosition + new Vector3(0f, 0f, 10f));
     }
 
+    void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.tag == "Enemy")
+            sprite.color = new Color (1,0,0,1);
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        sprite.color = new Color (1,1,1,1);
+    }
 }

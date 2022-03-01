@@ -58,6 +58,7 @@ public class ShootGun : MonoBehaviour
     void Start()
     {
         ammo = magSize;
+        automatic = true;
         reloading = false;
         firing = false;
         recoil = 15f;
