@@ -20,6 +20,8 @@ public class ShootGun : MonoBehaviour
     [SerializeField]
     private Transform bulletDirection;
 
+    AudioSource source = null;
+
     Vector2 mousePosition;
     public PlayerInput playerControls; // using the created PlayerInput class 
     private InputAction fire; // declaring an inputaction for fire function
@@ -57,12 +59,20 @@ public class ShootGun : MonoBehaviour
     
     void Start()
     {
-        ammo = magSize;
-        automatic = true;
+        
         reloading = false;
         firing = false;
-        recoil = 3f;
         recoilBuildup = 0f;
+
+        recoil = 3f;
+        fireRate = 600;
+        magSize = 30;
+        ammo = magSize;
+        automatic = true;
+
+
+        source = GetComponent<AudioSource>();
+        
     }
     
     //Fixed update is update but the same rate for every system
@@ -128,6 +138,8 @@ public class ShootGun : MonoBehaviour
 
                 recoilBuildup += recoil * .09f; //each shot adds recoil buildup over time
                 ammo = ammo - 1;
+                source.time= .1f; //weird sound effect in beginning, skips to 1/10th of sec
+                source.PlayOneShot(source.clip, 1.0f);
                 GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation); //create bullet from hq
                 b.SetActive(true);
                 //Debug.Log(recoilBuildup);
@@ -135,11 +147,12 @@ public class ShootGun : MonoBehaviour
 
 
                 // if mousePosition is by enemy position, then hit
+                /* commented out since we changed the method of shooting
                 RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero);
                 if (hit)
                 {
                     Debug.Log("Raycast Hit");
-                }   
+                }   */
                 StartCoroutine(FiringWait());
             } 
 
