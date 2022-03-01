@@ -36,7 +36,7 @@ public class MousePointer : MonoBehaviour
         //transform.position = Camera.main.ScreenToWorldPoint(mousePosition + new Vector3(0f, 0f, 10f));
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
         Debug.Log("Enemy");
         if (col.gameObject.tag == "Enemy")
