@@ -14,6 +14,12 @@ public class ShootGun : MonoBehaviour
     //Check if shot hits an enemy
     //    if so, deal damage and update enemy health
     
+    [SerializeField]
+    private GameObject bullet;
+    
+    [SerializeField]
+    private Transform bulletDirection;
+
     Vector2 mousePosition;
     public PlayerInput playerControls; // using the created PlayerInput class 
     private InputAction fire; // declaring an inputaction for fire function
@@ -77,6 +83,10 @@ public class ShootGun : MonoBehaviour
         }
 
         mousePosition = Mouse.current.position.ReadValue();
+        Vector3 mouseWorldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        Vector3 targetDirection = mouseWorldPosition - transform.position;
+        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+        bulletDirection.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
     IEnumerator Reload ()
@@ -118,6 +128,8 @@ public class ShootGun : MonoBehaviour
                 recoilBuildup += recoil * .09f; //
                 //fireBullet(recoildBuildup)
                 ammo = ammo - 1;
+                GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation);
+                b.SetActive(true);
                 Debug.Log(recoilBuildup);
                 Debug.Log("Fire! Ammo: " + ammo + "/" + magSize);
                 //Debug.Log("Input Mode:" + Input.GetMouseButtonDown(0)  + "Vector 2 location of Mouse: " + mousePosition);
