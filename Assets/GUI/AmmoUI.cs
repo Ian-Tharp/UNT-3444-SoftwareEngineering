@@ -19,6 +19,13 @@ public class AmmoUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        txt.text = sg.ammo.ToString() + "/" + sg.magSize.ToString();
+        if(sg.reloading)
+        {
+            txt.text = "Reloading...";
+        }else{
+            txt.text = sg.ammo.ToString() + "/" + sg.magSize.ToString();
+        }
+
     }
+
 }

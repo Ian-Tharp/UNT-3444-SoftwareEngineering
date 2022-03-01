@@ -20,7 +20,11 @@ public class ShootGun : MonoBehaviour
     [SerializeField]
     private Transform bulletDirection; // bullet transform where bullet is spawned and shot from
 
-    AudioSource source = null;
+    public AudioSource source;
+    private AudioClip gunshotSFX;
+    private AudioClip emptySFX;
+    private AudioClip rstartSFX;
+    private AudioClip rfinSFX;
 
     Vector2 mousePosition;
     public PlayerInput playerControls; // using the created PlayerInput class 
@@ -34,7 +38,7 @@ public class ShootGun : MonoBehaviour
     public int ammo; // amount of bullets currently in a mag
     public int magSize = 30; // max size of a magazine
     public float reloadTime = 1.0f; // time it takes to reload
-    private bool reloading; 
+    public bool reloading; 
     private bool firing; // while shooting
     
     // next three are necessary calls for new input system
@@ -71,8 +75,12 @@ public class ShootGun : MonoBehaviour
         automatic = true;
 
 
-        source = GetComponent<AudioSource>();
-        
+        AudioSource[] audioSources = GetComponents<AudioSource>();
+        source = audioSources[0];
+        gunshotSFX = audioSources[0].clip;
+        emptySFX = audioSources[1].clip;
+        rstartSFX = audioSources[2].clip;
+        rfinSFX = audioSources[3].clip;
     }
     
     //Fixed update is update but the same rate for every system
@@ -103,13 +111,13 @@ public class ShootGun : MonoBehaviour
     IEnumerator Reload ()
     {
         reloading = true;
-        Debug.Log("Reloading...");
-        
+
+        source.PlayOneShot(rstartSFX, 1.0f); //start reload sfx
         yield return new WaitForSeconds(reloadTime); //wait for reload
+        source.PlayOneShot(rfinSFX, 1.0f); //reload finish sfx
 
         ammo = magSize;
         reloading = false;
-        Debug.Log("Loaded. Ammo: " + ammo + "/" + magSize);
 
     }
 
@@ -125,7 +133,7 @@ public class ShootGun : MonoBehaviour
 
             if(reloading)
             {
-                Debug.Log("Still reloading..."); //trying to fire while reloading
+                source.PlayOneShot(emptySFX, 1.0f);//trying to fire while reloading
             }
 
             if (!reloading && !firing)
@@ -139,11 +147,9 @@ public class ShootGun : MonoBehaviour
                 recoilBuildup += recoil * .09f; //each shot adds recoil buildup over time
                 ammo = ammo - 1;
                 source.time= .1f; //weird sound effect in beginning, skips to 1/10th of sec
-                source.PlayOneShot(source.clip, 1.0f);
+                source.PlayOneShot(gunshotSFX, 0.7f);
                 GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation); //create bullet from hq
                 b.SetActive(true);
-                //Debug.Log(recoilBuildup);
-                Debug.Log("Fire! Ammo: " + ammo + "/" + magSize);
 
 
                 // if mousePosition is by enemy position, then hit

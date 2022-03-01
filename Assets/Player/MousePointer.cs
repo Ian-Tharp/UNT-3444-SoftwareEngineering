@@ -45,6 +45,6 @@ public class MousePointer : MonoBehaviour
 
     void OnTriggerExit2D(Collider2D col)
     {
-        sprite.color = new Color (1,1,1,1); // if not touching anything turn white
+        sprite.color = new Color (0.7960785f, 0.5058824f, 0.02745098f, 1); // if not touching anything turn white
     }
 }
