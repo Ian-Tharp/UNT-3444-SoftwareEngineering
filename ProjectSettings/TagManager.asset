@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - SpawnLocation
+  - DefenseTower
+  - DefenseMine
+  - Enemy
   layers:
   - Default
   - TransparentFX

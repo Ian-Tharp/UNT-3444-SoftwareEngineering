@@ -21,7 +21,7 @@ public class ShootGun : MonoBehaviour
     public bool automatic = true; // false - single shot, true - automatic
     public float fireRate = 600f; // rounds per minute
     private float ROF = 0f; // variable converting fire rate to wait time
-    public int ammo; // ammount of bullets currently in a mag
+    public int ammo; // amount of bullets currently in a mag
     public int magSize = 30; // max size of a magazine
     public float reloadTime = 1.0f; // time it takes to reload
     private bool reloading; 

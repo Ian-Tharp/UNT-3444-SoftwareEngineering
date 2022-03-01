@@ -8,6 +8,7 @@ public class EnemyStats : MonoBehaviour
     public int Damage = 0;
     public int EnemyType = 0;
     public int EnemyValue = 0;
+    bool isAlive = true;
     public WaveManager waveManager;
 
     // Start is called before the first frame update
@@ -19,6 +20,7 @@ public class EnemyStats : MonoBehaviour
     //Public getters
     public int GetEnemyType() {
         int wave = waveManager.GetWaveNumber();
+        //Debug.Log(wave);
         return wave;
     }
 
@@ -31,11 +33,20 @@ public class EnemyStats : MonoBehaviour
     }
 
     //Public functions to allow for enemy stats to change during gameplay
-    public void AddHealth(int Input) {
-        Health += Input;
+    //Additions
+    public void AddHealth(int Amount) {
+        Health += Amount;
     }
-    public void AddDamage(int Input) {
-        Damage += Input;
+    public void AddDamage(int Amount) {
+        Damage += Amount;
+    }
+
+    //Subtractions
+    public void SubtractHealth(int Amount) {
+        Health -= Amount;
+    }
+    public void SubtractDamage(int Amount) {
+        Damage -= Amount;
     }
 
     //Change enemy type function
@@ -84,6 +95,13 @@ public class EnemyStats : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        
+        if (Health <= 0) {
+            isAlive = false;
+        }
+
+        if (isAlive == false) {
+            Destroy(this);
+        }
+
     }
 }

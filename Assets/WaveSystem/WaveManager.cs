@@ -12,6 +12,8 @@ public class WaveManager : MonoBehaviour
     public int RemainingEnemyCount;
     public bool CanSpawnWave = true;
 
+    public GameObject EnemyToSpawn;
+
     //Used to reset wave manager or restart game
     public void ResetWaveManager() {
         WaveNumber = 1;
@@ -57,6 +59,7 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnEnemyAtLocation(Vector2 Location) {
         //Create new enemy gameobject here
+        Instantiate(EnemyToSpawn, Location, transform.rotation);
         Debug.Log("Vector2 location of enemy: " + Location);
     }
 
@@ -97,6 +100,12 @@ public class WaveManager : MonoBehaviour
         }
         else {
             CanSpawnWave = true;
+        }
+
+        //Check for if can spawn wave is available
+        //If so, trigger the shop UI
+        if (CanSpawnWave) {
+            //Open Shop UI
         }
     }
 }

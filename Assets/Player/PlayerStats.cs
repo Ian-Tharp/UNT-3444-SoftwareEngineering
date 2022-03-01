@@ -37,6 +37,10 @@ public class PlayerStats : MonoBehaviour
 
     public void AddTotalHealth(int Amount) {
         TotalHealth += Amount;
+        //Total Health overflow check
+        if (TotalHealth > 200) {
+            TotalHealth = 200;
+        }
         AddCurrentHealth(Amount);
     }
 
