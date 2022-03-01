@@ -36,13 +36,14 @@ public class MousePointer : MonoBehaviour
         //transform.position = Camera.main.ScreenToWorldPoint(mousePosition + new Vector3(0f, 0f, 10f));
     }
 
-    void OnCollisionEnter(Collision col)
+    void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log("Enemy");
         if (col.gameObject.tag == "Enemy")
-            sprite.color = new Color (1,0,0,1);
+            sprite.color = new Color (.7f,0,0,1);
     }
 
-    void OnCollisionExit(Collision col)
+    void OnTriggerExit2D(Collider2D col)
     {
         sprite.color = new Color (1,1,1,1);
     }
