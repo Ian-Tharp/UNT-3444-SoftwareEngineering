@@ -416,8 +416,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 473f9d73f8382bd469151820fcb64ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  automatic: 0
+  automatic: 1
   fireRate: 180
+  recoil: 0
   ammo: 0
   magSize: 60
   reloadTime: 1
@@ -8050,6 +8051,7 @@ GameObject:
   - component: {fileID: 593431268}
   - component: {fileID: 593431267}
   - component: {fileID: 593431266}
+  - component: {fileID: 593431269}
   m_Layer: 5
   m_Name: Cursor
   m_TagString: Player
@@ -8069,7 +8071,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a416b0673d7fbf04ebde88fa0a003c16, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 15
+  player: {fileID: 0}
+  moveSpeed: 26.41
 --- !u!212 &593431267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8129,12 +8132,33 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 593431265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.74, y: -0.4, z: -386.00714}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -4.1902, y: -4.4702, z: 0}
+  m_LocalScale: {x: 0.2385, y: 0.2385, z: 0.2385}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!50 &593431269
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 593431265}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &609707868
 GameObject:
   m_ObjectHideFlags: 0
@@ -8373,7 +8397,7 @@ MonoBehaviour:
   WaveScore: 0
   RemainingEnemyCount: 0
   CanSpawnWave: 1
-  EnemyToSpawn: {fileID: 147630756}
+  EnemyToSpawn: {fileID: 0}
 --- !u!4 &711904524
 Transform:
   m_ObjectHideFlags: 0
@@ -9246,14 +9270,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1278922217105877246, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2200771429715576424, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
       propertyPath: m_Name
       value: Enemy_Basic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826840399646251856, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5826840399646251856, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1748092265
       objectReference: {fileID: 0}
     - target: {fileID: 6827399627630139371, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
       propertyPath: waveManager
       value: 
       objectReference: {fileID: 711904523}
+    - target: {fileID: 8574911480740051019, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 8574911480740051019, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.061
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
 --- !u!1 &1220401325
@@ -9842,8 +9886,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1518887079
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3b28bec25bb804e478a85df58cd814c2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10034,7 +10078,7 @@ GameObject:
   - component: {fileID: 1973705284}
   m_Layer: 5
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10097,7 +10141,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 1406098395
+  m_SortingLayerID: -303295723
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!224 &1973705287

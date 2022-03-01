@@ -21,6 +21,8 @@ public class ShootGun : MonoBehaviour
     public bool automatic = true; // false - single shot, true - automatic
     public float fireRate = 600f; // rounds per minute
     private float ROF = 0f; // variable converting fire rate to wait time
+    public float recoil = 30; // recoil rate of the gun (1-low 30-high)
+    private float recoilBuildup = 0;  //variable of recoil building up over time and dropping
     public int ammo; // amount of bullets currently in a mag
     public int magSize = 30; // max size of a magazine
     public float reloadTime = 1.0f; // time it takes to reload
@@ -52,6 +54,8 @@ public class ShootGun : MonoBehaviour
         ammo = magSize;
         reloading = false;
         firing = false;
+        recoil = 15f;
+        recoilBuildup = 0f;
     }
     
     //Fixed update is update but the same rate for every system
@@ -63,6 +67,13 @@ public class ShootGun : MonoBehaviour
         if(automatic && fire.IsPressed() && ammo > 0)
         {   
             Fire();
+        }
+
+        if(recoilBuildup > 0 && !firing)
+        {
+            recoilBuildup -= .9f;
+        }else if(recoilBuildup <= 0){
+            recoilBuildup = 0f;
         }
 
         mousePosition = Mouse.current.position.ReadValue();
@@ -104,7 +115,10 @@ public class ShootGun : MonoBehaviour
                     return;
                 }
 
+                recoilBuildup += recoil * .09f; //
+                //fireBullet(recoildBuildup)
                 ammo = ammo - 1;
+                Debug.Log(recoilBuildup);
                 Debug.Log("Fire! Ammo: " + ammo + "/" + magSize);
                 //Debug.Log("Input Mode:" + Input.GetMouseButtonDown(0)  + "Vector 2 location of Mouse: " + mousePosition);
 
