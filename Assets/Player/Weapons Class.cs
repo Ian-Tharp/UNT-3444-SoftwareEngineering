@@ -36,5 +36,45 @@ public class WeaponsClass : MonoBehaviour
         weapon[2] = new WeaponsClass(false, 5, 1, 1.8f, 40, 80, 15, "Mosin Nagant"); //bolt-action
     }
 
+    public bool getAutomatic()
+    {
+        return automatic;
+    }
+
+    public int getDamage ()
+    {
+        return damage;
+    }
+
+    public int getAmmo ()
+    {
+        return ammo;
+    }
+
+    public float getReloadTime ()
+    {
+        return reloadTime;
+    }
+
+    public float getRPM()
+    {
+        return rpm;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
+    }
+
+    public float getRecoil ()
+    {
+        return recoil;
+    }
+
+    public string getWeaponName ()
+    {
+        return weaponName;
+    }
+
 
 }
