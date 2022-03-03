@@ -8,7 +8,7 @@ public class EnemyStats : MonoBehaviour
     public int Damage = 0;
     public int EnemyType = 0;
     public int EnemyValue = 0;
-    bool isAlive = true;
+    
     public WaveManager waveManager;
 
     // Start is called before the first frame update
@@ -96,11 +96,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Health <= 0) {
-            isAlive = false;
-        }
-
-        if (isAlive == false) {
-            Destroy(this);
+           Destroy(gameObject);
         }
 
     }

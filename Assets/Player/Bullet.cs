@@ -7,6 +7,9 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private float speed = 20f; // standard bullet speed, subject to change
 
+    [SerializeField]
+    private int damage = 1;
+
     private void OnEnable() // allows for bullets to destroy after they are off map
     {
         StartCoroutine(DestroyBullet());
@@ -28,7 +31,11 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            
+            EnemyStats enemy = other.gameObject.GetComponent<EnemyStats>();
+            if (enemy != null)
+            {
+                enemy.SubtractHealth(damage);
+            }
         }
 
         if (other.gameObject.tag != "Player") // for when bullet leaves player
