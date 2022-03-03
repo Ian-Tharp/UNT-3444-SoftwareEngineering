@@ -7,23 +7,29 @@ public class AmmoUI : MonoBehaviour
 {
     public GameObject player;
     ShootGun sg;
-    public Text txt;
+    PlayerStats ps;
+    public Text ammoTxt;
+    public Text healthTxt;
 
     void Start()
     {
         player = GameObject.Find("HQ - Player");
         sg = player.GetComponent<ShootGun>();
-        int tammo =  sg.ammo;
+        ps = player.GetComponent<PlayerStats>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthTxt.text = ps.CurrentHealth.ToString();
+        healthTxt.color = new Color(-ps.CurrentHealth * .01f +1, ps.CurrentHealth * .01f, 0, .8f);
+
         if(sg.reloading)
         {
-            txt.text = "Reloading...";
+            ammoTxt.text = "Reloading...";
         }else{
-            txt.text = sg.ammo.ToString() + "/" + sg.magSize.ToString();
+            ammoTxt.text = sg.ammo.ToString() + "/" + sg.magSize.ToString();
         }
 
     }
