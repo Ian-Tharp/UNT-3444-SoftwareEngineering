@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 7320393266527925535}
   - component: {fileID: 4702341431112377400}
   - component: {fileID: 5656439233612628470}
+  - component: {fileID: 9203387569686270070}
   m_Layer: 0
   m_Name: Enemy_BasicRanged
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,9 +96,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   Damage: 0
-  EnemyType: 0
+  EnemyType: 2
   EnemyValue: 0
-  waveManager: {fileID: 0}
+--- !u!114 &9203387569686270070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741488129945918922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68b99718284da14caebea329536890e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  Speed: 2
 --- !u!1 &3687456959936450192
 GameObject:
   m_ObjectHideFlags: 0

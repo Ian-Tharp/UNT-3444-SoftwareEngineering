@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveTowardsPlayer : MonoBehaviour
 {
+
     public Transform player;
     private Rigidbody2D rb;
 
@@ -14,7 +15,9 @@ public class MoveTowardsPlayer : MonoBehaviour
     {
         //Setup rigidbody component to allow for change of rotation
         rb = this.GetComponent<Rigidbody2D>();
- 
+        GameObject temp = GameObject.FindGameObjectWithTag("Player");
+        Transform tempLoc = temp.GetComponent<Transform>();
+        player = tempLoc;
     }
 
     void Update() {

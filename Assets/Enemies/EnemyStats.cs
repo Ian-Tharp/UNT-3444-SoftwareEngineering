@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,30 +9,26 @@ public class EnemyStats : MonoBehaviour
     public int Damage = 0;
     public int EnemyType = 0;
     public int EnemyValue = 0;
-    
-    public WaveManager waveManager;
 
     // Start is called before the first frame update
     void Start() {
-        SetEnemyType(GetEnemyType());
+        SetEnemyType(EnemyType);
 
     }
 
     //Public getters
-    public int GetEnemyType() {
-        int wave = waveManager.GetWaveNumber();
-        //Debug.Log(wave);
-        return wave;
-    }
-
-    public int GetEnemyValue() {
-        return EnemyValue;
-    }
-
     public int GetEnemyHealth() {
         return Health;
     }
-
+    public int GetEnemyDamage() {
+        return Damage;
+    }
+    public int GetEnemyType() {
+        return EnemyType;
+    }
+    public int GetEnemyValue() {
+        return EnemyValue;
+    }
     //Public functions to allow for enemy stats to change during gameplay
     //Additions
     public void AddHealth(int Amount) {

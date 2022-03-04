@@ -12,11 +12,14 @@ public class WaveManager : MonoBehaviour
     public int RemainingEnemyCount;
     public bool CanSpawnWave = true;
 
-    public GameObject EnemyToSpawn;
+    [SerializeField]
+    private GameObject EnemyToSpawn; //First Enemy Type
 
-    //Used to reset wave manager or restart game
+    GameObject[] Enemies; //GameObject list of enemies that are present or spawned in
+
+    //Used to reset wave manager or restart game without going back to main menu
     public void ResetWaveManager() {
-        WaveNumber = 1;
+        WaveNumber = 0;
         EnemyCount = 0;
         TotalEnemyCount = 0;
         RemainingEnemyCount = 0;
@@ -38,12 +41,6 @@ public class WaveManager : MonoBehaviour
         TotalEnemyCount = EnemyCount;
     }
 
-    void DecreaseEnemyCount() {
-        if (RemainingEnemyCount > 0) {
-            RemainingEnemyCount--;
-        }
-    }
-
     //Handle all locations to spawn enemies 
     GameObject[] SpawnLocations;
     Vector2 LocationToSpawnEnemy;
@@ -59,12 +56,13 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnEnemyAtLocation(Vector2 Location) {
         //Create new enemy gameobject here
-        Instantiate(EnemyToSpawn, Location, transform.rotation);
+        GameObject Enemy = Instantiate(EnemyToSpawn, Location, transform.rotation);
         Debug.Log("Vector2 location of enemy: " + Location);
     }
 
     public void StartWave() {
         CanSpawnWave = false;
+        WaveNumber++;
         DetermineWave();
 
         //SpawnEnemy functions here
@@ -72,10 +70,9 @@ public class WaveManager : MonoBehaviour
             LocationToSpawnEnemy = DetermineSpawnLocation();
             SpawnEnemyAtLocation(LocationToSpawnEnemy);
         }
-
-        //After SpawnEnemy decrease total count
-        DecreaseEnemyCount();
-
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        RemainingEnemyCount = Enemies.Length;
+        Debug.Log("Enemies: " + Enemies.Length);
     }
     //--------------------------------------------------------------------------------
     //Public Getters
@@ -89,23 +86,28 @@ public class WaveManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        WaveNumber = 1;
+        WaveNumber = 0;
         StartWave();
     }
 
     // Update is called once per frame
     void Update() {
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        RemainingEnemyCount = Enemies.Length;
         if (RemainingEnemyCount > 0) {
             CanSpawnWave = false;
         }
-        else {
+        else if (Enemies.Length == 0) {
             CanSpawnWave = true;
+            StartWave();
         }
 
         //Check for if can spawn wave is available
         //If so, trigger the shop UI
         if (CanSpawnWave) {
             //Open Shop UI
+
+
         }
     }
 }
