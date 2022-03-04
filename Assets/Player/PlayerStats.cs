@@ -15,8 +15,6 @@ public class PlayerStats : MonoBehaviour
     public bool hasShield = false;
     bool isDead = false;
 
-    public WaveManager waveManager;
-
     //--------------------------------------------------------------------------------
     //Additions
     public void AddCurrency(int Amount) {
@@ -67,6 +65,13 @@ public class PlayerStats : MonoBehaviour
         }
         else {
             return false;
+        }
+    }
+
+    public void SubtractCurrenyShields(int Amount) {
+        CurrentShields -= Amount;
+        if (CurrentShields - Amount < 0) {
+            
         }
     }
 

@@ -19,10 +19,10 @@ public class MoveTowardsPlayer : MonoBehaviour
 
     void Update() {
         //Calculate direction and angle for enemies to look at player
-        Vector3 Direction = player.transform.position - transform.position;
-        float Angle = Mathf.Atan2(Direction.y, Direction.x * Mathf.Rad2Deg);
-        rb.rotation = Angle;
-
+        Vector3 Direction = player.transform.position - this.transform.position;
+        Quaternion Rotation = Quaternion.LookRotation(Vector3.forward, Direction);
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Rotation, Time.deltaTime * Speed);
+        //Normalize direction for movement to smooth transition into rotations
         Direction.Normalize();
         Movement = Direction;
     }
@@ -31,6 +31,7 @@ public class MoveTowardsPlayer : MonoBehaviour
         MoveEnemy(Movement);
     }
 
+    //Update enemy movement
     void MoveEnemy(Vector2 Direction) {
         rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
     }
