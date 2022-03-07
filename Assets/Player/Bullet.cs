@@ -10,6 +10,8 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int damage = 1;
 
+    public TrailRenderer trail;
+
     private void OnEnable() // allows for bullets to destroy after they are off map
     {
         StartCoroutine(DestroyBullet());
@@ -42,5 +44,13 @@ public class Bullet : MonoBehaviour
         {
         Destroy(gameObject);
         }
+    }
+
+     
+      void OnDestroy() //when bullet is destroyed, unparent trail so it lingers
+    {
+        trail.transform.parent = null;
+        trail.autodestruct = true;
+        trail = null;
     }
 }
