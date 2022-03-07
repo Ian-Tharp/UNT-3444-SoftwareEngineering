@@ -31,6 +31,7 @@ public class ShootGun : MonoBehaviour
     private InputAction fire; // declaring an inputaction for fire function
     private InputAction reload;
 
+    public GameObject IS;
     public InventorySystem InvSys;
     public WeaponsClass weapon;
 
@@ -72,19 +73,16 @@ public class ShootGun : MonoBehaviour
     
     void Start()
     {
+        IS = GameObject.Find("InventorySystem");
+        InvSys = IS.GetComponent<InventorySystem>();
         
+
         reloading = false;
         firing = false;
         recoilBuildup = 0f;
 
         weapon = InvSys.weaponInv[InvSys.weaponSel];
-
-        recoil = 4;
-        fireRate = 600;
-        magSize = 30;
-        ammo = magSize;
-        automatic = true;
-        reloadTime = 1.4f;
+        ammo = 17;
 
 
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -137,7 +135,7 @@ public class ShootGun : MonoBehaviour
 
         ammo = magSize;
         reloading = false;
-
+        firing = false;
     }
 
     IEnumerator FiringWait()
@@ -184,9 +182,13 @@ public class ShootGun : MonoBehaviour
 
     }
 
+
+    //when weapon switch called from inventory system, change ammo count to saved ammo
+    //then play loading sfx
     public void WeapSwitch(int tammo)
     {
-        ammo = InvSys.savedAmmo[InvSys.weaponSel];
+        ammo = tammo;
+        source.PlayOneShot(rfinSFX, 1.0f); //reload finish sfx
     }
     
 

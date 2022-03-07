@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 using WC;
 
 public class Bullet : MonoBehaviour
@@ -11,8 +12,10 @@ public class Bullet : MonoBehaviour
     [SerializeField]
     private int damage;
 
+    public GameObject player;
     public InventorySystem InvSys;
     public TrailRenderer trail;
+    public WeaponsClass weapon;
 
     private void OnEnable() // allows for bullets to destroy after they are off map
     {
@@ -26,9 +29,18 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
     
+    void Start()
+    {
+        player = GameObject.Find("InventorySystem");
+        InvSys = player.GetComponent<InventorySystem>();
+    }
+
     void Update() 
     {
-        //damage = InvSys.weaponInv[InvSys.weaponSel].damage;
+        //weapon stats for current weapon being used
+        weapon = InvSys.weaponInv[InvSys.weaponSel];
+        damage = weapon.damage; // change damage # to current weapon
+
         transform.Translate(Vector3.up * speed * Time.deltaTime); // shoots projectile
     }
 
@@ -45,7 +57,7 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag != "Player") // for when bullet leaves player
         {
-            if (InvSys.weaponInv[InvSys.weaponSel].piercing == false)
+            if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
                 Destroy(gameObject);
         }
     }

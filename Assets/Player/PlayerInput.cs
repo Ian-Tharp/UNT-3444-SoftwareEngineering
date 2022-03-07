@@ -336,8 +336,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""90914f0f-58b7-4a83-9ad6-211817c09288"",
-                    ""path"": ""<Mouse>/scroll/x"",
+                    ""id"": ""c5b6f36e-f38b-411c-af92-cf0131d9ab30"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -347,8 +347,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c5b6f36e-f38b-411c-af92-cf0131d9ab30"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""e92da47d-d773-43c6-ad81-a9ca122a1335"",
+                    ""path"": ""<Mouse>/scroll/x"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -380,8 +380,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""960cb0f2-e8f4-48f4-8d0f-28a198198d61"",
-                    ""path"": ""<Mouse>/scroll/y"",
+                    ""id"": ""d53273d0-013f-48f2-9aab-15155640cb83"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
@@ -391,8 +391,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d53273d0-013f-48f2-9aab-15155640cb83"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""id"": ""8fdac91c-e5ce-4330-93cc-e2c1187bdc7b"",
+                    ""path"": ""<Mouse>/scroll/y"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",

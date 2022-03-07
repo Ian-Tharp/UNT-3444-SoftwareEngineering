@@ -5,17 +5,18 @@ using WC;
 
 public class WeaponsClassScript : MonoBehaviour
 {
-
+    //the class used for all weapon references, create more below
+    //increment weaponNum for each one you add
     public static int weaponNum = 3;
     public WeaponsClass[] weapon = new WeaponsClass[weaponNum];
     
 
     void Start()
     {
-        
-        weapon[0] = new WeaponsClass(false, false, 2, 17, 1.0f, 180, 50, 3, "Glock 17"); //pistol
-        weapon[1] = new WeaponsClass(true, false, 1, 30, 1.4f, 600, 50, 4, "AK-47"); //AR
-        weapon[2] = new WeaponsClass(false, true, 5, 1, 1.8f, 40, 80, 15, "Mosin Nagant"); //bolt-action
+        //created weapons for the game here, includes all weapons
+        weapon[0] = new WeaponsClass(false, false, 2, 17, .7f, 250, 50, 3, "Glock 17"); //pistol
+        weapon[1] = new WeaponsClass(true, false, 1, 30, 1.1f, 600, 50, 4, "AK-47"); //AR
+        weapon[2] = new WeaponsClass(false, true, 5, 1, 1.2f, 250, 80, 15, "Mosin Nagant"); //bolt-action
     }
 
 }
