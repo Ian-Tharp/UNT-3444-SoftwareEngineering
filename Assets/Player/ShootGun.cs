@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
 using System.Threading;
-
+using WC;
 
 
 public class ShootGun : MonoBehaviour
@@ -29,6 +29,10 @@ public class ShootGun : MonoBehaviour
     Vector2 mousePosition;
     public PlayerInput playerControls; // using the created PlayerInput class 
     private InputAction fire; // declaring an inputaction for fire function
+    private InputAction reload;
+
+    public InventorySystem InvSys;
+    public WeaponsClass weapon;
 
     public bool automatic = true; // false - single shot, true - automatic
     public float fireRate = 600f; // rounds per minute
@@ -45,19 +49,24 @@ public class ShootGun : MonoBehaviour
     private void Awake()
     {
         playerControls = new PlayerInput();
-        
     }
+
     private void OnEnable()
     {
         fire = playerControls.Player.Fire;
         fire.Enable();
+
+        reload = playerControls.Player.Reload;
+        reload.Enable();
         
         fire.performed += context => Fire();
+        reload.performed += context2 => StartCoroutine(Reload());
     }
 
     private void OnDisable()
     {
         fire.Disable();
+        reload.Disable();
     }
 
     
@@ -68,11 +77,14 @@ public class ShootGun : MonoBehaviour
         firing = false;
         recoilBuildup = 0f;
 
-        recoil = 3f;
+        weapon = InvSys.weaponInv[InvSys.weaponSel];
+
+        recoil = 4;
         fireRate = 600;
         magSize = 30;
         ammo = magSize;
         automatic = true;
+        reloadTime = 1.4f;
 
 
         AudioSource[] audioSources = GetComponents<AudioSource>();
@@ -85,7 +97,14 @@ public class ShootGun : MonoBehaviour
     
     //Fixed update is update but the same rate for every system
     void FixedUpdate() {
-        
+
+        weapon = InvSys.weaponInv[InvSys.weaponSel];
+        recoil = weapon.recoil;
+        fireRate = weapon.rpm;
+        magSize = weapon.ammo;
+        automatic = weapon.automatic;
+        reloadTime = weapon.reloadTime;
+
         ROF = 60/fireRate; //calculating rpm to actual wait time in between rounds fired
 
         //if weapon is automatic and left click held down, fire
@@ -163,6 +182,11 @@ public class ShootGun : MonoBehaviour
             } 
 
 
+    }
+
+    public void WeapSwitch(int tammo)
+    {
+        ammo = InvSys.savedAmmo[InvSys.weaponSel];
     }
     
 

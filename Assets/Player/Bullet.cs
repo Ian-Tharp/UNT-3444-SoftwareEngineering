@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using WC;
 
 public class Bullet : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class Bullet : MonoBehaviour
     private float speed = 20f; // standard bullet speed, subject to change
 
     [SerializeField]
-    private int damage = 1;
+    private int damage;
 
+    public InventorySystem InvSys;
     public TrailRenderer trail;
 
     private void OnEnable() // allows for bullets to destroy after they are off map
@@ -26,6 +28,7 @@ public class Bullet : MonoBehaviour
     
     void Update() 
     {
+        //damage = InvSys.weaponInv[InvSys.weaponSel].damage;
         transform.Translate(Vector3.up * speed * Time.deltaTime); // shoots projectile
     }
 
@@ -42,7 +45,8 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag != "Player") // for when bullet leaves player
         {
-        Destroy(gameObject);
+            if (InvSys.weaponInv[InvSys.weaponSel].piercing == false)
+                Destroy(gameObject);
         }
     }
 

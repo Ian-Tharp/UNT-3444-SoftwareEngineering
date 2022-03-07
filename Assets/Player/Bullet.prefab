@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 35
   damage: 1
+  InvSys: {fileID: 1176939344493927019, guid: 7f5dd6524b251d344a5e886c7eca4cf9, type: 3}
   trail: {fileID: 2534150533806026213}
 --- !u!1 &6968910451091713199
 GameObject:
