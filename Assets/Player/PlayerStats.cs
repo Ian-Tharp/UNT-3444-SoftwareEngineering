@@ -68,10 +68,14 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public void SubtractCurrenyShields(int Amount) {
-        CurrentShields -= Amount;
-        if (CurrentShields - Amount < 0) {
-            
+    public void SubtractCurrentShields(int Amount) {
+        if (CurrentShields - Amount >= 0) {
+            CurrentShields -= Amount;
+        }
+        else {
+            int temp = Mathf.Abs(CurrentShields - Amount);
+            SubtractCurrentHealth(temp);
+            hasShield = false;
         }
     }
 
