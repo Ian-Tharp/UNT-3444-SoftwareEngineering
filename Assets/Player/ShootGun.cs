@@ -93,6 +93,19 @@ public class ShootGun : MonoBehaviour
         rfinSFX = audioSources[3].clip;
     }
     
+    void Update()
+    {
+        if(Time.timeScale == 0)
+        {
+            fire.Disable();
+            reload.Disable();
+        }  else {
+            fire.Enable();
+            reload.Enable();
+        }
+    }
+
+
     //Fixed update is update but the same rate for every system
     void FixedUpdate() {
 

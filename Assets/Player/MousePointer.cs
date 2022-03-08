@@ -35,6 +35,10 @@ public class MousePointer : MonoBehaviour
         Vector3 followXonly = new Vector3(targetPos.x, targetPos.y, transform.position.z);
         transform.position = Vector3.Lerp (transform.position, followXonly, moveSpeed * Time.deltaTime);
 
+        if(Time.timeScale == 0)
+        {
+            transform.position = new Vector3 (targetPos.x, targetPos.y, -10);
+        }
     }
 
     void OnTriggerStay2D(Collider2D col)

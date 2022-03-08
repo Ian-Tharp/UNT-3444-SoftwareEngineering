@@ -68,6 +68,18 @@ public class InventorySystem : MonoBehaviour
         savedAmmo[2] = weaponInv[2].ammo;
     }
 
+    void Update()
+    {
+        if(Time.timeScale == 0)
+        {
+            next.Disable();
+            prev.Disable();
+        }  else {
+            next.Enable();
+            prev.Enable();
+        }
+    }
+
     //when a weapon switch is triggered
     //change the weapon selected, and save the ammo count for when you switch back
     void NextWeapon()

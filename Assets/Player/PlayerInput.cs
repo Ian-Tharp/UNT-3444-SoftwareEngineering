@@ -89,6 +89,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""989f48f5-7e03-4de9-8e32-8373399adfca"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -397,6 +406,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Next"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f065ed8-c51b-40b3-93be-54185062b9f5"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -991,6 +1011,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_StartWave = m_Player.FindAction("StartWave", throwIfNotFound: true);
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Prev = m_Player.FindAction("Prev", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1069,6 +1090,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_StartWave;
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Prev;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -1080,6 +1102,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @StartWave => m_Wrapper.m_Player_StartWave;
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Prev => m_Wrapper.m_Player_Prev;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1110,6 +1133,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Prev.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrev;
                 @Prev.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrev;
                 @Prev.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPrev;
+                @Pause.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1135,6 +1161,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Prev.started += instance.OnPrev;
                 @Prev.performed += instance.OnPrev;
                 @Prev.canceled += instance.OnPrev;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -1298,6 +1327,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnStartWave(InputAction.CallbackContext context);
         void OnNext(InputAction.CallbackContext context);
         void OnPrev(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

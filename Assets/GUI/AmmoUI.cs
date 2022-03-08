@@ -27,7 +27,7 @@ public class AmmoUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         healthTxt.text = ps.CurrentHealth.ToString();
         healthTxt.color = new Color(-ps.CurrentHealth * .01f +1, ps.CurrentHealth * .01f, 0, .8f);
@@ -46,9 +46,9 @@ public class AmmoUI : MonoBehaviour
         }
         weaponTxt.text = sg.weapon.weaponName;
         weaponTxt.color = new Color(.83f, .62f, .26f, weaponAlpha);
-        timer += .05f;
-        if (timer > 15)
-            weaponAlpha -= .01f;
+        timer += .1f;
+        if (timer > 3)
+            weaponAlpha -= .09f;
         tweap = sg.weapon.weaponName;
     }
     
