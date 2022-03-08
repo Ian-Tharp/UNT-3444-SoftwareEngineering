@@ -14,8 +14,8 @@ public class WeaponsClassScript : MonoBehaviour
     void Start()
     {
         //created weapons for the game here, includes all weapons
-        weapon[0] = new WeaponsClass(false, false, 2, 17, .7f, 250, 50, 3, "Glock 17"); //pistol
-        weapon[1] = new WeaponsClass(true, false, 1, 30, 1.1f, 600, 50, 4, "AK-47"); //AR
+        weapon[0] = new WeaponsClass(false, false, 2, 17, .7f, 390, 65, 3, "Glock 17"); //pistol
+        weapon[1] = new WeaponsClass(true, false, 1, 30, 1.1f, 600, 75, 4, "AK-47"); //AR
         weapon[2] = new WeaponsClass(false, true, 5, 1, 1.2f, 250, 80, 15, "Mosin Nagant"); //bolt-action
     }
 

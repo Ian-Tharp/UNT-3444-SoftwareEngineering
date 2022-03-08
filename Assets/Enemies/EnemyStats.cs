@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class EnemyStats : MonoBehaviour
 {
+    public ParticleSystem parts;
+    public ParticleSystem blood;
+
     public int Health = 0;
     public int Damage = 0;
     public int EnemyType = 0;
@@ -40,6 +43,8 @@ public class EnemyStats : MonoBehaviour
 
     //Subtractions
     public void SubtractHealth(int Amount) {
+        //particle calls
+        Hurt();
         Health -= Amount;
     }
     public void SubtractDamage(int Amount) {
@@ -96,5 +101,11 @@ public class EnemyStats : MonoBehaviour
            Destroy(gameObject);
         }
 
+    }
+
+    void Hurt()
+    {
+        ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
+        ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
     }
 }

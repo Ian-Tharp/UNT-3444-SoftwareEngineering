@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c5b6173240ba0349a1aef7da76d69a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parts: {fileID: 8881824710410716826, guid: 22c625265ce20804292e7958a4a54009, type: 3}
+  blood: {fileID: 5617722096624366508, guid: b097182a42e58ce479fb3f7998735c6d, type: 3}
   Health: 0
   Damage: 0
   EnemyType: 0
