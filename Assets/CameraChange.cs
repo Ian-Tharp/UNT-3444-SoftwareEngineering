@@ -18,6 +18,7 @@ public class CameraChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        size = 100;
         MAX = 20;
         MIN = 8;
     }
@@ -28,7 +29,9 @@ public class CameraChange : MonoBehaviour
         center = ((reticle.position - player.position)/2.0f) + player.position;
         transform.position = new Vector3 (center.x, center.y, -10);
 
-        //cam.orthographicSize = Vector2.Distance(reticle.position, player.position)/2 * size;
+        cam.orthographicSize = 100/Vector2.Distance(reticle.position, player.position);
+        Debug.Log("size of cam: " + cam.orthographicSize);
+        Debug.Log("distance: " + Vector2.Distance(reticle.position, player.position));
         if(cam.orthographicSize > MAX)
             cam.orthographicSize = MAX;
         if(cam.orthographicSize < MIN)
