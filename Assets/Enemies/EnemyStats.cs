@@ -7,6 +7,7 @@ public class EnemyStats : MonoBehaviour
 {
     public ParticleSystem parts;
     public ParticleSystem blood;
+    public ParticleSystem explode;
 
     public int Health = 0;
     public int Damage = 0;
@@ -98,7 +99,8 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Health <= 0) {
-           Destroy(gameObject);
+            ParticleSystem explofx = Instantiate(explode, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
 
     }
@@ -107,5 +109,6 @@ public class EnemyStats : MonoBehaviour
     {
         ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
         ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
+        
     }
 }
