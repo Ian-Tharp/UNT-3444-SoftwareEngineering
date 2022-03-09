@@ -65,8 +65,11 @@ public class Bullet : MonoBehaviour
      
       void OnDestroy() //when bullet is destroyed, unparent trail so it lingers
     {
-        trail.transform.parent = null;
-        trail.autodestruct = true;
-        trail = null;
+        if (trail != null)
+        {
+            trail.transform.parent = null;
+            trail.autodestruct = true;
+            trail = null;
+        }
     }
 }

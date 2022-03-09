@@ -37,7 +37,7 @@ public class MousePointer : MonoBehaviour
 
         if(Time.timeScale == 0)
         {
-            transform.position = new Vector3 (targetPos.x, targetPos.y, -10);
+            transform.position = new Vector3 (targetPos.x, targetPos.y, 0);
         }
     }
 

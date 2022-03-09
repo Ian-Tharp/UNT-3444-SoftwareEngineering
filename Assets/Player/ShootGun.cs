@@ -39,12 +39,12 @@ public class ShootGun : MonoBehaviour
     public float fireRate = 600f; // rounds per minute
     private float ROF = 0f; // variable converting fire rate to wait time
     public float recoil = 3; // recoil rate of the gun (1-low 10-high)
-    private float recoilBuildup = 0;  //variable of recoil building up over time and dropping
+    public float recoilBuildup = 0;  //variable of recoil building up over time and dropping
     public int ammo; // amount of bullets currently in a mag
     public int magSize = 30; // max size of a magazine
     public float reloadTime = 1.0f; // time it takes to reload
     public bool reloading; 
-    private bool firing; // while shooting
+    public bool firing; // while shooting
     
     // next three are necessary calls for new input system
     private void Awake()

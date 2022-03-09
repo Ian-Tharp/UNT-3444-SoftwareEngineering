@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8881824710410716827}
   - component: {fileID: 8881824710410716826}
   - component: {fileID: 8881824710410716825}
+  - component: {fileID: 6311935642505797591}
   m_Layer: 4
   m_Name: EnemyParticleEffect
   m_TagString: Untagged
@@ -4867,3 +4868,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &6311935642505797591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8881824710410716824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30d3d9e520b6f2343bd30943f06816e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
