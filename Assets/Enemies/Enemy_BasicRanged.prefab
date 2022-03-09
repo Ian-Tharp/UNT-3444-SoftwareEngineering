@@ -101,6 +101,7 @@ MonoBehaviour:
   Damage: 0
   EnemyType: 2
   EnemyValue: 0
+  source: {fileID: 0}
 --- !u!114 &9203387569686270070
 MonoBehaviour:
   m_ObjectHideFlags: 0
