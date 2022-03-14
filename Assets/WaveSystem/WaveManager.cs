@@ -19,7 +19,7 @@ public class WaveManager : MonoBehaviour
     private GameObject BasicRanged; //Basic Ranged Enemy Type
     
     [SerializeField]
-    private GameObject Exploder; //Ecploder 1 Enemy Type
+    private GameObject Exploder; //Exploder 1 Enemy Type
 
     [SerializeField]
     private GameObject HeavyMelee; //Heavy Melee Enemy Type
@@ -46,11 +46,11 @@ public class WaveManager : MonoBehaviour
     }
 
     IEnumerator WaitToSpawnWave() {
-        yield return new WaitForSeconds(3.0f);
+        yield return new WaitForSeconds(3.5f);
     }
 
     //Calculate how many enemies to spawn per wave
-    void DetermineWave() {
+    void DetermineWaveSize() {
         if (WaveNumber == 1) {
             EnemyCount = 5;
         }
@@ -89,10 +89,10 @@ public class WaveManager : MonoBehaviour
         else if (WaveNumber <= 9 && WaveNumber > 3) {
             randomizer = Random.Range(0, 5);
             if (randomizer == 0) {
-                SpawnBasicMelee1AtLocation(Location);
+                SpawnBasicRanged1AtLocation(Location);
             }
             else {
-                SpawnBasicRanged1AtLocation(Location);
+                SpawnBasicMelee1AtLocation(Location);
             }
         }
         //Wave 10
@@ -104,8 +104,8 @@ public class WaveManager : MonoBehaviour
         //10% chance to spawn exploder enemy
         //30% chance to spawn basic ranged enemy
         //60% chance to spawn basic melee enemy
-        else if (WaveNumber >= 10 && WaveNumber < 15) {
-            randomizer = Random.Range(0, 10);
+        else if (WaveNumber > 10 && WaveNumber < 15) {
+            randomizer = Random.Range(0, 9);
             if (randomizer == 0) {
                 SpawnExploderAtLocation(Location);
             }
@@ -116,35 +116,52 @@ public class WaveManager : MonoBehaviour
                 SpawnBasicMelee1AtLocation(Location);
             }
         }
+        //Wave 15
+        //50% chance to spawn exploder enemy
+        //50% chance to spawn heavy melee
+        else if (WaveNumber == 15) {
+            randomizer = Random.Range(0, 1);
+            if (randomizer == 0) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnHeavyMeleeAtLocation(Location);
+            }
+        }
     }
 
     //Public functions to instantiate enemies
     public void SpawnBasicMelee1AtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
+        WaveScore += 1;
     }
     public void SpawnBasicRanged1AtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(BasicRanged, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
+        WaveScore += 2;
     }
     public void SpawnExploderAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(Exploder, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
+        WaveScore += 3;
     }
     public void SpawnHeavyMeleeAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyMelee, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
+        WaveScore += 5;
     }
     public void SpawnHeavyRangedAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
+        WaveScore += 6;
     }  
 
     
     public void StartWave() {
         CanSpawnWave = false;
         WaveNumber++;
-        DetermineWave();
+        DetermineWaveSize();
 
         //SpawnEnemy functions here
         for (int i = 0; i < EnemyCount; i++) {
@@ -170,6 +187,14 @@ public class WaveManager : MonoBehaviour
     void Start() {
         WaveNumber = 0;
         StartWave();
+    }
+
+    public void KillAllEnemies() {
+        Enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < Enemies.Length; i++) {
+            GameObject EnemyToKill = Enemies[i];
+            Destroy(EnemyToKill);
+        }
     }
 
     // Update is called once per frame

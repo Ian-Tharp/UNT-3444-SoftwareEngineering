@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "KillAllEnemiesDebug",
+                    "type": "Button",
+                    "id": "b9c79e86-0a55-42ae-86df-c1b306168a2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -395,6 +404,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ce97ea7b-1952-4cd4-91d6-f7f10c9009ea",
+                    "path": "<Keyboard>/#(0)",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "KillAllEnemiesDebug",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

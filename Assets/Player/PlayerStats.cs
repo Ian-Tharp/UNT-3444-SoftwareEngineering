@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -102,9 +104,12 @@ public class PlayerStats : MonoBehaviour
         TotalShields = 25;
     }
 
+    public PlayerInput playerControls;
+    private InputAction KillAllEnemies;
     //Constructor
     void Start() {
         CurrentHealth = TotalHealth;
+        playerControls = new PlayerInput();
     }
 
     //Called once every frame

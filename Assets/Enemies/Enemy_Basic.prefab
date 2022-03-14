@@ -101,7 +101,6 @@ MonoBehaviour:
   Damage: 0
   EnemyType: 1
   EnemyValue: 0
-  source: {fileID: 0}
 --- !u!114 &2274010472741187437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -115,7 +114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  Speed: 2
+  Speed: 3
 --- !u!1 &9191661371665794191
 GameObject:
   m_ObjectHideFlags: 0
