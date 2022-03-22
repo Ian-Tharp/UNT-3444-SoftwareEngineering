@@ -81,7 +81,8 @@ public class WaveManager : MonoBehaviour
     public void SpawnEnemyAtLocation(Vector2 Location) {
         //Wave 1-3
         if (WaveNumber <= 3) {
-            SpawnBasicMelee1AtLocation(Location);
+            SpawnExploderAtLocation(Location);
+            //SpawnBasicMelee1AtLocation(Location);
         }
         //Wave 4-9
         //20% chance to spawn basic ranged enemy
@@ -126,6 +127,51 @@ public class WaveManager : MonoBehaviour
             }
             else {
                 SpawnHeavyMeleeAtLocation(Location);
+            }
+        }
+        //Wave 16-19
+        //14% chance to spawn basic melee enemy
+        //14% chance to spawn heavy melee enemy
+        //28% chance to spawn basic ranged enemy
+        //28% chance to spawn heavy ranged enemy
+        //14% chance to spawn exploder enemy
+        else if (WaveNumber > 15 && WaveNumber < 20) {
+            randomizer = Random.Range(0, 6);
+            if (randomizer == 0) {
+                SpawnBasicMelee1AtLocation(Location);
+            }
+            else if (randomizer == 1) {
+                SpawnHeavyMeleeAtLocation(Location);
+            }
+            else if (randomizer == 2 || randomizer == 3) {
+                SpawnBasicRanged1AtLocation(Location);
+            }
+            else if (randomizer == 4 || randomizer == 5) {
+                SpawnHeavyRangedAtLocation(Location);
+            }
+            else {
+                SpawnExploderAtLocation(Location);
+            }
+        }
+        //Wave 20 and above
+        //will change spawning later but just continue old spawn percentages
+        //to make it endless
+        else {
+            randomizer = Random.Range(0, 6);
+            if (randomizer == 0) {
+                SpawnBasicMelee1AtLocation(Location);
+            }
+            else if (randomizer == 1) {
+                SpawnHeavyMeleeAtLocation(Location);
+            }
+            else if (randomizer == 2 || randomizer == 3) {
+                SpawnBasicRanged1AtLocation(Location);
+            }
+            else if (randomizer == 4 || randomizer == 5) {
+                SpawnHeavyRangedAtLocation(Location);
+            }
+            else {
+                SpawnExploderAtLocation(Location);
             }
         }
     }
