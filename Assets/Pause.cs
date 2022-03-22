@@ -17,6 +17,7 @@ public class Pause : MonoBehaviour
     
     public bool paused;
     public bool endWave;
+    bool delay = false;
 
     private void Awake()
     {
@@ -46,6 +47,13 @@ public class Pause : MonoBehaviour
         paused = false;
     }
 
+    IEnumerator menuDelay()
+    {
+        yield return new WaitForSeconds(2); 
+        delay = false;
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -59,9 +67,15 @@ public class Pause : MonoBehaviour
             Time.timeScale = 0;
             if (endWave)
             {
+                if (delay == false)
+                {
+                delay = true;
+                StartCoroutine(menuDelay());
+                
                 menu.openCards();
                 endWave = false;    
                 wm.StartWave();
+                }
             }
         } 
         else  
