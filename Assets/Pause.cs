@@ -7,14 +7,23 @@ using System.Threading;
 
 public class Pause : MonoBehaviour
 {
+    [SerializeField] GameObject cardMenu;
+
     public PlayerInput playerControls;
     private InputAction pauseBut;
+    private GameObject waveManager;
+    private WaveManager wm;
+    private CardMenu menu;
     
     public bool paused;
+    public bool endWave;
 
     private void Awake()
     {
         playerControls = new PlayerInput();
+        
+        waveManager = GameObject.Find("WaveManagerSystem");
+        
     }
 
     private void OnEnable()
@@ -40,11 +49,23 @@ public class Pause : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(paused)
+        
+        wm = waveManager.GetComponent<WaveManager>();
+        menu = cardMenu.GetComponent<CardMenu>();
+        endWave = wm.CanSpawnWave;
+        if(paused || endWave)
         {
-            //Cursor.visible = true;
+            paused = true;
             Time.timeScale = 0;
-        } else {
+            if (endWave)
+            {
+                menu.openCards();
+                endWave = false;    
+                wm.StartWave();
+            }
+        } 
+        else  
+        {
             //Cursor.visible = false;
             Time.timeScale = 1;
         }
@@ -54,7 +75,7 @@ public class Pause : MonoBehaviour
     
     public void PauseGame()
     {
-        if(paused)
+        if(paused )
         {
             paused = false;
         } else {

@@ -46,7 +46,7 @@ public class WaveManager : MonoBehaviour
     }
 
     IEnumerator WaitToSpawnWave() {
-        yield return new WaitForSeconds(3.5f);
+        yield return new WaitForSeconds(2.5f);
     }
 
     //Calculate how many enemies to spawn per wave
@@ -207,15 +207,8 @@ public class WaveManager : MonoBehaviour
         else if (Enemies.Length == 0) {
             CanSpawnWave = true;
             WaitToSpawnWave();
-            StartWave();
+            
         }
 
-        //Check for if can spawn wave is available
-        //If so, trigger the shop UI
-        if (CanSpawnWave) {
-            //Open Shop UI
-
-
-        }
     }
 }
