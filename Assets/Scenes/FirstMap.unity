@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 4042086}
   - component: {fileID: 4042085}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Card 2 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -244,7 +244,6 @@ GameObject:
   - component: {fileID: 54867210}
   - component: {fileID: 54867209}
   - component: {fileID: 54867211}
-  - component: {fileID: 54867212}
   - component: {fileID: 54867214}
   - component: {fileID: 54867213}
   m_Layer: 5
@@ -326,128 +325,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cardMenu: {fileID: 54867207}
---- !u!114 &54867212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54867207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 431204520dfc3374db0d9cf9bd1f423a, type: 3}
-  m_NotificationBehavior: 2
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents:
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 9131e4c4-0449-4a48-b628-f053c727b02d
-    m_ActionName: Player/Move[/DualSenseGamepadHID/leftStick,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow,/Wooting
-      WootingTwo/stick]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 7be464ae-e394-407a-bc1b-3c4a23e50e0c
-    m_ActionName: Player/Look[/DualSenseGamepadHID/rightStick,/Mouse/delta,/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 905baf1b-1bcf-4c86-a3ee-9d619791c7e0
-    m_ActionName: Player/Fire[/DualSenseGamepadHID/rightTrigger,/Mouse/leftButton,/Wooting
-      WootingTwo/trigger]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 8ea81dfc-fd02-480a-98be-ed6d8a99ebae
-    m_ActionName: Player/Reload[/Mouse/rightButton,/Keyboard/r]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 28bffbaa-2ed2-440d-ac5a-9cff7d3d152f
-    m_ActionName: Player/StartWave[/Keyboard/space]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 56e68a72-3671-4f4b-9806-2f99a29ce29b
-    m_ActionName: Player/Next[/Keyboard/e,/Mouse/scroll/y]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 64281fe3-c8d8-4fd8-a713-759e49d021be
-    m_ActionName: Player/Prev[/Keyboard/q,/Mouse/scroll/x]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 989f48f5-7e03-4de9-8e32-8373399adfca
-    m_ActionName: Player/Pause[/Keyboard/p]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: b9c79e86-0a55-42ae-86df-c1b306168a2a
-    m_ActionName: Player/KillAllEnemiesDebug[/Keyboard/0]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: d57f0c48-c8fb-4b38-9b9c-bee086f09b28
-    m_ActionName: UI/Navigate[/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/rightStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/rightStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/rightStick/left,/DualSenseGamepadHID/leftStick/right,/DualSenseGamepadHID/rightStick/right,/DualSenseGamepadHID/dpad,/Wooting
-      WootingTwo/stick/up,/Wooting WootingTwo/stick/down,/Wooting WootingTwo/stick/left,/Wooting
-      WootingTwo/stick/right,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 25856b3f-faf0-4452-a70c-140067d2df5b
-    m_ActionName: UI/Submit[/Keyboard/enter,/DualSenseGamepadHID/buttonSouth]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 62c6974f-381a-40d7-8529-bd85ad906802
-    m_ActionName: UI/Cancel[/Keyboard/escape,/DualSenseGamepadHID/buttonEast]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e720f72b-52a8-4772-bfe1-9d7c736043a3
-    m_ActionName: UI/Point[/Mouse/position]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 47abe230-4456-4984-8003-afdab3850dc2
-    m_ActionName: UI/Click[/Mouse/leftButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 4f6e007e-9869-449f-8f4b-2331341a3cbe
-    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 11353c47-4513-42ce-bc4b-8890f18f2e19
-    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: 060afdfb-a846-4757-8ebb-293876e085e3
-    m_ActionName: UI/RightClick[/Mouse/rightButton]
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: f51621cb-199f-4a84-bbe1-b25b9d94452f
-    m_ActionName: UI/TrackedDevicePosition
-  - m_PersistentCalls:
-      m_Calls: []
-    m_ActionId: e989ab18-f980-43a2-a6eb-8870476d68b6
-    m_ActionName: UI/TrackedDeviceOrientation
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: UI
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  player: {fileID: 59079607}
+  card1Txt: {fileID: 1172420458}
+  card2Txt: {fileID: 4042085}
 --- !u!114 &54867213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,10 +619,10 @@ MonoBehaviour:
       - m_Target: {fileID: 54867211}
         m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
         m_MethodName: cardChosen
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 4042085}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -90846,7 +90726,6 @@ GameObject:
   m_Component:
   - component: {fileID: 711904524}
   - component: {fileID: 711904523}
-  - component: {fileID: 711904525}
   m_Layer: 0
   m_Name: WaveManagerSystem
   m_TagString: Untagged
@@ -90892,19 +90771,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &711904525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711904522}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecefd0a842431f2478da8c6654274e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardMenu: {fileID: 54867207}
 --- !u!1 &735641462
 GameObject:
   m_ObjectHideFlags: 0
@@ -91111,10 +90977,10 @@ MonoBehaviour:
       - m_Target: {fileID: 54867211}
         m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
         m_MethodName: cardChosen
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 1172420458}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Text, UnityEngine.UI
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -91873,7 +91739,7 @@ GameObject:
   - component: {fileID: 1172420459}
   - component: {fileID: 1172420458}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Card 1 Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
