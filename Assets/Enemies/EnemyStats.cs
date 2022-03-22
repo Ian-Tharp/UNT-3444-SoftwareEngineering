@@ -18,7 +18,6 @@ public class EnemyStats : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
-        //Ensure that the WaveManagerSystem GameObject has tag "WaveManager" to avoid Null Reference Error
         GameObject gameObj = GameObject.Find("WaveManagerSystem");
         waveManager = gameObj.GetComponent<WaveManager>();
         SetEnemyType(EnemyType);

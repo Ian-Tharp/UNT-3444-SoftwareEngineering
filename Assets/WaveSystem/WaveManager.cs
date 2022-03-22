@@ -41,7 +41,7 @@ public class WaveManager : MonoBehaviour
 
     //Spacing out enemy spawn timer
     IEnumerator SpaceOutSpawn() {
-        int randomizer = Random.Range(1, 10);
+        int randomizer = Random.Range(2, 10);
         yield return new WaitForSeconds(randomizer);
     }
 
@@ -57,8 +57,15 @@ public class WaveManager : MonoBehaviour
         else if (WaveNumber == 2) {
             EnemyCount = 10;
         }
+        else if (WaveNumber == 5) {
+            EnemyCount = 30;
+        }
+        //Wave 10 All Exploders
+        else if (WaveNumber == 10) {
+            EnemyCount = 50;
+        }
         else {
-            EnemyCount = 7 + (WaveNumber * 2);
+            EnemyCount += ((WaveNumber * 2) - WaveNumber) + 2;
         }
         TotalEnemyCount = EnemyCount;
     }
@@ -81,13 +88,13 @@ public class WaveManager : MonoBehaviour
     public void SpawnEnemyAtLocation(Vector2 Location) {
         //Wave 1-3
         if (WaveNumber <= 3) {
-            SpawnExploderAtLocation(Location);
-            //SpawnBasicMelee1AtLocation(Location);
+            //SpawnExploderAtLocation(Location);
+            SpawnBasicMelee1AtLocation(Location);
         }
         //Wave 4-9
         //20% chance to spawn basic ranged enemy
         //80% chance to spawn basic melee enemy
-        else if (WaveNumber <= 9 && WaveNumber > 3) {
+        else if (WaveNumber <= 9 && WaveNumber > 3 && WaveNumber != 5) {
             randomizer = Random.Range(0, 5);
             if (randomizer == 0) {
                 SpawnBasicRanged1AtLocation(Location);
@@ -95,6 +102,11 @@ public class WaveManager : MonoBehaviour
             else {
                 SpawnBasicMelee1AtLocation(Location);
             }
+        }
+        //Wave 5
+        //All exploder enemies
+        else if (WaveNumber == 5) {
+            SpawnExploderAtLocation(Location);
         }
         //Wave 10
         //All exploder enemies
