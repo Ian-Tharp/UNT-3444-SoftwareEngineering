@@ -21,7 +21,7 @@ public class PauseMenu : MonoBehaviour
     {
         if(Time.timeScale == 0)
         {
-            sprite.color = new Color(0,0,0,.5f);
+            sprite.color = new Color(0,0,0,.3f);
         } else {
             sprite.color = new Color(0,0,0,0);
         }

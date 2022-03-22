@@ -19,6 +19,8 @@ public class Pause : MonoBehaviour
     public bool endWave;
     bool delay = false;
 
+    float pauseTimer;
+
     private void Awake()
     {
         playerControls = new PlayerInput();
@@ -45,6 +47,7 @@ public class Pause : MonoBehaviour
     void Start()
     {
         paused = false;
+        pauseTimer = 0f;
     }
 
     IEnumerator menuDelay()
@@ -63,25 +66,36 @@ public class Pause : MonoBehaviour
         endWave = wm.CanSpawnWave;
         if(paused || endWave)
         {
-            paused = true;
-            Time.timeScale = 0;
+            
             if (endWave)
             {
-                if (delay == false)
+                //if (delay == false)
+                pauseTimer -= .01f;
+                if (pauseTimer <= 1)
+                    Time.timeScale -= .01f;
+
+                if (pauseTimer <= .01f)
                 {
-                delay = true;
-                StartCoroutine(menuDelay());
+                    paused = true;
+                    Time.timeScale = 0;
+                    //delay = true;
+                    StartCoroutine(menuDelay());
                 
-                menu.openCards();
-                endWave = false;    
-                wm.StartWave();
+                    menu.openCards();
+                    endWave = false;    
+                    wm.StartWave();
                 }
+            }else
+            {
+                paused = true;
+                Time.timeScale = 0;
             }
         } 
         else  
         {
             //Cursor.visible = false;
             Time.timeScale = 1;
+            pauseTimer = 2f;
         }
     
     
