@@ -13,6 +13,7 @@ public class PlayerStats : MonoBehaviour
     public int CurrentHealth = 0;
     public int CurrentShields = 0;
     public int TotalShields = 0;
+    public int regenAmount = 0;
 
     public bool hasShield = false;
     public bool isDead = false;
@@ -33,6 +34,10 @@ public class PlayerStats : MonoBehaviour
         if (CurrentHealth > TotalHealth) {
             CurrentHealth = TotalHealth;
         }
+    }
+
+    public void AddRegenAmount(int Amount) {
+        regenAmount += Amount; 
     }
 
     public void AddTotalHealth(int Amount) {

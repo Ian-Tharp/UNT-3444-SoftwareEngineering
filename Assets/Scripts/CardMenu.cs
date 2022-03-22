@@ -22,8 +22,9 @@ public class CardMenu : MonoBehaviour
 
     int card1ID;
     int card2ID;
-    int deckSize = 2;
-
+    int deckSize = 4;
+    string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum"};
+   
 
     public void openCards()
     {
@@ -41,11 +42,17 @@ public class CardMenu : MonoBehaviour
 
         cardMenu.SetActive(true);
 
-        card1Txt.text = "Health";
+        card1ID = Random.Range(0, deckSize);
 
-        card2Txt.text = "Damage";
+        card2ID = Random.Range(0, deckSize);
 
-    
+        while (card2ID == card1ID)
+        {
+            card2ID = Random.Range(0, deckSize);
+        }
+        card1Txt.text = deck[card1ID];
+
+       card2Txt.text = deck[card2ID];
     }
     
     public void cardChosen(Text name)
@@ -57,6 +64,14 @@ public class CardMenu : MonoBehaviour
         else if (name.text == "Damage")
         {
             damageUp();
+        }
+        else if (name.text == "Regen")
+        {
+            regen();
+        }
+        else if (name.text == "Ammo Drum")
+        {
+            ammoUp();
         }
         cardMenu.SetActive(false);
     }
@@ -72,6 +87,21 @@ public class CardMenu : MonoBehaviour
        for (int i = 0; i < 3; i++)
        {
             es.weaponInv[i].damage = es.weaponInv[i].damage + 1;
+       }
+       p.paused = false;
+   }
+
+   public void regen()
+   {
+       ps.regenAmount = ps.regenAmount + 10;
+       p.paused = false;
+   }
+   
+   public void ammoUp()
+   {
+       for (int i = 0; i < 3; i++)
+       {
+            es.weaponInv[i].ammo = (int)(1.5 * es.weaponInv[i].ammo);
        }
        p.paused = false;
    }
