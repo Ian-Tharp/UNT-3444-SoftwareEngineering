@@ -91570,6 +91570,7 @@ MonoBehaviour:
   offset: 0
   MAX: 0
   MIN: 0
+  MAXDIST: 0
   shakeTime: 0
   shakeMag: 0.7
   damp: 1

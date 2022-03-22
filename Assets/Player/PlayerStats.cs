@@ -15,7 +15,7 @@ public class PlayerStats : MonoBehaviour
     public int TotalShields = 0;
 
     public bool hasShield = false;
-    bool isDead = false;
+    public bool isDead = false;
 
     //--------------------------------------------------------------------------------
     //Additions
@@ -118,6 +118,7 @@ public class PlayerStats : MonoBehaviour
         //If so, quit the game for now
         //We will implement death screen functionality later
         if (isDead) {
+            //Debug.Log("Player is dead");
             Application.Quit();
         }
     }
