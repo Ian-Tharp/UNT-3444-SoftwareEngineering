@@ -29,8 +29,8 @@ public class CameraChange : MonoBehaviour
     {
         size = 25;
         offset = 12;
-        MAX = 20;
-        MIN = 10;
+        MAX = 12;
+        MIN = 8;
         MAXDIST = 7;
     }
 
@@ -47,7 +47,7 @@ public class CameraChange : MonoBehaviour
         if (mouseDist.y < -MAXDIST)
             mouseDist.y = -MAXDIST;
         center = (mouseDist + player.position); //center calc
-        Debug.Log(mouseDist);
+        //Debug.Log(cam.orthographicSize);
         
 
         cam.orthographicSize = (-size/Vector2.Distance(reticle.position, player.position)) + offset;
