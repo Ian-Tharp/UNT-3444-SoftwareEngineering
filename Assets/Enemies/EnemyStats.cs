@@ -9,6 +9,8 @@ public class EnemyStats : MonoBehaviour
     public ParticleSystem blood;
     public ParticleSystem explode;
 
+    private WaveManager waveManager;
+
     public int Health = 0;
     public int Damage = 0;
     public int EnemyType = 0;
@@ -16,6 +18,9 @@ public class EnemyStats : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        //Ensure that the WaveManagerSystem GameObject has tag "WaveManager" to avoid Null Reference Error
+        GameObject gameObj = GameObject.FindGameObjectWithTag("WaveManager");
+        waveManager = gameObj.GetComponent<WaveManager>();
         SetEnemyType(EnemyType);
 
     }
@@ -62,30 +67,50 @@ public class EnemyStats : MonoBehaviour
                 Damage = 1;
                 EnemyType = 1;
                 EnemyValue = 1;
+                if (waveManager.GetWaveNumber() > 10) {
+                    Health += 3;
+                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
                 break;
             case 2:
                 Health = 3;
                 Damage = 2;
                 EnemyType = 2;
                 EnemyValue = 2;
+                if (waveManager.GetWaveNumber() > 10) {
+                    Health += 3;
+                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
                 break;
             case 3:
                 Health = 5;
                 Damage = 3;
                 EnemyType = 3;
                 EnemyValue = 3;
+                if (waveManager.GetWaveNumber() > 10) {
+                    Health += 3;
+                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
                 break;
             case 4:
                 Health = 8;
                 Damage = 5;
                 EnemyType = 4;
                 EnemyValue = 5;
+                if (waveManager.GetWaveNumber() > 10) {
+                    Health += 3;
+                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
                 break;
             case 5:
                 Health = 14;
                 Damage = 8;
                 EnemyType = 5;
                 EnemyValue = 8;
+                if (waveManager.GetWaveNumber() > 10) {
+                    Health += 3;
+                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
                 break;
             default:
                 Health = 1;

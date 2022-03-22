@@ -52,7 +52,7 @@ MonoBehaviour:
   explode: {fileID: 4481832562959298378, guid: f1984201e9f83b64b88e687d108f8dac, type: 3}
   Health: 0
   Damage: 0
-  EnemyType: 0
+  EnemyType: 4
   EnemyValue: 0
 --- !u!114 &-3156738147728028720
 MonoBehaviour:
