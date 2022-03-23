@@ -32,6 +32,9 @@ public class WaveManager : MonoBehaviour
 
     GameObject[] Enemies; //GameObject list of enemies that are present or spawned in
 
+    private GameObject player;
+    PlayerStats ps;
+
     //Used to reset wave manager or restart game without going back to main menu
     public void ResetWaveManager() {
         WaveNumber = 0;
@@ -221,6 +224,8 @@ public class WaveManager : MonoBehaviour
     
     public void StartWave() {
         CanSpawnWave = false;
+        ps.AddCurrentHealth(ps.regenAmount);
+        
         WaveNumber++;
         DetermineWaveSize();
 
@@ -247,6 +252,8 @@ public class WaveManager : MonoBehaviour
     // Start is called before the first frame update
     void Start() {
         WaveNumber = 0;
+        player = GameObject.Find("HQ - Player");
+        ps = player.GetComponent<PlayerStats>();
         StartWave();
     }
 
