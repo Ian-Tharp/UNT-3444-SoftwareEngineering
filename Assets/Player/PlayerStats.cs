@@ -8,7 +8,7 @@ using UnityEngine.InputSystem.Interactions;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int Currency = 0;
+    public long Score = 0;
     public int TotalHealth = 100;
     public int CurrentHealth = 0;
     public int CurrentShields = 0;
@@ -19,12 +19,9 @@ public class PlayerStats : MonoBehaviour
 
     //--------------------------------------------------------------------------------
     //Additions
-    public void AddCurrency(int Amount) {
-        Currency += Amount;
-        //Max Currency Check
-        if (Currency > 999999) {
-            Currency = 999999;
-        }
+    public void AddScore(int Amount) {
+        Score += Amount;
+
     }
 
     public void AddCurrentHealth(int Amount) {
@@ -60,7 +57,7 @@ public class PlayerStats : MonoBehaviour
             TotalHealth = 10;
         }
     }
-
+/*
     public bool TryToSubtractCurrency(int Amount) {
         if (Currency - Amount >= 0) {
             return true;
@@ -69,6 +66,8 @@ public class PlayerStats : MonoBehaviour
             return false;
         }
     }
+
+    */
 
     public void SubtractCurrentShields(int Amount) {
         if (CurrentShields - Amount >= 0) {
@@ -82,7 +81,7 @@ public class PlayerStats : MonoBehaviour
     }
 
     public void ResetHealth() { CurrentHealth = TotalHealth; }
-    public void ResetCurrency() { Currency = 0; }
+    public void ResetScore() { Score = 0; }
     public void ResetShields() { CurrentShields = TotalShields; }
 
     //Market screen callable function for when player purchases shields
@@ -110,15 +109,20 @@ public class PlayerStats : MonoBehaviour
     void Start() {
         CurrentHealth = TotalHealth;
         playerControls = new PlayerInput();
+        isDead = false;
     }
 
     //Called once every frame
     void Update() {
+        if(CurrentHealth <= 0)
+            isDead = true;
+        
         //Checks if player isDead bool is true
         //If so, quit the game for now
         //We will implement death screen functionality later
         if (isDead) {
-            Application.Quit();
+            
+            //Application.Quit();
         }
     }
 }

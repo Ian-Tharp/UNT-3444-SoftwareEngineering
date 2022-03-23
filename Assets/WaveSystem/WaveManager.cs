@@ -13,6 +13,9 @@ public class WaveManager : MonoBehaviour
     public bool CanSpawnWave = true;
 
     [SerializeField]
+    private GameObject statsObj;
+
+    [SerializeField]
     private GameObject BasicMelee; //Basic Melee Enemy Type
 
     [SerializeField]

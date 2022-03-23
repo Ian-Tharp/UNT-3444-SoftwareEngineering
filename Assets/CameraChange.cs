@@ -16,7 +16,7 @@ public class CameraChange : MonoBehaviour
     public float size; //size modifier
     public float offset; //offset to fix camera sizing calc
 
-    public int MAX, MIN, MAXDIST; //max and min of camera size
+    public float MAX, MIN, MAXDIST; //max and min of camera size
 
     public float shakeTime = 0f;
     public float shakeMag = 0.7f;
@@ -27,9 +27,9 @@ public class CameraChange : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        size = 25;
-        offset = 12;
-        MAX = 12;
+        size = 50;
+        offset = 14;
+        MAX = 11;
         MIN = 8;
         MAXDIST = 7;
     }
@@ -47,18 +47,20 @@ public class CameraChange : MonoBehaviour
         if (mouseDist.y < -MAXDIST)
             mouseDist.y = -MAXDIST;
         center = (mouseDist + player.position); //center calc
-        //Debug.Log(cam.orthographicSize);
+        
         
 
         cam.orthographicSize = (-size/Vector2.Distance(reticle.position, player.position)) + offset;
-        //Debug.Log("size of cam: " + cam.orthographicSize);
+        
+        
         //Debug.Log("distance: " + Vector2.Distance(reticle.position, player.position));
         
         if(cam.orthographicSize > MAX)
             cam.orthographicSize = MAX;
         if(cam.orthographicSize < MIN)
             cam.orthographicSize = MIN;
-
+        //Debug.Log("size of cam: " + cam.orthographicSize);
+        
         initPos = center;
         if (shakeTime > 0)
         {

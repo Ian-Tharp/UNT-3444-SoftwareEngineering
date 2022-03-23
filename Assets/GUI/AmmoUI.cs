@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using WC;
@@ -12,10 +13,13 @@ public class AmmoUI : MonoBehaviour
     public Text ammoTxt;
     public Text healthTxt;
     public Text weaponTxt;
+    public Text scoreTxt;
 
     public float weaponAlpha;
     private string tweap;
     private float timer;
+    private long tempScore;
+    private float scoreRate;
 
     void Start()
     {
@@ -24,6 +28,8 @@ public class AmmoUI : MonoBehaviour
         ps = player.GetComponent<PlayerStats>();
         weaponAlpha = .8f;
         timer = 0;
+        tempScore = 0;
+        scoreRate = 1;
     }
 
     // Update is called once per frame
@@ -32,6 +38,8 @@ public class AmmoUI : MonoBehaviour
         healthTxt.text = ps.CurrentHealth.ToString();
         healthTxt.color = new Color(-ps.CurrentHealth * .01f +1, ps.CurrentHealth * .01f, 0, .8f);
 
+
+        //ammo
         if(sg.reloading)
         {
             ammoTxt.text = "Reloading...";
@@ -48,8 +56,28 @@ public class AmmoUI : MonoBehaviour
         weaponTxt.color = new Color(.83f, .62f, .26f, weaponAlpha);
         timer += .1f;
         if (timer > 3)
-            weaponAlpha -= .09f;
+            if (weaponAlpha > 0)
+                weaponAlpha -= .09f;
         tweap = sg.weapon.weaponName;
+
+        //score UI scripts
+        if (ps.Score >= 123)
+        {
+            scoreRate = (ps.Score/(123));
+        } else {
+            scoreRate = 1;
+        }
+
+        if (tempScore < ps.Score)
+        {
+            tempScore += Convert.ToInt64(scoreRate);
+        }else {
+            tempScore = ps.Score;
+        }
+        scoreTxt.text = tempScore.ToString();
+        scoreTxt.fontSize = Convert.ToInt32(ps.Score/10000 + 65);
+        if (scoreTxt.fontSize >= 200)
+            scoreTxt.fontSize = 200;
     }
     
 }
