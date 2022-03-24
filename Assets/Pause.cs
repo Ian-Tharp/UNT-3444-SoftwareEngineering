@@ -8,16 +8,19 @@ using System.Threading;
 public class Pause : MonoBehaviour
 {
     [SerializeField] GameObject cardMenu;
+    [SerializeField] GameObject player;
 
+    
     public PlayerInput playerControls;
     private InputAction pauseBut;
     private GameObject waveManager;
     private WaveManager wm;
     private CardMenu menu;
-    
+    private PlayerStats pStats;
+
     public bool paused;
     public bool endWave;
-    bool delay = false;
+    //bool delay = false;
 
     float pauseTimer;
 
@@ -26,7 +29,6 @@ public class Pause : MonoBehaviour
         playerControls = new PlayerInput();
         
         waveManager = GameObject.Find("WaveManagerSystem");
-        
     }
 
     private void OnEnable()
@@ -49,25 +51,28 @@ public class Pause : MonoBehaviour
         paused = false;
         pauseTimer = 0f;
     }
-
+/*
     IEnumerator menuDelay()
     {
         yield return new WaitForSeconds(2); 
         delay = false;
         
     }
-
+*/
     // Update is called once per frame
     void Update()
     {
         
         wm = waveManager.GetComponent<WaveManager>();
         menu = cardMenu.GetComponent<CardMenu>();
+        pStats = player.GetComponent<PlayerStats>();
+
+
         endWave = wm.CanSpawnWave;
-        if(paused || endWave)
+        if(paused || endWave || pStats.isDead)
         {
             
-            if (endWave)
+            if (endWave && !pStats.isDead)
             {
                 //if (delay == false)
                 pauseTimer -= .01f;
@@ -79,13 +84,14 @@ public class Pause : MonoBehaviour
                     paused = true;
                     Time.timeScale = 0;
                     //delay = true;
-                    StartCoroutine(menuDelay());
+                    //StartCoroutine(menuDelay());
                 
                     menu.openCards();
                     endWave = false;    
                     wm.StartWave();
                 }
-            }else
+            }
+            if(paused)
             {
                 paused = true;
                 Time.timeScale = 0;
@@ -97,7 +103,6 @@ public class Pause : MonoBehaviour
             Time.timeScale = 1;
             pauseTimer = 2f;
         }
-    
     
     }
     

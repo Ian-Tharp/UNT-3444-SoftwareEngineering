@@ -19,11 +19,11 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Time.timeScale == 0)
-        {
-            sprite.color = new Color(0,0,0,.3f);
-        } else {
-            sprite.color = new Color(0,0,0,0);
-        }
+        //if(Time.timeScale == 0)
+        //{
+        //    sprite.color = new Color(0,0,0,.3f);
+        //} else {
+            sprite.color = new Color(0,0,0, -Time.timeScale + .5f);
+        //}
     }
 }
