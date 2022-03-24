@@ -8,7 +8,7 @@ public class WaveManager : MonoBehaviour
     public int EnemyCount;
     public int TotalEnemyCount;
     public int EnemyIndex;
-    public int WaveScore;
+    public double WaveMultiplier;
     public int RemainingEnemyCount;
     public bool CanSpawnWave = true;
 
@@ -41,7 +41,7 @@ public class WaveManager : MonoBehaviour
         EnemyCount = 0;
         TotalEnemyCount = 0;
         RemainingEnemyCount = 0;
-        WaveScore = 0;
+        WaveMultiplier = 0;
         CanSpawnWave = true;
     }
 
@@ -198,36 +198,40 @@ public class WaveManager : MonoBehaviour
     public void SpawnBasicMelee1AtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
-        WaveScore += 1;
     }
     public void SpawnBasicRanged1AtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(BasicRanged, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
-        WaveScore += 2;
     }
     public void SpawnExploderAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(Exploder, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
-        WaveScore += 3;
     }
     public void SpawnHeavyMeleeAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyMelee, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
-        WaveScore += 5;
     }
     public void SpawnHeavyRangedAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
         //Debug.Log("Vector2 location of enemy: " + Location);
-        WaveScore += 6;
     }  
 
     
     public void StartWave() {
         CanSpawnWave = false;
         ps.AddCurrentHealth(ps.regenAmount);
-        
+
         WaveNumber++;
         DetermineWaveSize();
+
+        if (WaveNumber < 5)
+        {
+            WaveMultiplier = 1;
+        }
+        else
+        {
+            WaveMultiplier = 1 + (WaveNumber - 5) * .25;
+        }
 
         //SpawnEnemy functions here
         for (int i = 0; i < EnemyCount; i++) {
@@ -243,10 +247,6 @@ public class WaveManager : MonoBehaviour
     //Public Getters
     public int GetWaveNumber() {
         return WaveNumber;
-    }
-
-    public int GetWaveScore() {
-        return WaveScore;
     }
 
     // Start is called before the first frame update
