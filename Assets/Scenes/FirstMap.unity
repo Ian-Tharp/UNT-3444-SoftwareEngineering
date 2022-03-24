@@ -181,12 +181,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: c87fe7f73bb84e24f950144b0238352f, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 5
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -273,16 +273,15 @@ GameObject:
   - component: {fileID: 54867208}
   - component: {fileID: 54867210}
   - component: {fileID: 54867209}
-  - component: {fileID: 54867211}
   - component: {fileID: 54867214}
   - component: {fileID: 54867213}
   m_Layer: 7
-  m_Name: cardMenu
+  m_Name: UIEventManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &54867208
 RectTransform:
   m_ObjectHideFlags: 0
@@ -294,8 +293,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 830089474}
-  - {fileID: 131029170}
+  - {fileID: 1939859345}
+  - {fileID: 792960542}
   m_Father: {fileID: 1973705287}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -342,22 +341,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54867207}
   m_CullTransparentMesh: 1
---- !u!114 &54867211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 54867207}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecefd0a842431f2478da8c6654274e3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardMenu: {fileID: 54867207}
-  player: {fileID: 59079607}
-  card1Txt: {fileID: 1172420458}
-  card2Txt: {fileID: 4042085}
 --- !u!114 &54867213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,7 +449,7 @@ GameObject:
   - component: {fileID: 109773947}
   - component: {fileID: 109773948}
   m_Layer: 5
-  m_Name: Ammo
+  m_Name: AmmoUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -488,7 +471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.164978, y: 17.109985}
+  m_AnchoredPosition: {x: 13.164917, y: 17.109985}
   m_SizeDelta: {x: -47.12, y: -34.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &109773945
@@ -589,12 +572,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131029169}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4042084}
-  m_Father: {fileID: 54867208}
+  m_Father: {fileID: 1939859345}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -646,7 +629,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 54867211}
+      - m_Target: {fileID: 1939859346}
         m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
         m_MethodName: cardChosen
         m_Mode: 2
@@ -753,16 +736,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 200758899}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1151370352}
-  m_Father: {fileID: 903903581}
+  m_Father: {fileID: 792960542}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 551, y: -506.11}
+  m_AnchoredPosition: {x: 551, y: -304.0622}
   m_SizeDelta: {x: 500, y: 140.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &200758901
@@ -809,7 +792,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 903903586}
+      - m_Target: {fileID: 792960541}
         m_TargetAssemblyTypeName: GameoverButtons, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
@@ -1096,16 +1079,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 310961352}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 348711884}
-  m_Father: {fileID: 903903581}
+  m_Father: {fileID: 792960542}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -543.00006, y: -506.11}
+  m_AnchoredPosition: {x: -543.00006, y: -304.0622}
   m_SizeDelta: {x: 500, y: 140.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &310961354
@@ -1152,7 +1135,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 903903586}
+      - m_Target: {fileID: 792960541}
         m_TargetAssemblyTypeName: GameoverButtons, Assembly-CSharp
         m_MethodName: PlayAgain
         m_Mode: 1
@@ -1291,7 +1274,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c87fe7f73bb84e24f950144b0238352f, type: 3}
-    m_FontSize: 50
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1385,7 +1368,7 @@ GameObject:
   - component: {fileID: 422014742}
   - component: {fileID: 422014741}
   m_Layer: 5
-  m_Name: Score
+  m_Name: ScoreUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -90793,6 +90776,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 26.41
+  pointer: {fileID: 21300000, guid: d35a945dda059e2499729e58b2fb621e, type: 3}
+  reticle: {fileID: 21300000, guid: 17aa63a18fb9a334b94b55aaef155d83, type: 3}
 --- !u!212 &593431267
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -91167,7 +91152,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.164001, y: 81.16}
+  m_AnchoredPosition: {x: 13.16394, y: 81.160034}
   m_SizeDelta: {x: -47.12, y: -32.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647804102
@@ -91335,7 +91320,7 @@ MonoBehaviour:
   EnemyCount: 0
   TotalEnemyCount: 0
   EnemyIndex: 0
-  WaveScore: 0
+  WaveMultiplier: 0
   RemainingEnemyCount: 0
   CanSpawnWave: 1
   statsObj: {fileID: 0}
@@ -91448,6 +91433,57 @@ Transform:
   m_Father: {fileID: 428524812}
   m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &792960540
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 792960542}
+  - component: {fileID: 792960541}
+  m_Layer: 7
+  m_Name: GameoverEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &792960541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792960540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b749521d64301fb48be57957f7282a1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goBut: {fileID: 792960540}
+--- !u!224 &792960542
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 792960540}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 310961353}
+  - {fileID: 200758900}
+  m_Father: {fileID: 54867208}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &809020600
 GameObject:
   m_ObjectHideFlags: 0
@@ -91504,12 +91540,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830089473}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1172420457}
-  m_Father: {fileID: 54867208}
+  m_Father: {fileID: 1939859345}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -91561,7 +91597,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 54867211}
+      - m_Target: {fileID: 1939859346}
         m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
         m_MethodName: cardChosen
         m_Mode: 2
@@ -91766,14 +91802,13 @@ GameObject:
   - component: {fileID: 903903584}
   - component: {fileID: 903903583}
   - component: {fileID: 903903582}
-  - component: {fileID: 903903586}
   m_Layer: 5
-  m_Name: GAMEOVERUI
+  m_Name: GameoverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &903903581
 RectTransform:
   m_ObjectHideFlags: 0
@@ -91784,9 +91819,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 310961353}
-  - {fileID: 200758900}
+  m_Children: []
   m_Father: {fileID: 1973705287}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -91867,19 +91900,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903903580}
   m_CullTransparentMesh: 1
---- !u!114 &903903586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 903903580}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b749521d64301fb48be57957f7282a1c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  goBut: {fileID: 903903580}
 --- !u!1 &908932210
 GameObject:
   m_ObjectHideFlags: 0
@@ -91999,7 +92019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdbd50ce1bdb9ac4db31ff9df1fc160c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardMenu: {fileID: 54867207}
+  cardMenu: {fileID: 1939859344}
   player: {fileID: 59079607}
   paused: 0
   endWave: 0
@@ -92260,7 +92280,7 @@ GameObject:
   - component: {fileID: 1062549591}
   - component: {fileID: 1062549592}
   m_Layer: 0
-  m_Name: GameoverEvent
+  m_Name: GameoverFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92294,7 +92314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 4481832562959298378, guid: f1984201e9f83b64b88e687d108f8dac, type: 3}
   player: {fileID: 59079607}
-  goUI: {fileID: 903903586}
+  goUI: {fileID: 792960541}
   esize: 0
   ending: 0
 --- !u!1 &1069069371
@@ -92580,7 +92600,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c87fe7f73bb84e24f950144b0238352f, type: 3}
-    m_FontSize: 50
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -92658,12 +92678,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_Font: {fileID: 12800000, guid: c87fe7f73bb84e24f950144b0238352f, type: 3}
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_MinSize: 0
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -92753,7 +92773,7 @@ GameObject:
   - component: {fileID: 1262489483}
   - component: {fileID: 1262489486}
   m_Layer: 5
-  m_Name: Health
+  m_Name: HealthUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -93844,6 +93864,60 @@ Transform:
   m_Father: {fileID: 428524812}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1939859344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939859345}
+  - component: {fileID: 1939859346}
+  m_Layer: 7
+  m_Name: cardMenu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1939859345
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939859344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 830089474}
+  - {fileID: 131029170}
+  m_Father: {fileID: 54867208}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1939859346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939859344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecefd0a842431f2478da8c6654274e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardMenu: {fileID: 1939859344}
+  player: {fileID: 59079607}
+  card1Txt: {fileID: 1172420458}
+  card2Txt: {fileID: 4042085}
 --- !u!1 &1950439685
 GameObject:
   m_ObjectHideFlags: 0
