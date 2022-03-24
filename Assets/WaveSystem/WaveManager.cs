@@ -50,8 +50,15 @@ public class WaveManager : MonoBehaviour
 
     //Spacing out enemy spawn timer
     IEnumerator SpaceOutSpawn() {
-        int randomizer = Random.Range(2, 10);
-        yield return new WaitForSeconds(randomizer);
+        randomizer = Random.Range(1, 2);
+        if (randomizer == 1) {
+            randomizer = Random.Range(2, 7);
+            yield return new WaitForSeconds(randomizer);
+        }
+        else {
+            randomizer = Random.Range(3, 10);
+            yield return new WaitForSeconds(randomizer);
+        }
     }
 
     IEnumerator WaitToSpawnWave() {
