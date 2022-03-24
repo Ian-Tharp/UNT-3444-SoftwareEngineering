@@ -94,6 +94,7 @@ public class CardMenu : MonoBehaviour
    public void regen()
    {
        ps.regenAmount = ps.regenAmount + 10;
+       ps.AddCurrentHealth(10);
        p.paused = false;
    }
    

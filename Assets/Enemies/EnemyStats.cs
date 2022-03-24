@@ -9,6 +9,9 @@ public class EnemyStats : MonoBehaviour
     public ParticleSystem blood;
     public ParticleSystem explode;
 
+    private GameObject player;
+    PlayerStats ps;
+
     private WaveManager waveManager;
 
     public int Health = 0;
@@ -20,6 +23,10 @@ public class EnemyStats : MonoBehaviour
     void Start() {
         GameObject gameObj = GameObject.Find("WaveManagerSystem");
         waveManager = gameObj.GetComponent<WaveManager>();
+
+        player = GameObject.Find("HQ - Player");
+        ps = player.GetComponent<PlayerStats>();
+
         SetEnemyType(EnemyType);
 
     }
@@ -126,6 +133,7 @@ public class EnemyStats : MonoBehaviour
             ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
             ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
             ParticleSystem explofx = Instantiate(explode, transform.position, Quaternion.identity);
+            ps.AddScore((int)(EnemyValue * 10 * waveManager.WaveMultiplier));
             Destroy(gameObject);
         }
 
