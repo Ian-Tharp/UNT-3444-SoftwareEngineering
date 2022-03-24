@@ -111511,7 +111511,7 @@ MonoBehaviour:
   healthTxt: {fileID: 1262489484}
   weaponTxt: {fileID: 647804104}
   scoreTxt: {fileID: 422014743}
-  gameoverTxt: {fileID: 0}
+  gameoverTxt: {fileID: 903903584}
   weaponAlpha: 0
 --- !u!4 &1818969420
 Transform:
