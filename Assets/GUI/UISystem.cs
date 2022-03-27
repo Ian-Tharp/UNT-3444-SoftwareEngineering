@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using WC;
 
-public class AmmoUI : MonoBehaviour
+public class UISystem : MonoBehaviour
 {
     public GameObject player;
     ShootGun sg;

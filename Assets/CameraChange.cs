@@ -37,29 +37,9 @@ public class CameraChange : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        mouseDist = ((reticle.position - player.position)/2.0f);
-        if (mouseDist.x > MAXDIST)
-            mouseDist.x = MAXDIST;
-        if (mouseDist.x < -MAXDIST)
-            mouseDist.x = -MAXDIST;
-        if (mouseDist.y > MAXDIST)
-            mouseDist.y = MAXDIST;
-        if (mouseDist.y < -MAXDIST)
-            mouseDist.y = -MAXDIST;
-        center = (mouseDist + player.position); //center calc
-        
-        
+        calcPosition();
+        calcSize();
 
-        cam.orthographicSize = (-size/Vector2.Distance(reticle.position, player.position)) + offset;
-        
-        
-        //Debug.Log("distance: " + Vector2.Distance(reticle.position, player.position));
-        
-        if(cam.orthographicSize > MAX)
-            cam.orthographicSize = MAX;
-        if(cam.orthographicSize < MIN)
-            cam.orthographicSize = MIN;
-        //Debug.Log("size of cam: " + cam.orthographicSize);
         
         initPos = center;
         if (shakeTime > 0)
@@ -77,5 +57,28 @@ public class CameraChange : MonoBehaviour
             shakeTime = 0.17f;
             shakeMag = .03f * sg.recoilBuildup + .08f;
         }
+    }
+
+    void calcPosition()
+    {
+        mouseDist = ((reticle.position - player.position)/2.0f);
+        if (mouseDist.x > MAXDIST)
+            mouseDist.x = MAXDIST;
+        if (mouseDist.x < -MAXDIST)
+            mouseDist.x = -MAXDIST;
+        if (mouseDist.y > MAXDIST)
+            mouseDist.y = MAXDIST;
+        if (mouseDist.y < -MAXDIST)
+            mouseDist.y = -MAXDIST;
+        center = (mouseDist + player.position); //center calc
+    }
+
+    void calcSize()
+    {
+        cam.orthographicSize = (-size/Vector2.Distance(reticle.position, player.position)) + offset;
+        if(cam.orthographicSize > MAX)
+            cam.orthographicSize = MAX;
+        if(cam.orthographicSize < MIN)
+            cam.orthographicSize = MIN;
     }
 }

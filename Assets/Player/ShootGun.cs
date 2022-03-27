@@ -181,14 +181,6 @@ public class ShootGun : MonoBehaviour
                 GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation); //create bullet from hq
                 b.SetActive(true);
 
-
-                // if mousePosition is by enemy position, then hit
-                /* commented out since we changed the method of shooting
-                RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero);
-                if (hit)
-                {
-                    Debug.Log("Raycast Hit");
-                }   */
                 StartCoroutine(FiringWait());
             } 
 
