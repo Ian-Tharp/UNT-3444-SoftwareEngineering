@@ -12,6 +12,9 @@ public class WaveManager : MonoBehaviour
     public int RemainingEnemyCount;
     public bool CanSpawnWave = true;
 
+    private bool killingEnemies;
+    private EnemyStats es;
+
     [SerializeField]
     private GameObject statsObj;
 
@@ -47,8 +50,15 @@ public class WaveManager : MonoBehaviour
 
     //Spacing out enemy spawn timer
     IEnumerator SpaceOutSpawn() {
-        int randomizer = Random.Range(2, 10);
-        yield return new WaitForSeconds(randomizer);
+        randomizer = Random.Range(1, 2);
+        if (randomizer == 1) {
+            randomizer = Random.Range(2, 7);
+            yield return new WaitForSeconds(randomizer);
+        }
+        else {
+            randomizer = Random.Range(3, 10);
+            yield return new WaitForSeconds(randomizer);
+        }
     }
 
     IEnumerator WaitToSpawnWave() {
@@ -251,6 +261,7 @@ public class WaveManager : MonoBehaviour
 
     // Start is called before the first frame update
     void Start() {
+        killingEnemies = false;
         WaveNumber = 0;
         player = GameObject.Find("HQ - Player");
         ps = player.GetComponent<PlayerStats>();
@@ -261,7 +272,8 @@ public class WaveManager : MonoBehaviour
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = 0; i < Enemies.Length; i++) {
             GameObject EnemyToKill = Enemies[i];
-            Destroy(EnemyToKill);
+            es = Enemies[i].GetComponent<EnemyStats>();
+            es.Health = 0;
         }
     }
 
@@ -278,5 +290,10 @@ public class WaveManager : MonoBehaviour
             
         }
 
+        if (ps.isDead && !killingEnemies)
+        {
+            killingEnemies = true;    
+            KillAllEnemies();
+        }
     }
 }

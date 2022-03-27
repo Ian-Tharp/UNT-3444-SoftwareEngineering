@@ -14,8 +14,10 @@ public class AmmoUI : MonoBehaviour
     public Text healthTxt;
     public Text weaponTxt;
     public Text scoreTxt;
+    public Text gameoverTxt;
 
     public float weaponAlpha;
+    private float goAlpha;
     private string tweap;
     private float timer;
     private long tempScore;
@@ -30,6 +32,7 @@ public class AmmoUI : MonoBehaviour
         timer = 0;
         tempScore = 0;
         scoreRate = 1;
+        goAlpha = 0;
     }
 
     // Update is called once per frame
@@ -80,4 +83,15 @@ public class AmmoUI : MonoBehaviour
             scoreTxt.fontSize = 200;
     }
     
+    void Update()
+    {
+        if (ps.isDead)
+        {   
+            goAlpha += .01f;
+            gameoverTxt.color = new Color(.98f, .87f, .05f, goAlpha);
+        } else 
+        {
+            gameoverTxt.color = new Color(.98f, .87f, .05f, 0);
+        }
+    }
 }

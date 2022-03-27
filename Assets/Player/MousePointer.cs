@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
+using UnityEngine.SceneManagement;
 using System.Threading;
 
 public class MousePointer : MonoBehaviour
@@ -10,16 +11,23 @@ public class MousePointer : MonoBehaviour
     private Vector3 mousePos;
     private Vector3 targetPos;
     public float moveSpeed = 15f;
-    SpriteRenderer sprite;
+    SpriteRenderer msprite;
+    [SerializeField]
+    Sprite pointer;
+    [SerializeField]
+    Sprite reticle;
+
+    Scene sceneC;
 
     //for mouse and keyboard, should have cursor follow mouse based on speed * distance/ some number
 
 
     void Start()
     {
+        sceneC = SceneManager.GetActiveScene();
         Cursor.visible = false;
         moveSpeed = 15f; //follow speed
-        sprite = GetComponent<SpriteRenderer>();
+        msprite = GetComponent<SpriteRenderer>();
         //code to set sprite to chosen reticle from settings
     }
 
@@ -35,24 +43,25 @@ public class MousePointer : MonoBehaviour
         Vector3 followXonly = new Vector3(targetPos.x, targetPos.y, transform.position.z);
         transform.position = Vector3.Lerp (transform.position, followXonly, moveSpeed * Time.deltaTime);
 
-        if(Time.timeScale == 0)
+        if(Time.timeScale <= 0 || sceneC.name == "Menu")
         {
-            Cursor.visible = true;
+            msprite.sprite = pointer;
             transform.position = new Vector3 (targetPos.x, targetPos.y, 0);
+            msprite.color = new Color (1,1,1,1);
         }
         else{
-        Cursor.visible = false;
+            msprite.sprite = reticle;
         }
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy") // if touching enemy turn red
-            sprite.color = new Color (.7f,0,0,1);
+            msprite.color = new Color (.7f,0,0,1);
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        sprite.color = new Color (0.7960785f, 0.5058824f, 0.02745098f, 1); // if not touching anything turn white
+        msprite.color = new Color (0.7960785f, 0.5058824f, 0.02745098f, 1); // if not touching anything turn white
     }
 }

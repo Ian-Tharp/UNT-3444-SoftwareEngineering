@@ -120,7 +120,10 @@ public class PlayerStats : MonoBehaviour
     //Called once every frame
     void Update() {
         if(CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
             isDead = true;
+        }
         
         //Checks if player isDead bool is true
         //If so, quit the game for now
