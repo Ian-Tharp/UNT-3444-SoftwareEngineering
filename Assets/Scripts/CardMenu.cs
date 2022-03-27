@@ -26,12 +26,8 @@ public class CardMenu : MonoBehaviour
     string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum"};
    
 
-    public void openCards()
+    void Start()
     {
-        
-        Time.timeScale = 0;
-
-
         player = GameObject.Find("HQ - Player");
         stop = GameObject.Find("InputManager");
         inventory = GameObject.Find("InventorySystem");
@@ -39,9 +35,21 @@ public class CardMenu : MonoBehaviour
         ps = player.GetComponent<PlayerStats>();
         p = stop.GetComponent<Pause>();
         es = inventory.GetComponent<InventorySystem>();
+    }
+
+    public void openCards()
+    {
+        
+        Time.timeScale = 0;
 
         cardMenu.SetActive(true);
 
+        cardSelection();
+
+    }
+
+    public void cardSelection()
+    {
         card1ID = Random.Range(0, deckSize);
 
         card2ID = Random.Range(0, deckSize);

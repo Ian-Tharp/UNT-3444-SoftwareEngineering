@@ -216,7 +216,11 @@ public class WaveManager : MonoBehaviour
         //Debug.Log("Vector2 location of enemy: " + Location);
     }  
 
-    
+    //Public Getters
+    public int GetWaveNumber() {
+        return WaveNumber;
+    }
+
     public void StartWave() {
         CanSpawnWave = false;
         ps.AddCurrentHealth(ps.regenAmount);
@@ -244,10 +248,6 @@ public class WaveManager : MonoBehaviour
         Debug.Log("Enemies: " + Enemies.Length);
     }
     //--------------------------------------------------------------------------------
-    //Public Getters
-    public int GetWaveNumber() {
-        return WaveNumber;
-    }
 
     // Start is called before the first frame update
     void Start() {
