@@ -23,14 +23,7 @@ public class DealMeleeDamage : MonoBehaviour
             //Add Damage animation to sprite here
             //Add sound effects to enemy here
             //Add particle effects to enemy here
-
-            //Refactor code later here
-            if (player.hasShield == true) {
-                player.SubtractCurrentShields(enemy.GetEnemyDamage());
-            }
-            else {
-                player.SubtractCurrentHealth(enemy.GetEnemyDamage());
-            }
+            DealDamage();
             Repeatable = true;
         }
         if (Repeatable) {

@@ -142,7 +142,6 @@ public class EnemyStats : MonoBehaviour
 
     void Hurt() {
         ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
-        ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
-        
+        ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero)); 
     }
 }

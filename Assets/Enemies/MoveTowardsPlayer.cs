@@ -11,8 +11,7 @@ public class MoveTowardsPlayer : MonoBehaviour
     private Vector2 Movement;
     public float Speed = 2f;
 
-    void Start()
-    {
+    void Start() {
         //Setup rigidbody component to allow for change of rotation
         rb = this.GetComponent<Rigidbody2D>();
         GameObject temp = GameObject.FindGameObjectWithTag("Player");

@@ -62,17 +62,6 @@ public class PlayerStats : MonoBehaviour
             TotalHealth = 10;
         }
     }
-/*
-    public bool TryToSubtractCurrency(int Amount) {
-        if (Currency - Amount >= 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    */
 
     public void SubtractCurrentShields(int Amount) {
         if (CurrentShields - Amount >= 0) {

@@ -86,6 +86,28 @@ public class WaveManager : MonoBehaviour
         TotalEnemyCount = EnemyCount;
     }
 
+    //Public functions to instantiate enemies
+    public void SpawnBasicMelee1AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
+        //Debug.Log("Vector2 location of enemy: " + Location);
+    }
+    public void SpawnBasicRanged1AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(BasicRanged, Location, transform.rotation);
+        //Debug.Log("Vector2 location of enemy: " + Location);
+    }
+    public void SpawnExploderAtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(Exploder, Location, transform.rotation);
+        //Debug.Log("Vector2 location of enemy: " + Location);
+    }
+    public void SpawnHeavyMeleeAtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(HeavyMelee, Location, transform.rotation);
+        //Debug.Log("Vector2 location of enemy: " + Location);
+    }
+    public void SpawnHeavyRangedAtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
+        //Debug.Log("Vector2 location of enemy: " + Location);
+    } 
+
     //Handle all locations to spawn enemies 
     GameObject[] SpawnLocations;
     Vector2 LocationToSpawnEnemy;
@@ -202,29 +224,7 @@ public class WaveManager : MonoBehaviour
                 SpawnExploderAtLocation(Location);
             }
         }
-    }
-
-    //Public functions to instantiate enemies
-    public void SpawnBasicMelee1AtLocation(Vector2 Location) {
-        GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
-    }
-    public void SpawnBasicRanged1AtLocation(Vector2 Location) {
-        GameObject Enemy = Instantiate(BasicRanged, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
-    }
-    public void SpawnExploderAtLocation(Vector2 Location) {
-        GameObject Enemy = Instantiate(Exploder, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
-    }
-    public void SpawnHeavyMeleeAtLocation(Vector2 Location) {
-        GameObject Enemy = Instantiate(HeavyMelee, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
-    }
-    public void SpawnHeavyRangedAtLocation(Vector2 Location) {
-        GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
-    }  
+    } 
 
     //Public Getters
     public int GetWaveNumber() {
