@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class MoveTowardsPlayer : MonoBehaviour
 {
-
     public Transform player;
     private Rigidbody2D rb;
+    private EnemyStats enemy;
 
     private Vector2 Movement;
     public float Speed = 2f;
@@ -17,6 +17,23 @@ public class MoveTowardsPlayer : MonoBehaviour
         GameObject temp = GameObject.FindGameObjectWithTag("Player");
         Transform tempLoc = temp.GetComponent<Transform>();
         player = tempLoc;
+        enemy = this.GetComponent<EnemyStats>();
+
+    }
+
+    void DetermineSpeed() {
+        if (enemy.GetEnemyType() == 2) {
+            Speed = 1.85f;
+        }
+        else if (enemy.GetEnemyType() == 3) {
+            Speed = 1.75f;
+        }
+        else if (enemy.GetEnemyType() == 4) {
+            Speed = 1.55f;
+        }
+        else if (enemy.GetEnemyType() == 5) {
+            Speed = 1.65f;
+        }
     }
 
     void Update() {
@@ -30,11 +47,23 @@ public class MoveTowardsPlayer : MonoBehaviour
     }
 
     void FixedUpdate() {
-        MoveEnemy(Movement);
+        if (enemy.GetEnemyType() == 2 || enemy.GetEnemyType() == 3) {
+            MoveEnemy(Movement);
+
+        }
+        else {
+            MoveEnemy(Movement);
+        }
     }
 
     //Update enemy movement
     void MoveEnemy(Vector2 Direction) {
-        rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
+        if (enemy.GetEnemyType() == 2 || enemy.GetEnemyType() == 3) {
+            //Direction = (player.transform.position - this.transform.position);
+            rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
+        }
+        else {
+            rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
+        }
     }
 }

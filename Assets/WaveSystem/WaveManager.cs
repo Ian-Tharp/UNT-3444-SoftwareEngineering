@@ -22,6 +22,9 @@ public class WaveManager : MonoBehaviour
     private GameObject BasicMelee; //Basic Melee Enemy Type
 
     [SerializeField]
+    private GameObject BasicMelee_b;
+
+    [SerializeField]
     private GameObject BasicRanged; //Basic Ranged Enemy Type
     
     [SerializeField]
@@ -88,7 +91,13 @@ public class WaveManager : MonoBehaviour
 
     //Public functions to instantiate enemies
     public void SpawnBasicMelee1AtLocation(Vector2 Location) {
-        GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
+        randomizer = Random.Range(1,2);
+        if (randomizer == 1) {
+            GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
+        }
+        else {
+            GameObject Enemy = Instantiate(BasicMelee_b, Location, transform.rotation);
+        }
         //Debug.Log("Vector2 location of enemy: " + Location);
     }
     public void SpawnBasicRanged1AtLocation(Vector2 Location) {
@@ -128,6 +137,7 @@ public class WaveManager : MonoBehaviour
         if (WaveNumber <= 3) {
             //SpawnExploderAtLocation(Location);
             SpawnBasicMelee1AtLocation(Location);
+            //SpawnBasicRanged1AtLocation(Location);
         }
         //Wave 4-9
         //20% chance to spawn basic ranged enemy
