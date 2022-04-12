@@ -9,6 +9,7 @@ TagManager:
   - DefenseMine
   - Enemy
   - WaveManager
+  - RangedArea
   layers:
   - Default
   - TransparentFX
