@@ -6,6 +6,7 @@ MonoImporter:
   defaultReferences:
   - statsObj: {instanceID: 0}
   - BasicMelee: {fileID: 2200771429715576424, guid: 7ed1963d2f6576649a933198be5ec2cd, type: 3}
+  - BasicMelee_b: {fileID: 2405865166087482628, guid: a033c2fa1061bc241897d0e7126edc0c, type: 3}
   - BasicRanged: {fileID: 741488129945918922, guid: 3d0e7ef95dde107419992e38cdcfab24, type: 3}
   - Exploder: {fileID: 180111111424298908, guid: 1438a8d4df350224795c5030c692d137, type: 3}
   - HeavyMelee: {fileID: 3002973274569189328, guid: 9d2c33b2a74581a45af1b5ec84500a0f, type: 3}

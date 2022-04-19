@@ -59,7 +59,6 @@ public class MoveTowardsPlayer : MonoBehaviour
     //Update enemy movement
     void MoveEnemy(Vector2 Direction) {
         if (enemy.GetEnemyType() == 2 || enemy.GetEnemyType() == 3) {
-            //Direction = (player.transform.position - this.transform.position);
             rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
         }
         else {

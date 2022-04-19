@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - WaveManager
   - RangedArea
+  - ShootingLocation
   layers:
   - Default
   - TransparentFX
