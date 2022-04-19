@@ -77,7 +77,8 @@ public class Pause : MonoBehaviour
                 //if (delay == false)
                 pauseTimer -= .01f;
                 if (pauseTimer <= 1)
-                    Time.timeScale -= .01f;
+                    if (Time.timeScale > 0)
+                        Time.timeScale -= .01f;
 
                 if (pauseTimer <= .01f)
                 {
@@ -108,7 +109,7 @@ public class Pause : MonoBehaviour
     
     public void PauseGame()
     {
-        if(paused )
+        if(paused && !pStats.isDead)
         {
             paused = false;
         } else {
