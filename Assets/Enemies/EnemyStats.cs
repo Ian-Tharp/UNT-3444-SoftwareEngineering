@@ -73,18 +73,18 @@ public class EnemyStats : MonoBehaviour
                 Damage = 1;
                 EnemyType = 1;
                 EnemyValue = 1;
-                if (waveManager.GetWaveNumber() > 10) {
-                    Health += 3;
+                if (waveManager.GetWaveNumber() > 5) {
+                    Health += 1;
                     Damage += 1 + waveManager.GetWaveNumber() / 2;
                 }
                 break;
             case 2:
-                Health = 3;
+                Health = 5;
                 Damage = 2;
                 EnemyType = 2;
                 EnemyValue = 2;
-                if (waveManager.GetWaveNumber() > 10) {
-                    Health += 3;
+                if (waveManager.GetWaveNumber() > 5) {
+                    Health += 1;
                     Damage += 1 + waveManager.GetWaveNumber() / 2;
                 }
                 break;
@@ -93,8 +93,8 @@ public class EnemyStats : MonoBehaviour
                 Damage = 3;
                 EnemyType = 3;
                 EnemyValue = 3;
-                if (waveManager.GetWaveNumber() > 10) {
-                    Health += 3;
+                if (waveManager.GetWaveNumber() > 5) {
+                    Health += 1;
                     Damage += 1 + waveManager.GetWaveNumber() / 2;
                 }
                 break;
@@ -103,8 +103,8 @@ public class EnemyStats : MonoBehaviour
                 Damage = 5;
                 EnemyType = 4;
                 EnemyValue = 5;
-                if (waveManager.GetWaveNumber() > 10) {
-                    Health += 3;
+                if (waveManager.GetWaveNumber() > 5) {
+                    Health += 2;
                     Damage += 1 + waveManager.GetWaveNumber() / 2;
                 }
                 break;
@@ -113,8 +113,8 @@ public class EnemyStats : MonoBehaviour
                 Damage = 8;
                 EnemyType = 5;
                 EnemyValue = 8;
-                if (waveManager.GetWaveNumber() > 10) {
-                    Health += 3;
+                if (waveManager.GetWaveNumber() > 5) {
+                    Health += 2;
                     Damage += 1 + waveManager.GetWaveNumber() / 2;
                 }
                 break;
