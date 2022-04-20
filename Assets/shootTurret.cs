@@ -31,7 +31,7 @@ public class shootTurret : MonoBehaviour
     private InputAction reload;
 
     public bool automatic = true; // false - single shot, true - automatic
-    public float fireRate = 60f; // rounds per minute
+    public float fireRate = 30f; // rounds per minute
     private float ROF = 0f; // variable converting fire rate to wait time
     public float recoil = 0; // recoil rate of the gun (1-low 10-high)
     public float recoilBuildup = 0;  //variable of recoil building up over time and dropping
@@ -44,9 +44,9 @@ public class shootTurret : MonoBehaviour
     
     void Start()
     {     
-        fireRate = 60f;
-        ammo = 20;
-        magSize = 20;
+        fireRate = 30f;
+        ammo = 200000;
+        magSize = 200000;
         reloadTime = 5.0f;
 
         reloading = false;
