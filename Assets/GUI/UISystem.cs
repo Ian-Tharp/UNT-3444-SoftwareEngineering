@@ -14,6 +14,7 @@ public class UISystem : MonoBehaviour
 
     [SerializeField] GameObject mousePos;
     [SerializeField] GameObject ammoPos;
+    [SerializeField] RectTransform rt;
 
     public Text ammoTxt;
     public Text healthTxt;
@@ -40,7 +41,6 @@ public class UISystem : MonoBehaviour
         goAlpha = 0;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
         healthTxt.text = ps.CurrentHealth.ToString();
@@ -49,6 +49,7 @@ public class UISystem : MonoBehaviour
 
         //ammo
         ammoPos.transform.position = mousePos.transform.position;
+        
         if(sg.reloading)
         {
             ammoTxt.text = "Reloading...";
@@ -93,6 +94,11 @@ public class UISystem : MonoBehaviour
     
     void Update()
     {
+        if(Time.timeScale == 0)
+        {
+            rt.anchoredPosition = new Vector3(-119,-415, 0);
+        }
+
         if (ps.isDead)
         {   
             goAlpha += .01f;

@@ -67,11 +67,17 @@ public class Pause : MonoBehaviour
         menu = cardMenu.GetComponent<CardMenu>();
         pStats = player.GetComponent<PlayerStats>();
 
+        if (menu.wavePause || pStats.isDead)
+        {
+            pauseBut.Disable();
+        } else {
+            pauseBut.Enable();
+        }
+
 
         endWave = wm.CanSpawnWave;
         if(paused || endWave || pStats.isDead)
         {
-            
             if (endWave && !pStats.isDead)
             {
                 //if (delay == false)
@@ -92,6 +98,7 @@ public class Pause : MonoBehaviour
                     wm.StartWave();
                 }
             }
+
             if(paused)
             {
                 paused = true;
@@ -109,7 +116,7 @@ public class Pause : MonoBehaviour
     
     public void PauseGame()
     {
-        if(paused && !pStats.isDead)
+        if(paused && !pStats.isDead && !menu.wavePause)
         {
             paused = false;
         } else {

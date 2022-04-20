@@ -12,6 +12,8 @@ public class CardMenu : MonoBehaviour
     private GameObject stop;
     private GameObject inventory;
 
+    public bool wavePause;
+
     public Text card1Txt;
     public Text card2Txt;
     
@@ -35,6 +37,7 @@ public class CardMenu : MonoBehaviour
         ps = player.GetComponent<PlayerStats>();
         p = stop.GetComponent<Pause>();
         es = inventory.GetComponent<InventorySystem>();
+        wavePause = false;
     }
 
     public void openCards()
@@ -43,6 +46,8 @@ public class CardMenu : MonoBehaviour
         Time.timeScale = 0;
 
         cardMenu.SetActive(true);
+
+        wavePause = true;
 
         cardSelection();
 
@@ -82,6 +87,7 @@ public class CardMenu : MonoBehaviour
             ammoUp();
         }
         cardMenu.SetActive(false);
+        wavePause = false;
     }
    
    public void healthUp()
