@@ -8,6 +8,7 @@ public class MoveToLocation : MonoBehaviour
     private EnemyStats enemy;
     private Rigidbody2D rb;
     private Vector2 Movement;
+    private GameObject TaggedLocation;
 
     public float Speed = 2.0f;
     public bool InPosition = false;
@@ -21,6 +22,7 @@ public class MoveToLocation : MonoBehaviour
         GameObject temp = FindClosestLocation();
         Transform tempLoc = temp.GetComponent<Transform>();
         locationToMove = tempLoc;
+        TaggedLocation = temp;
     }
 
     void DetermineSpeed() {
@@ -58,6 +60,9 @@ public class MoveToLocation : MonoBehaviour
         float distance = Mathf.Infinity;
         Vector3 Position = transform.position;
         foreach (GameObject location in locations) {
+            if (location == TaggedLocation) {
+                continue;
+            }
             Vector3 diff = location.transform.position - Position;
             float curDistance = diff.sqrMagnitude;
             if (curDistance < distance) {
@@ -80,8 +85,10 @@ public class MoveToLocation : MonoBehaviour
 
     void FixedUpdate() {
         MoveEnemy(Movement);
+    }
 
-        if (this.transform.position == locationToMove.position) {
+    void OnCollisionEnter2D(Collision2D other) {
+        if (other.gameObject.tag == "ShootingLocation") {
             InPosition = true;
             Debug.Log("InPosition: " + InPosition);
         }

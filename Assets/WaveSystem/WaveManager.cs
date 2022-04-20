@@ -158,12 +158,15 @@ public class WaveManager : MonoBehaviour
         //20% chance to spawn basic ranged enemy
         //80% chance to spawn basic melee enemy
         else if (WaveNumber <= 9 && WaveNumber > 3 && WaveNumber != 5) {
-            randomizer = Random.Range(0, 4);
-            if (randomizer == 0) {
+            randomizer = Random.Range(0, 6);
+            if (randomizer == 0 || randomizer == 3) {
                 SpawnBasicRanged1AtLocation(Location);
             }
             else if (randomizer == 1 || randomizer == 2) {
                 SpawnBasicMelee1AtLocation(Location);
+            }
+            else if (randomizer == 4) {
+                SpawnBasicRanged2AtLocation(Location);
             }
             else {
                 SpawnBasicMelee2AtLocation(Location);
