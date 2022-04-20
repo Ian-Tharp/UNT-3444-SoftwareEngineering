@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class CameraChange : MonoBehaviour
 {
+    [SerializeField] PlayerStats ps;
     public Transform player; //hq pos
     public Transform reticle; //reticle pos
     public Vector3 center; //center between two object
     Vector3 mouseDist;
+
+    private float goTime;
 
     public ShootGun sg;
 
@@ -32,6 +35,7 @@ public class CameraChange : MonoBehaviour
         MAX = 11;
         MIN = 8;
         MAXDIST = 7;
+        goTime = 0;
     }
 
     // Update is called once per frame
@@ -40,22 +44,31 @@ public class CameraChange : MonoBehaviour
         calcPosition();
         calcSize();
 
-        
-        initPos = center;
-        if (shakeTime > 0)
+        if(ps.isDead)
         {
-            transform.position = new Vector3 (center.x, center.y, -10) + Random.insideUnitSphere * shakeMag; //position camera in the center pos 
-
-            shakeTime -= Time.deltaTime * damp;
-        } else {
-            shakeTime = 0f;
-            transform.position = new Vector3 (center.x, center.y, -10); //position camera in the center pos
+            if(goTime < 1.0f)
+                goTime += .01f;
+            transform.position = Vector3.Lerp (transform.position, new Vector3(0,0,-10), goTime);
+            cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, 8, goTime);
         }
-
-        if(sg.firing == true && sg.recoilBuildup > 0)
+        else
         {
-            shakeTime = 0.17f;
-            shakeMag = .03f * sg.recoilBuildup + .08f;
+            initPos = center;
+            if (shakeTime > 0)
+            {
+                transform.position = new Vector3 (center.x, center.y, -10) + Random.insideUnitSphere * shakeMag; //position camera in the center pos 
+
+                shakeTime -= Time.deltaTime * damp;
+            } else {
+                shakeTime = 0f;
+                transform.position = new Vector3 (center.x, center.y, -10); //position camera in the center pos
+            }
+
+            if(sg.firing == true && sg.recoilBuildup > 0)
+            {
+                shakeTime = 0.17f;
+                shakeMag = .03f * sg.recoilBuildup + .08f;
+            }
         }
     }
 
