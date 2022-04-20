@@ -146,7 +146,7 @@ public class WaveManager : MonoBehaviour
             //SpawnExploderAtLocation(Location);
             //SpawnBasicMelee1AtLocation(Location);
             //SpawnBasicRanged1AtLocation(Location);
-            randomizer = Random.Range(0, 2);
+            randomizer = Random.Range(0, 1);
             if (randomizer == 0) {
                 SpawnBasicMelee1AtLocation(Location);
             }
@@ -191,8 +191,11 @@ public class WaveManager : MonoBehaviour
             if (randomizer == 0) {
                 SpawnExploderAtLocation(Location);
             }
-            else if (randomizer == 1 || randomizer == 2 || randomizer == 3) {
+            else if (randomizer == 1 || randomizer == 2) {
                 SpawnBasicRanged1AtLocation(Location);
+            }
+            else if (randomizer == 3) {
+                SpawnBasicRanged2AtLocation(Location);
             }
             else if (randomizer >= 4 && randomizer <= 6) {
                 SpawnBasicMelee1AtLocation(Location);
@@ -230,8 +233,11 @@ public class WaveManager : MonoBehaviour
             else if (randomizer == 1) {
                 SpawnHeavyMeleeAtLocation(Location);
             }
-            else if (randomizer == 2 || randomizer == 3) {
+            else if (randomizer == 2) {
                 SpawnBasicRanged1AtLocation(Location);
+            }
+            else if (randomizer == 3) {
+                SpawnBasicRanged2AtLocation(Location);
             }
             else if (randomizer == 4 || randomizer == 5) {
                 SpawnHeavyRangedAtLocation(Location);
@@ -244,24 +250,24 @@ public class WaveManager : MonoBehaviour
         //will change spawning later but just continue old spawn percentages
         //to make it endless
         else {
-            randomizer = Random.Range(0, 6);
+            randomizer = Random.Range(0, 9);
             if (randomizer == 0) {
-                randomizer = Random.Range(0, 1);
-                if (randomizer == 0) {
-                    SpawnBasicMelee1AtLocation(Location);
-                }
-                else {
-                    SpawnBasicMelee2AtLocation(Location);
-                }
+                SpawnBasicMelee1AtLocation(Location);
             }
             else if (randomizer == 1) {
                 SpawnHeavyMeleeAtLocation(Location);
             }
-            else if (randomizer == 2 || randomizer == 3) {
+            else if (randomizer == 2) {
                 SpawnBasicRanged1AtLocation(Location);
+            }
+            else if (randomizer == 3) {
+                SpawnBasicRanged2AtLocation(Location);
             }
             else if (randomizer == 4 || randomizer == 5) {
                 SpawnHeavyRangedAtLocation(Location);
+            }
+            else if (randomizer == 6) {
+                SpawnBasicMelee2AtLocation(Location);
             }
             else {
                 SpawnExploderAtLocation(Location);

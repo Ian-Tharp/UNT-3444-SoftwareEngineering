@@ -10,6 +10,8 @@ public class EnemyBullet : MonoBehaviour
     public int Damage;
     public TrailRenderer trail;
 
+    private PlayerStats player;
+
     EnemyBullet(int damage, float speed) {
         Damage = damage;
         Speed = speed;
@@ -35,6 +37,7 @@ public class EnemyBullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "Player") {
+            this.player = collision.gameObject.GetComponent<PlayerStats>();
             
         }
     }

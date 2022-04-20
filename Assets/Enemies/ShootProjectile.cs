@@ -87,7 +87,7 @@ public class ShootProjectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "ShootingLocation") {
             Debug.Log("Collided w/ ShootingLocation");
-            this.player = collision.gameObject.GetComponent<PlayerStats>();
+            //this.player = collision.gameObject.GetComponent<PlayerStats>();
             Shoot();
             Repeatable = true;
             InPosition = true;
