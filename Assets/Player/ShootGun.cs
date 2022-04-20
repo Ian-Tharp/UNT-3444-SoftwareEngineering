@@ -20,6 +20,8 @@ public class ShootGun : MonoBehaviour
     [SerializeField]
     private Transform bulletDirection; // bullet transform where bullet is spawned and shot from
 
+    [SerializeField] PlayerStats ps;
+
     public AudioSource source;
     private AudioClip gunshotSFX;
     private AudioClip emptySFX;
@@ -95,7 +97,7 @@ public class ShootGun : MonoBehaviour
     
     void Update()
     {
-        if(Time.timeScale == 0)
+        if(Time.timeScale == 0 || ps.isDead)
         {
             fire.Disable();
             reload.Disable();

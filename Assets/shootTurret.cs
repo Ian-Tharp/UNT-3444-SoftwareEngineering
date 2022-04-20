@@ -44,6 +44,10 @@ public class shootTurret : MonoBehaviour
     
     void Start()
     {     
+        fireRate = 60f;
+        ammo = 20;
+        magSize = 20;
+        reloadTime = 5.0f;
 
         reloading = false;
         firing = false;
@@ -67,7 +71,7 @@ public class shootTurret : MonoBehaviour
         //if weapon is automatic and left click held down, fire
         if(t.target != null && ammo > 0)
         {   
-            Fire();
+            tFire();
         }
         
         if (ammo <= 0)
@@ -97,7 +101,7 @@ public class shootTurret : MonoBehaviour
         firing = false;
     }
 
-    public void Fire() // called anytime player fires
+    public void tFire() // called anytime player fires
     {  
 
             if(reloading)

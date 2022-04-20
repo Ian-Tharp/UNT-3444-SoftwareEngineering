@@ -8,6 +8,9 @@ using System.Threading;
 
 public class MousePointer : MonoBehaviour
 {
+    [SerializeField] BoxCollider2D box;
+
+    bool touching;
     private Vector3 mousePos;
     private Vector3 targetPos;
     public float moveSpeed = 15f;
@@ -26,6 +29,7 @@ public class MousePointer : MonoBehaviour
     {
         sceneC = SceneManager.GetActiveScene();
         Cursor.visible = false;
+        touching = false;
         moveSpeed = 15f; //follow speed
         msprite = GetComponent<SpriteRenderer>();
         //code to set sprite to chosen reticle from settings
@@ -48,20 +52,34 @@ public class MousePointer : MonoBehaviour
             msprite.sprite = pointer;
             transform.position = new Vector3 (targetPos.x, targetPos.y, 0);
             msprite.color = new Color (1,1,1,1);
+            box.enabled = false;
         }
         else{
             msprite.sprite = reticle;
+            box.enabled = true;
+            colorChange();
         }
     }
 
     void OnTriggerStay2D(Collider2D col)
     {
         if (col.gameObject.tag == "Enemy") // if touching enemy turn red
+        {
+            touching = true; 
             msprite.color = new Color (.7f,0,0,1);
+        }
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        msprite.color = new Color (0.7960785f, 0.5058824f, 0.02745098f, 1); // if not touching anything turn white
+        touching = false;
+        colorChange();
     }
+
+    void colorChange()
+    {
+        if (!touching)
+            msprite.color = new Color (0.7960785f, 0.5058824f, 0.02745098f, 1); // if not touching anything turn white
+    }
+
 }

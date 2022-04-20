@@ -39,9 +39,9 @@ public class GameoverFX : MonoBehaviour
         }
         if (ending)
         {
-            if (Time.timeScale > 0.006f)
+            if (Time.timeScale > 0.06f)
             {
-                Time.timeScale -= .005f;
+                Time.timeScale -= .05f;
             } else
             {
                 Time.timeScale = 0;
