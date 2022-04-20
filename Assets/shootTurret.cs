@@ -104,10 +104,6 @@ public class shootTurret : MonoBehaviour
     public void tFire() // called anytime player fires
     {  
 
-            if(reloading)
-            {
-                source.PlayOneShot(emptySFX, 1.0f);//trying to fire while reloading
-            }
 
             if (!reloading && !firing)
             {
