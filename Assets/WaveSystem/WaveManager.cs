@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,9 @@ public class WaveManager : MonoBehaviour
 
     [SerializeField]
     private GameObject BasicRanged; //Basic Ranged Enemy Type
+
+    [SerializeField]
+    private GameObject BasicRanged_b;
     
     [SerializeField]
     private GameObject Exploder; //Exploder 1 Enemy Type
@@ -90,31 +94,35 @@ public class WaveManager : MonoBehaviour
     }
 
     //Public functions to instantiate enemies
+    //Basic Melee Enemies
     public void SpawnBasicMelee1AtLocation(Vector2 Location) {
-        randomizer = Random.Range(1,2);
-        if (randomizer == 1) {
-            GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
-        }
-        else {
-            GameObject Enemy = Instantiate(BasicMelee_b, Location, transform.rotation);
-        }
-        //Debug.Log("Vector2 location of enemy: " + Location);
+        GameObject Enemy = Instantiate(BasicMelee, Location, transform.rotation);
     }
+    public void SpawnBasicMelee2AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(BasicMelee_b, Location, transform.rotation);
+    }
+
+    //Basic Ranged Enemies
     public void SpawnBasicRanged1AtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(BasicRanged, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
     }
+    public void SpawnBasicRanged2AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(BasicRanged_b, Location, transform.rotation);
+    }
+
+    //Exploder Enemies
     public void SpawnExploderAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(Exploder, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
     }
+
+    //Heavy Melee Enemies
     public void SpawnHeavyMeleeAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyMelee, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
     }
+
+    //Heavy Ranged Enemies
     public void SpawnHeavyRangedAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
-        //Debug.Log("Vector2 location of enemy: " + Location);
     } 
 
     //Handle all locations to spawn enemies 
@@ -136,19 +144,29 @@ public class WaveManager : MonoBehaviour
         //Wave 1-3
         if (WaveNumber <= 3) {
             //SpawnExploderAtLocation(Location);
-            SpawnBasicMelee1AtLocation(Location);
+            //SpawnBasicMelee1AtLocation(Location);
             //SpawnBasicRanged1AtLocation(Location);
+            randomizer = Random.Range(0, 2);
+            if (randomizer == 0) {
+                SpawnBasicMelee1AtLocation(Location);
+            }
+            else {
+                SpawnBasicMelee2AtLocation(Location);
+            }
         }
         //Wave 4-9
         //20% chance to spawn basic ranged enemy
         //80% chance to spawn basic melee enemy
         else if (WaveNumber <= 9 && WaveNumber > 3 && WaveNumber != 5) {
-            randomizer = Random.Range(0, 5);
+            randomizer = Random.Range(0, 4);
             if (randomizer == 0) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else {
+            else if (randomizer == 1 || randomizer == 2) {
                 SpawnBasicMelee1AtLocation(Location);
+            }
+            else {
+                SpawnBasicMelee2AtLocation(Location);
             }
         }
         //Wave 5
@@ -173,8 +191,11 @@ public class WaveManager : MonoBehaviour
             else if (randomizer == 1 || randomizer == 2 || randomizer == 3) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else {
+            else if (randomizer >= 4 && randomizer <= 6) {
                 SpawnBasicMelee1AtLocation(Location);
+            }
+            else {
+                SpawnBasicMelee2AtLocation(Location);
             }
         }
         //Wave 15
@@ -190,15 +211,18 @@ public class WaveManager : MonoBehaviour
             }
         }
         //Wave 16-19
-        //14% chance to spawn basic melee enemy
-        //14% chance to spawn heavy melee enemy
-        //28% chance to spawn basic ranged enemy
-        //28% chance to spawn heavy ranged enemy
-        //14% chance to spawn exploder enemy
+        //25% chance to spawn basic melee enemy
+        //13% chance to spawn heavy melee enemy
+        //25% chance to spawn basic ranged enemy
+        //25% chance to spawn heavy ranged enemy
+        //13% chance to spawn exploder enemy
         else if (WaveNumber > 15 && WaveNumber < 20) {
-            randomizer = Random.Range(0, 6);
+            randomizer = Random.Range(0, 7);
             if (randomizer == 0) {
                 SpawnBasicMelee1AtLocation(Location);
+            }
+            else if (randomizer == 7) {
+                SpawnBasicMelee2AtLocation(Location);
             }
             else if (randomizer == 1) {
                 SpawnHeavyMeleeAtLocation(Location);
@@ -219,7 +243,13 @@ public class WaveManager : MonoBehaviour
         else {
             randomizer = Random.Range(0, 6);
             if (randomizer == 0) {
-                SpawnBasicMelee1AtLocation(Location);
+                randomizer = Random.Range(0, 1);
+                if (randomizer == 0) {
+                    SpawnBasicMelee1AtLocation(Location);
+                }
+                else {
+                    SpawnBasicMelee2AtLocation(Location);
+                }
             }
             else if (randomizer == 1) {
                 SpawnHeavyMeleeAtLocation(Location);
@@ -265,7 +295,7 @@ public class WaveManager : MonoBehaviour
         }
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         RemainingEnemyCount = Enemies.Length;
-        Debug.Log("Enemies: " + Enemies.Length);
+        UnityEngine.Debug.Log("Enemies: " + Enemies.Length);
     }
     //--------------------------------------------------------------------------------
 

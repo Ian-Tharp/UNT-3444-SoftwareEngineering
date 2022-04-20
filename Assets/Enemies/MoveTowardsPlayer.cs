@@ -47,22 +47,11 @@ public class MoveTowardsPlayer : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (enemy.GetEnemyType() == 2 || enemy.GetEnemyType() == 3) {
-            MoveEnemy(Movement);
-
-        }
-        else {
-            MoveEnemy(Movement);
-        }
+        MoveEnemy(Movement);
     }
 
     //Update enemy movement
     void MoveEnemy(Vector2 Direction) {
-        if (enemy.GetEnemyType() == 2 || enemy.GetEnemyType() == 3) {
-            rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
-        }
-        else {
-            rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
-        }
+        rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
     }
 }

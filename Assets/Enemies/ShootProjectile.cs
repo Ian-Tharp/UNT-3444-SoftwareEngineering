@@ -9,81 +9,92 @@ public class ShootProjectile : MonoBehaviour
 
     private EnemyBullet bulletInfo;
     private PlayerStats player;
-    private Transform locationToMove;
+    private Transform playerLocation;
     private EnemyStats enemy;
     private Rigidbody2D rb;
 
     private Vector2 Movement;
     public float Speed = 2f;
+    private float ProjectileSpeed = 15.0f;
     
     public float WaitTime = 2.0f;
     bool Repeatable = false;
     bool InPosition = false;
 
+    //Public getters for EnemyBullet class
+    public int GetDamage() {
+        return enemy.GetEnemyDamage();
+    }
+
+    public float GetProjectileSpeed() {
+        return ProjectileSpeed;
+    }
+
     void Start() {
         this.gameObject.GetComponent<DealMeleeDamage>().enabled = false;
         enemy = this.gameObject.GetComponent<EnemyStats>();
         bulletInfo = EnemyProjectile.GetComponent<EnemyBullet>();
+        
+        //Get player location
+        GameObject tempP = GameObject.FindGameObjectWithTag("Player");
+        Transform tempLocP = tempP.GetComponent<Transform>();
+        playerLocation = tempLocP;
 
         //Setup rigidbody component to allow for change of rotation
         rb = this.GetComponent<Rigidbody2D>();
-        GameObject temp = FindClosestLocation();
-        Transform tempLoc = temp.GetComponent<Transform>();
-        locationToMove = tempLoc;
-    }
 
-    GameObject FindClosestLocation() {
-        GameObject[] locations;
-        locations = GameObject.FindGameObjectsWithTag("ShootingLocation");
-        GameObject closest = null;
-        float distance = Mathf.Infinity;
-        Vector3 Position = transform.position;
-        foreach (GameObject location in locations) {
-            Vector3 diff = location.transform.position - Position;
-            float curDistance = diff.sqrMagnitude;
-            if (curDistance < distance) {
-                closest = location;
-                distance = curDistance;
-            }
+        if (enemy.GetEnemyType() == 2) {
+            ProjectileSpeed = 12.0f;
         }
-        return closest;
+        else if (enemy.GetEnemyType() == 3) {
+            ProjectileSpeed = 18.0f;
+        }
     }
 
     void Update() {
-        //Check if enemy is in position to shoot
-        if (InPosition) {
-
-        }
-        //If not continue rotating and moving to location
+        Vector3 Direction = playerLocation.transform.position;
+        Quaternion Rotation = Quaternion.LookRotation(Vector3.forward, Direction);
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Rotation, Time.deltaTime * Speed);
+        /*
         else {
             //Calculate direction and angle for enemies to look at player
-            Vector3 Direction = locationToMove.transform.position - this.transform.position;
+            Vector3 Direction = playerLocation.transform.position - this.transform.position;
             Quaternion Rotation = Quaternion.LookRotation(Vector3.forward, Direction);
             this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Rotation, Time.deltaTime * Speed);
             //Normalize direction for movement to smooth transition into rotations
             Direction.Normalize();
             Movement = Direction;
         }
+        */
     }
 
     void FixedUpdate() {
-        MoveEnemy(Movement);
+        if (InPosition == false) {
+            /*Vector3 direction = playerLocation.transform.position - this.transform.position;
+            Quaternion rotation = Quaternion.LookRotation(Vector3.forward, direction);
+            this.transform.rotation = Quaternion.Lerp(this.transform.rotation, rotation, Time.deltaTime * Speed);
+            Movement = direction;
+            */
+            //MoveEnemy(Movement);
+        }
+        else {
+            
+        }
     }
 
-    //Update enemy movement
-    void MoveEnemy(Vector2 Direction) {
-        rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
-    }
+    
 
     void OnCollisionEnter2D(Collision2D collision) {
         if (collision.gameObject.tag == "ShootingLocation") {
+            Debug.Log("Collided w/ ShootingLocation");
             this.player = collision.gameObject.GetComponent<PlayerStats>();
             Shoot();
             Repeatable = true;
+            InPosition = true;
         }
 
         if (Repeatable) {
-            InvokeRepeating("ShootProjectile", 2.0f, WaitTime);
+            InvokeRepeating("ShootProjectile", 1.5f, WaitTime);
         }
     }
 
@@ -94,7 +105,7 @@ public class ShootProjectile : MonoBehaviour
 
     void Shoot() {
         bulletInfo.SetDamage(enemy.GetEnemyDamage());
-        int damage = bulletInfo.Damage;
+        //int damage = bulletInfo.Damage;
         GameObject bullet = Instantiate(EnemyProjectile, this.transform.position, this.transform.rotation);
     }
 }
