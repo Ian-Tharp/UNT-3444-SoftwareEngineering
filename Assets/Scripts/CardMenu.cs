@@ -22,7 +22,13 @@ public class CardMenu : MonoBehaviour
     bool towerFull = false;
 
     public Text card1Txt;
+    public Text card1desc;
+    public Text card1stat1;
+    public Text card1stat2;
+    
     public Text card2Txt;
+    public Text card2desc;
+
     
     PlayerStats ps;
     ShootGun sg;
@@ -83,12 +89,14 @@ public class CardMenu : MonoBehaviour
             card2ID = Random.Range(0, deckSize);
         }
         card1Txt.text = es.weapon[card1ID].weaponName;
+        C1body();
 
-       card2Txt.text = deck[card2ID];
-       if (towerFull)
-       {
-        deckSize = deckSize + 1;
-       }
+        card2Txt.text = deck[card2ID];
+        C2body();
+        if (towerFull)
+        {
+            deckSize = deckSize + 1;
+        }
 
     }
     
@@ -179,5 +187,49 @@ public class CardMenu : MonoBehaviour
             towerFull = true;
        }
         p.paused = false;
+   }
+
+   void C1body()
+    {
+        if(card1ID == 0)//g17
+                card1desc.text = "Pistol";
+        if(card1ID == 1)//m1911
+                card1desc.text = "Pistol";
+        if(card1ID == 2)//DE
+                card1desc.text = "Pistol";
+        if(card1ID == 3)//c96
+                card1desc.text = "Machine Pistol";
+        if(card1ID == 4)//ak
+                card1desc.text = "Assault Rifle";
+        if(card1ID == 5)//mp5
+                card1desc.text = "Submachine Gun";
+        if(card1ID == 6)//m4
+                card1desc.text = "Assault Rifle";
+        if(card1ID == 7)//rpk
+                card1desc.text = "Light Machine Gun";
+        if(card1ID == 8)//mos
+                card1desc.text = "Bolt-Action Sniper Rifle";
+        if(card1ID == 9)//sks
+                card1desc.text = "Semi-Automatic Rifle";
+        if(card1ID == 10)//svd
+                card1desc.text = "Semi-Automatic Sniper Rifle";
+        card1stat1.text = es.weapon[card1ID].damage + "\n" + es.weapon[card1ID].ammo + "\n" + es.weapon[card1ID].reloadTime;
+        card1stat2.text = es.weapon[card1ID].rpm + "\n" + es.weapon[card1ID].speed + "\n" + es.weapon[card1ID].recoil;
+
+   }
+
+   void C2body()
+   {
+        if(card2ID == 0)//health
+            card2desc.text = "Repair your base by a large amount";
+        if(card2ID == 1)//damage
+            card2desc.text = "Permanently increase the damage for all your weapons";
+        if(card2ID == 2)//regen
+            card2desc.text = "Repair your base by a small amount at the end of each wave";
+        if(card2ID == 3)//ammo
+            card2desc.text = "Increase the magazine size for all of your weapons by x 1.5";
+        if(card2ID == 4)//turret
+            card2desc.text = "Add an automated turret to destroy enemies within range";
+
    }
 }
