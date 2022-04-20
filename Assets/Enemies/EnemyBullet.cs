@@ -10,6 +10,11 @@ public class EnemyBullet : MonoBehaviour
     public int Damage;
     public TrailRenderer trail;
 
+    EnemyBullet(int damage, float speed) {
+        Damage = damage;
+        Speed = speed;
+    }
+
     void OnEnable() {
         StartCoroutine(DestroyBullet());
     }
@@ -24,8 +29,8 @@ public class EnemyBullet : MonoBehaviour
     }
 
     void Update() {
-        //shoot projectile
-        this.transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        //Shoots projectile
+        transform.Translate(Vector3.up * Speed * Time.deltaTime);
     }
 
     void OnCollisionEnter2D(Collision2D collision) {
