@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using WC;
 
@@ -10,6 +11,10 @@ public class UISystem : MonoBehaviour
     public GameObject player;
     ShootGun sg;
     PlayerStats ps;
+
+    [SerializeField] GameObject mousePos;
+    [SerializeField] GameObject ammoPos;
+
     public Text ammoTxt;
     public Text healthTxt;
     public Text weaponTxt;
@@ -43,6 +48,7 @@ public class UISystem : MonoBehaviour
 
 
         //ammo
+        ammoPos.transform.position = mousePos.transform.position;
         if(sg.reloading)
         {
             ammoTxt.text = "Reloading...";
@@ -55,6 +61,8 @@ public class UISystem : MonoBehaviour
             weaponAlpha = .8f;
             timer = 0;
         }
+
+        //weapon
         weaponTxt.text = sg.weapon.weaponName;
         weaponTxt.color = new Color(.83f, .62f, .26f, weaponAlpha);
         timer += .1f;
