@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -34.25, y: 63}
+  m_SizeDelta: {x: -114.5, y: -160.92}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4042085
 MonoBehaviour:
@@ -187,7 +187,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 5
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -879,8 +879,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 546, y: 0.000030518}
-  m_SizeDelta: {x: 500, y: 750}
+  m_AnchoredPosition: {x: 0.000061035, y: -411}
+  m_SizeDelta: {x: 720, y: 227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &131029171
 MonoBehaviour:
@@ -928,7 +928,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1939859346}
         m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
-        m_MethodName: cardChosen
+        m_MethodName: cardChosen2
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 4042085}
@@ -958,8 +958,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a5576dc22f1a5d744b033f5471dd6adc, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -30441,7 +30441,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.164978, y: 16.159973}
+  m_AnchoredPosition: {x: 13.165039, y: 16.159912}
   m_SizeDelta: {x: -47.12, y: -32.32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &647804102
@@ -30931,8 +30931,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -543, y: 0}
-  m_SizeDelta: {x: 500, y: 750}
+  m_AnchoredPosition: {x: 0.000061035, y: -153}
+  m_SizeDelta: {x: 720, y: 227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &830089475
 MonoBehaviour:
@@ -30980,7 +30980,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1939859346}
         m_TargetAssemblyTypeName: CardMenu, Assembly-CSharp
-        m_MethodName: cardChosen
+        m_MethodName: cardChosen1
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 1172420458}
@@ -31010,8 +31010,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a5576dc22f1a5d744b033f5471dd6adc, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -32396,8 +32396,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -34.25, y: 63}
+  m_SizeDelta: {x: -114.5, y: -156.28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1172420458
 MonoBehaviour:
@@ -32426,7 +32426,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 50
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -32597,7 +32597,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 303.90002, y: -61.809998}
+  m_AnchoredPosition: {x: 303.90002, y: -61.81006}
   m_SizeDelta: {x: 534.35, y: 71.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1262489483
@@ -34598,10 +34598,11 @@ MonoBehaviour:
   cardMenu: {fileID: 1939859344}
   player: {fileID: 59079607}
   wavePause: 0
-  tower1: {fileID: 0}
-  tower2: {fileID: 0}
-  tower3: {fileID: 0}
-  tower4: {fileID: 0}
+  startFin: 0
+  tower1: {fileID: 885340538}
+  tower2: {fileID: 1685892594}
+  tower3: {fileID: 638386411}
+  tower4: {fileID: 2097538692}
   card1Txt: {fileID: 1172420458}
   card2Txt: {fileID: 4042085}
 --- !u!1 &1950439685
@@ -35074,8 +35075,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -303295723
-  m_SortingLayer: 5
+  m_SortingLayerID: 1406098395
+  m_SortingLayer: 4
   m_SortingOrder: 30
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -35469,6 +35470,10 @@ PrefabInstance:
       propertyPath: HQ
       value: 
       objectReference: {fileID: 59079607}
+    - target: {fileID: 1176939344493927019, guid: 7f5dd6524b251d344a5e886c7eca4cf9, type: 3}
+      propertyPath: cm
+      value: 
+      objectReference: {fileID: 1939859346}
     - target: {fileID: 1176939344493927019, guid: 7f5dd6524b251d344a5e886c7eca4cf9, type: 3}
       propertyPath: player
       value: 

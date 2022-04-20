@@ -13,6 +13,8 @@ public class CardMenu : MonoBehaviour
     private GameObject inventory;
 
     public bool wavePause;
+    public bool startFin;
+
     public GameObject tower1;
     public GameObject tower2;
     public GameObject tower3;
@@ -29,12 +31,17 @@ public class CardMenu : MonoBehaviour
 
     int card1ID;
     int card2ID;
-    int deckSize = 5;
+
+    static int deckSize = 5;
+    static int wdeckSize = 11;//change to weapon num invsystem
+    string[] weaponDeck = new string[wdeckSize];
+
     string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum", "Turret"};
    
 
     void Start()
     {
+
         player = GameObject.Find("HQ - Player");
         stop = GameObject.Find("InputManager");
         inventory = GameObject.Find("InventorySystem");
@@ -43,17 +50,19 @@ public class CardMenu : MonoBehaviour
         p = stop.GetComponent<Pause>();
         es = inventory.GetComponent<InventorySystem>();
         wavePause = false;
+        
     }
+
 
     public void openCards()
     {
-        
+
         Time.timeScale = 0;
 
         cardMenu.SetActive(true);
 
         wavePause = true;
-
+        
         cardSelection();
 
     }
@@ -64,24 +73,36 @@ public class CardMenu : MonoBehaviour
         {
             deckSize = deckSize - 1;
         }
-        card1ID = Random.Range(0, deckSize);
+        card1ID = Random.Range(0, wdeckSize);
 
         card2ID = Random.Range(0, deckSize);
+
 
         while (card2ID == card1ID)
         {
             card2ID = Random.Range(0, deckSize);
         }
-        card1Txt.text = deck[card1ID];
+        card1Txt.text = es.weapon[card1ID].weaponName;
 
        card2Txt.text = deck[card2ID];
        if (towerFull)
        {
         deckSize = deckSize + 1;
        }
+
     }
     
-    public void cardChosen(Text name)
+    
+    public void cardChosen1(Text name)
+    {
+        es.weaponInv[es.weaponSel] = es.weapon[card1ID];
+        sg.ammo = es.weaponInv[es.weaponSel].ammo;
+        cardMenu.SetActive(false);
+        wavePause = false;
+        p.paused = false;
+    }
+
+    public void cardChosen2(Text name)
     {
         if (name.text == "Health")
         {

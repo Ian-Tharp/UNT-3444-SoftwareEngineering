@@ -80,6 +80,7 @@ public class Pause : MonoBehaviour
         {
             if (endWave && !pStats.isDead)
             {
+                menu.wavePause = true;
                 //if (delay == false)
                 pauseTimer -= .01f;
                 if (pauseTimer <= 1)

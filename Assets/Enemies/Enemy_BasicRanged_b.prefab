@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 12473528259320073}
   m_Layer: 0
   m_Name: Enemy_BasicRanged_b
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -224,6 +224,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 333d05c826dd6db41b497ff9885e82d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyProjectile: {fileID: 0}
+  EnemyProjectile: {fileID: 9066005295415000037, guid: f95394cbcd9d9464784993d49e51418c, type: 3}
   Speed: 2
   WaitTime: 2
