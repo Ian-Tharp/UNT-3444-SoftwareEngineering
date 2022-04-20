@@ -87,7 +87,7 @@ public class InventorySystem : MonoBehaviour
         //we are setting each item in inventory to a coded weapon in the weapons class script
         //when a gun is chosen during rewards section, replace one of the inv items with the reference to the chosen item
         //weapons in inventory, set as default/debug
-        weaponInv[0] = weapon[3];
+        weaponInv[0] = weapon[1];
         weaponInv[1] = weapon[5];
         weaponInv[2] = weapon[10];
 
