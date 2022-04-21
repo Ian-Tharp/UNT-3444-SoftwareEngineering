@@ -129,6 +129,15 @@ public class EnemyStats : MonoBehaviour
                     Damage += 1 + waveManager.GetWaveNumber() / 2;
                 }
                 break;
+            case 6:
+                Health = 3;
+                Damage = 1;
+                EnemyType = 6;
+                EnemyValue = 7;
+                if (waveManager.GetWaveNumber() > 20) {
+                    Health += 1;
+                }
+                break;
             default:
                 Health = 1;
                 Damage = 1;

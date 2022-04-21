@@ -19,10 +19,10 @@ public class ExplodeOnCollide : MonoBehaviour
         if (collision.gameObject.tag == "Player") {
             this.player = collision.gameObject.GetComponent<PlayerStats>();
             if (player.hasShield == true) {
-                player.SubtractCurrentShields(25);
+                player.SubtractCurrentShields(15);
             }
             else {
-                player.SubtractCurrentHealth(25);
+                player.SubtractCurrentHealth(15);
             }
             triggered = true;
         }

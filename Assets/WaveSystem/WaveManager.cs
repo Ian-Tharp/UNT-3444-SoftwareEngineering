@@ -158,11 +158,11 @@ public class WaveManager : MonoBehaviour
         //20% chance to spawn basic ranged enemy
         //80% chance to spawn basic melee enemy
         else if (WaveNumber <= 9 && WaveNumber > 3 && WaveNumber != 5) {
-            randomizer = Random.Range(0, 6);
-            if (randomizer == 0 || randomizer == 3) {
+            randomizer = Random.Range(0, 10);
+            if (randomizer == 0) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else if (randomizer == 1 || randomizer == 2) {
+            else if (randomizer == 1 || randomizer == 2 || randomizer == 3 || randomizer == 5) {
                 SpawnBasicMelee1AtLocation(Location);
             }
             else if (randomizer == 4) {
@@ -187,7 +187,7 @@ public class WaveManager : MonoBehaviour
         //30% chance to spawn basic ranged enemy
         //60% chance to spawn basic melee enemy
         else if (WaveNumber > 10 && WaveNumber < 15) {
-            randomizer = Random.Range(0, 9);
+            randomizer = Random.Range(0, 13);
             if (randomizer == 0) {
                 SpawnExploderAtLocation(Location);
             }
@@ -197,7 +197,7 @@ public class WaveManager : MonoBehaviour
             else if (randomizer == 2) {
                 SpawnBasicRanged2AtLocation(Location);
             }
-            else if (randomizer >= 3 && randomizer <= 6) {
+            else if (randomizer >= 3 && randomizer <= 8) {
                 SpawnBasicMelee1AtLocation(Location);
             }
             else {
@@ -301,11 +301,11 @@ public class WaveManager : MonoBehaviour
         //will change spawning later but just continue old spawn percentages
         //to make it endless
         else {
-            randomizer = Random.Range(0, 9);
+            randomizer = Random.Range(0, 12);
             if (randomizer == 0) {
                 SpawnBasicMelee1AtLocation(Location);
             }
-            else if (randomizer == 1) {
+            else if (randomizer == 1 || randomizer == 7) {
                 SpawnHeavyMeleeAtLocation(Location);
             }
             else if (randomizer == 2) {
@@ -314,10 +314,10 @@ public class WaveManager : MonoBehaviour
             else if (randomizer == 3) {
                 SpawnBasicRanged2AtLocation(Location);
             }
-            else if (randomizer == 4 || randomizer == 5) {
+            else if (randomizer == 4) {
                 SpawnHeavyRangedAtLocation(Location);
             }
-            else if (randomizer == 6) {
+            else if (randomizer == 6 || randomizer == 7 || randomizer == 8) {
                 SpawnBasicMelee2AtLocation(Location);
             }
             else {
