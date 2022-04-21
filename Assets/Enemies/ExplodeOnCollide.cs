@@ -7,6 +7,8 @@ public class ExplodeOnCollide : MonoBehaviour
     private Rigidbody2D rb;
     private PlayerStats player;
 
+    public ParticleSystem explode;
+
     bool triggered = false;
 
     void Start() {
@@ -29,6 +31,8 @@ public class ExplodeOnCollide : MonoBehaviour
         }
         
         if (triggered) {
+            ParticleSystem explofx = Instantiate(explode, transform.position, Quaternion.identity);
+            player.explosions += 1;
             Destroy(this.gameObject);
         }
     }

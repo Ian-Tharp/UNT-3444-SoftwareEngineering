@@ -134,12 +134,17 @@ public class EnemyStats : MonoBehaviour
             ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
             ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
             ParticleSystem explofx = Instantiate(explode, transform.position, Quaternion.identity);
-            ps.AddScore((int)(EnemyValue * 10 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
+            
             ps.explosions += 1;
             ps.bloodSpilled += Random.Range(1.0f, 3.0f);
-            ps.killed +=1;
-            if (EnemyValue > 1)
-                ps.eliteKilled +=1;
+
+            if(!ps.isDead)
+            {
+                ps.AddScore((int)(EnemyValue * 10 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
+                ps.killed +=1;
+                if (EnemyValue > 1)
+                    ps.eliteKilled +=1;
+            }
             Destroy(gameObject);
         }
 

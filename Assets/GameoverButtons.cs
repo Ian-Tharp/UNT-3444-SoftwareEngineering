@@ -20,7 +20,7 @@ public class GameoverButtons : MonoBehaviour
 
     public void GameOver()
     {
-        wvTxt.text = "Waves completed: " + wm.WaveNumber;
+        wvTxt.text = "Waves completed: " + (wm.WaveNumber - 1);
         scTxt.text = "Score: " + ps.Score;
         tmTxt.text = "Time: " + Time.fixedTime + " sec";
 
