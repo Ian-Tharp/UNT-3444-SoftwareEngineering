@@ -16,6 +16,8 @@ public class UISystem : MonoBehaviour
     [SerializeField] GameObject ammoPos;
     [SerializeField] RectTransform rt;
 
+    [SerializeField] Pause pa;
+
     [SerializeField] CardMenu cm;
 
     public Text ammoTxt;
@@ -136,7 +138,7 @@ public class UISystem : MonoBehaviour
             gameoverTxt.color = new Color(.98f, .87f, .05f, 0);
         }
 
-        if (cm.wavePause || ps.isDead)
+        if (pa.paused || cm.wavePause || ps.isDead)
         {
             ammoTxt.color = new Color(.98f, .87f, .05f, 0);
             healthTxt.color = new Color(.98f, .87f, .05f, 0);

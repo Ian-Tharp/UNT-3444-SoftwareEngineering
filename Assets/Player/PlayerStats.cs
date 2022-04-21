@@ -18,6 +18,12 @@ public class PlayerStats : MonoBehaviour
     public bool hasShield = false;
     public bool isDead = false;
 
+    public float bloodSpilled;
+    public int explosions;
+    public int killed;
+    public int eliteKilled;
+    public int shots;
+
     //--------------------------------------------------------------------------------
     //Additions
     public void AddScore(int Amount) {
@@ -104,6 +110,11 @@ public class PlayerStats : MonoBehaviour
         CurrentHealth = TotalHealth;
         playerControls = new PlayerInput();
         isDead = false;
+
+        bloodSpilled = 0;
+        explosions = 0;
+        killed = 0;
+        shots = 0;
     }
 
     //Called once every frame

@@ -63,7 +63,7 @@ public class CardMenu : MonoBehaviour
     int card1ID;
     int card2ID;
 
-    int[] upgradeStats = new int[6] {0,0,0,0,0,0};  
+    public int[] upgradeStats = new int[6] {0,0,0,0,0,0};  
 
     static int deckSize = 5;
     static int wdeckSize = 11;//change to weapon num invsystem
@@ -133,6 +133,16 @@ public class CardMenu : MonoBehaviour
     
     public void cardChosen1(Text name)
     {
+        if (es.startWeap == 1)
+        {
+            es.weaponSel = 2;
+            es.startWeap -=1;
+        }
+        if (es.startWeap == 2)
+        {
+            es.weaponSel = 1;
+            es.startWeap -=1;
+        }
         es.weaponInv[es.weaponSel] = es.weapon[card1ID];
         sg.ammo = es.weaponInv[es.weaponSel].ammo;
         cardMenu.SetActive(false);

@@ -17,6 +17,7 @@ public class InventorySystem : MonoBehaviour
 
     //Max inventory size
     public static int MAX = 3;
+    public int startWeap;
 
     public WeaponsClass[] weaponInv = new WeaponsClass[MAX];
     public GameObject HQ;
@@ -58,6 +59,7 @@ public class InventorySystem : MonoBehaviour
     {
         HQ = GameObject.Find("HQ - Player");
         player = HQ.GetComponent<ShootGun>();
+        startWeap = 2;
         weaponSel = 0; // weapon selected
         
         //created weapons for the game here, includes all weapons
@@ -88,8 +90,8 @@ public class InventorySystem : MonoBehaviour
         //when a gun is chosen during rewards section, replace one of the inv items with the reference to the chosen item
         //weapons in inventory, set as default/debug
         weaponInv[0] = weapon[1];
-        weaponInv[1] = weapon[5];
-        weaponInv[2] = weapon[10];
+        weaponInv[1] = weapon[1];
+        weaponInv[2] = weapon[1];
 
         //set saved ammo to max mag size;
         savedAmmo[0] = weaponInv[0].ammo;
@@ -114,20 +116,37 @@ public class InventorySystem : MonoBehaviour
     void NextWeapon()
     {
         savedAmmo[weaponSel] = player.ammo;
+        if (startWeap < 2)
+        {
+            weaponSel +=1;
+            
         
-        weaponSel +=1;
-        if (weaponSel > MAX-1)
-            weaponSel = 0;
-        player.WeapSwitch(savedAmmo[weaponSel]);
+            if (weaponSel > MAX-1 || startWeap == 1 && weaponSel > 1)
+                weaponSel = 0;
+
+            player.WeapSwitch(savedAmmo[weaponSel]);
+        }
+
     }
 
     void PreviousWeapon()
     {
         savedAmmo[weaponSel] = weaponInv[weaponSel].ammo;
         
-        weaponSel -=1;
-        if (weaponSel < 0)
-            weaponSel = MAX-1;
-        player.WeapSwitch(savedAmmo[weaponSel]);
+        if (startWeap < 2)
+        {
+            weaponSel -=1;
+            
+        
+            if (weaponSel < 0)
+                if (startWeap != 1)
+                {
+                    weaponSel = MAX-1;
+                } else {
+                    weaponSel = 1;
+                }
+
+            player.WeapSwitch(savedAmmo[weaponSel]);
+        }
     }
 }

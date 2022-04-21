@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random=UnityEngine.Random;
+
 
 public class EnemyStats : MonoBehaviour
 {
@@ -28,7 +30,6 @@ public class EnemyStats : MonoBehaviour
         ps = player.GetComponent<PlayerStats>();
 
         SetEnemyType(EnemyType);
-
     }
 
     //Public getters
@@ -133,7 +134,12 @@ public class EnemyStats : MonoBehaviour
             ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
             ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
             ParticleSystem explofx = Instantiate(explode, transform.position, Quaternion.identity);
-            ps.AddScore((int)(EnemyValue * 10 * waveManager.WaveMultiplier));
+            ps.AddScore((int)(EnemyValue * 10 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
+            ps.explosions += 1;
+            ps.bloodSpilled += Random.Range(1.0f, 3.0f);
+            ps.killed +=1;
+            if (EnemyValue > 1)
+                ps.eliteKilled +=1;
             Destroy(gameObject);
         }
 
@@ -143,5 +149,6 @@ public class EnemyStats : MonoBehaviour
     void Hurt() {
         ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
         ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero)); 
+        ps.bloodSpilled += Random.Range(0.1f, 2.0f);
     }
 }

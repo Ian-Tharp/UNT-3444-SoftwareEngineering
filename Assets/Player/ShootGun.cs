@@ -180,6 +180,7 @@ public class ShootGun : MonoBehaviour
                 ammo = ammo - 1;
                 source.time= .1f; //weird sound effect in beginning, skips to 1/10th of sec
                 source.PlayOneShot(gunshotSFX, 0.7f);
+                ps.shots +=1;
                 GameObject b = Instantiate(bullet, bulletDirection.position, bulletDirection.rotation); //create bullet from hq
                 b.SetActive(true);
 
@@ -194,8 +195,11 @@ public class ShootGun : MonoBehaviour
     //then play loading sfx
     public void WeapSwitch(int tammo)
     {
-        ammo = tammo;
-        source.PlayOneShot(rfinSFX, 1.0f); //reload finish sfx
+        if(InvSys.startWeap < 2)
+        {
+            ammo = tammo;
+            source.PlayOneShot(rfinSFX, 1.0f); //reload finish sfx
+        }
     }
     
 

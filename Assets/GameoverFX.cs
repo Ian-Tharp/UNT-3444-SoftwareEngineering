@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class GameoverFX : MonoBehaviour
 {
     ParticleSystem[] explosionArr;
@@ -19,6 +21,8 @@ public class GameoverFX : MonoBehaviour
 
     bool activated;
     public bool ending;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +51,7 @@ public class GameoverFX : MonoBehaviour
                 Time.timeScale = 0;
             }
         }
+
     }
 
 
@@ -79,6 +84,7 @@ public class GameoverFX : MonoBehaviour
             explosionArr[i].transform.localScale = new Vector3(esize, esize, esize);
             yield return new WaitForSeconds(waitTime);
         }
+        ps.explosions +=10;
         yield return new WaitForSeconds(0.3f);
         ending = true;
         goUI.GameOver();
