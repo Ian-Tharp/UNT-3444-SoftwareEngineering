@@ -7,13 +7,13 @@ using WC;
 public class CardMenu : MonoBehaviour
 {
     [SerializeField] GameObject cardMenu;
+    [SerializeField] WaveManager wm;
 
     public GameObject player;
     private GameObject stop;
     private GameObject inventory;
 
     public bool wavePause;
-    public bool startFin;
 
     public GameObject tower1;
     public GameObject tower2;
@@ -29,6 +29,7 @@ public class CardMenu : MonoBehaviour
     public Text card2Txt;
     public Text card2desc;
 
+    //weapon compare stats
     public Text oldwTxt;
     public Text newwTxt;
 
@@ -46,7 +47,13 @@ public class CardMenu : MonoBehaviour
     public Text ns5Txt;
     public Text ns6Txt;
 
+    //upgrade stats
     public Text upgradeTxt;
+
+    //wave complete
+    public Text waveTxt;
+    public Text scoreTxt;
+    public Text timerTxt;
     
     PlayerStats ps;
     ShootGun sg;
@@ -273,6 +280,11 @@ public class CardMenu : MonoBehaviour
 
     void Update()
     {
+        //endwave stats
+        waveTxt.text = "Wave " + wm.WaveNumber + " Complete";
+        scoreTxt.text = "Score: " + ps.Score;
+        timerTxt.text = "Time: " + Time.fixedTime + " sec";
+
         //weapon compare side
         sel = es.weaponSel;
         oldwTxt.text = es.weaponInv[sel].weaponName;
@@ -299,7 +311,7 @@ public class CardMenu : MonoBehaviour
             os2Txt.color = new Color(.6f,0,0,1);
             ns2Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].reloadTime > es.weapon[card1ID].reloadTime)
+        if(es.weaponInv[sel].reloadTime < es.weapon[card1ID].reloadTime)
         {
             os3Txt.color = new Color(0,.6f,0,1);
             ns3Txt.color = new Color(.6f,0,0,1);
@@ -323,7 +335,7 @@ public class CardMenu : MonoBehaviour
             os5Txt.color = new Color(.6f,0,0,1);
             ns5Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].recoil > es.weapon[card1ID].recoil)
+        if(es.weaponInv[sel].recoil < es.weapon[card1ID].recoil)
         {
             os6Txt.color = new Color(0,.6f,0,1);
             ns6Txt.color = new Color(.6f,0,0,1);

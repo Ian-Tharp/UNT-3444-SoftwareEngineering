@@ -16,6 +16,8 @@ public class UISystem : MonoBehaviour
     [SerializeField] GameObject ammoPos;
     [SerializeField] RectTransform rt;
 
+    [SerializeField] CardMenu cm;
+
     public Text ammoTxt;
     public Text healthTxt;
     public Text weaponTxt;
@@ -49,7 +51,7 @@ public class UISystem : MonoBehaviour
 
         //ammo
         ammoPos.transform.position = mousePos.transform.position;
-        
+        ammoTxt.color = new Color(.8980f, .5686f, 0, .8f);
         if(sg.reloading)
         {
             ammoTxt.text = "Reloading...";
@@ -73,6 +75,7 @@ public class UISystem : MonoBehaviour
         tweap = sg.weapon.weaponName;
 
         //score UI scripts
+        scoreTxt.color = new Color(.9811f, .8731f, .0503f, .8f);
         if (ps.Score >= 123)
         {
             scoreRate = (ps.Score/(123));
@@ -106,6 +109,14 @@ public class UISystem : MonoBehaviour
         } else 
         {
             gameoverTxt.color = new Color(.98f, .87f, .05f, 0);
+        }
+
+        if (cm.wavePause)
+        {
+            ammoTxt.color = new Color(.98f, .87f, .05f, 0);
+            healthTxt.color = new Color(.98f, .87f, .05f, 0);
+            weaponTxt.color = new Color(.98f, .87f, .05f, 0);
+            scoreTxt.color = new Color(.98f, .87f, .05f, 0); 
         }
     }
 }
