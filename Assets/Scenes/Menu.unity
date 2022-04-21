@@ -372,7 +372,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: c87fe7f73bb84e24f950144b0238352f, type: 3}
-    m_FontSize: 73
+    m_FontSize: 70
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 7
@@ -385,7 +385,6 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Credits
 
-
     Bret Hogan
 
     Ian Tharp
@@ -396,7 +395,9 @@ MonoBehaviour:
     SFX
     from freesound.org
 
-    Music from Newgrounds.com'
+    Music from Newgrounds.com
+
+    Sprites from Gamesupply.itch.io'
 --- !u!222 &109676046
 CanvasRenderer:
   m_ObjectHideFlags: 0
