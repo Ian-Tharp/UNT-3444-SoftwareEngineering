@@ -102,7 +102,13 @@ public class UISystem : MonoBehaviour
         tweap = sg.weapon.weaponName;
 
         //score UI scripts
-        scoreTxt.color = new Color(.9811f, .8731f, .0503f, .8f);
+        if(ps.Score == 0)
+        {
+            scoreTxt.color = new Color(.9811f, .8731f, .0503f, 0.0f);
+        }else{
+            scoreTxt.color = new Color(.9811f, .8731f, .0503f, .8f);
+        }
+        
         if (ps.Score >= 123)
         {
             scoreRate = (ps.Score/(123));
