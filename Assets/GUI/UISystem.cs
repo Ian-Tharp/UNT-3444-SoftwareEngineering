@@ -28,26 +28,51 @@ public class UISystem : MonoBehaviour
     private float goAlpha;
     private string tweap;
     private float timer;
+
     private long tempScore;
     private float scoreRate;
+
+    private int tempHealth;
+    private float healthRate;
+    private float healthAlpha;
+    private float htimer;
 
     void Start()
     {
         player = GameObject.Find("HQ - Player");
         sg = player.GetComponent<ShootGun>();
         ps = player.GetComponent<PlayerStats>();
+        healthAlpha = .8f;
         weaponAlpha = .8f;
         timer = 0;
+        htimer = 0;
         tempScore = 0;
+        tempHealth = 100;
         scoreRate = 1;
         goAlpha = 0;
     }
 
     void FixedUpdate()
     {
-        healthTxt.text = ps.CurrentHealth.ToString();
-        healthTxt.color = new Color(-ps.CurrentHealth * .01f +1, ps.CurrentHealth * .01f, 0, .8f);
-
+        if (tempHealth > ps.CurrentHealth)
+        {
+            tempHealth -= 1;
+            healthAlpha = .8f;
+            htimer = 0;
+        }else {
+            if (tempHealth != ps.CurrentHealth)
+            {
+                healthAlpha = .8f;
+                htimer = 0;
+            }
+            tempHealth = ps.CurrentHealth;
+        }
+        healthTxt.text = tempHealth.ToString();
+        healthTxt.color = new Color(-ps.CurrentHealth * .01f +1, ps.CurrentHealth * .01f, 0, healthAlpha);
+        htimer += .1f;
+        if (htimer > 3)
+            if (healthAlpha > 0)
+                healthAlpha -= .09f;
 
         //ammo
         ammoPos.transform.position = mousePos.transform.position;
@@ -59,13 +84,13 @@ public class UISystem : MonoBehaviour
             ammoTxt.text = sg.ammo.ToString() + "/" + sg.magSize.ToString();
         }
 
+        //weapon
         if (tweap != sg.weapon.weaponName)
         {
             weaponAlpha = .8f;
             timer = 0;
         }
-
-        //weapon
+        
         weaponTxt.text = sg.weapon.weaponName;
         weaponTxt.color = new Color(.83f, .62f, .26f, weaponAlpha);
         timer += .1f;
@@ -111,7 +136,7 @@ public class UISystem : MonoBehaviour
             gameoverTxt.color = new Color(.98f, .87f, .05f, 0);
         }
 
-        if (cm.wavePause)
+        if (cm.wavePause || ps.isDead)
         {
             ammoTxt.color = new Color(.98f, .87f, .05f, 0);
             healthTxt.color = new Color(.98f, .87f, .05f, 0);

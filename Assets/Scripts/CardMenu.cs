@@ -253,20 +253,20 @@ public class CardMenu : MonoBehaviour
         card1stat1.text = es.weapon[card1ID].damage + "\n" + es.weapon[card1ID].ammo + "\n" + es.weapon[card1ID].reloadTime;
         card1stat2.text = es.weapon[card1ID].rpm + "\n" + es.weapon[card1ID].speed + "\n" + es.weapon[card1ID].recoil;
 
-        newwTxt.text = es.weapon[card1ID].weaponName;
-        ns1Txt.text = es.weapon[card1ID].damage.ToString();
-        ns2Txt.text = es.weapon[card1ID].ammo.ToString();
-        ns3Txt.text = es.weapon[card1ID].reloadTime.ToString();
-        ns4Txt.text = es.weapon[card1ID].rpm.ToString();
-        ns5Txt.text = es.weapon[card1ID].speed.ToString();
-        ns6Txt.text = es.weapon[card1ID].recoil.ToString();
+        oldwTxt.text = es.weapon[card1ID].weaponName;
+        os1Txt.text = es.weapon[card1ID].damage.ToString();
+        os2Txt.text = es.weapon[card1ID].ammo.ToString();
+        os3Txt.text = es.weapon[card1ID].reloadTime.ToString();
+        os4Txt.text = es.weapon[card1ID].rpm.ToString();
+        os5Txt.text = es.weapon[card1ID].speed.ToString();
+        os6Txt.text = es.weapon[card1ID].recoil.ToString();
 
    }
 
    void C2body()
    {
         if(card2ID == 0)//health
-            card2desc.text = "Repair your base by a large amount";
+            card2desc.text = "Permanently increase your base health";
         if(card2ID == 1)//damage
             card2desc.text = "Permanently increase the damage for all your weapons";
         if(card2ID == 2)//regen
@@ -287,15 +287,15 @@ public class CardMenu : MonoBehaviour
 
         //weapon compare side
         sel = es.weaponSel;
-        oldwTxt.text = es.weaponInv[sel].weaponName;
-        os1Txt.text = es.weaponInv[sel].damage.ToString();
-        os2Txt.text = es.weaponInv[sel].ammo.ToString();
-        os3Txt.text = es.weaponInv[sel].reloadTime.ToString();
-        os4Txt.text = es.weaponInv[sel].rpm.ToString();
-        os5Txt.text = es.weaponInv[sel].speed.ToString();
-        os6Txt.text = es.weaponInv[sel].recoil.ToString();
+        newwTxt.text = es.weaponInv[sel].weaponName;
+        ns1Txt.text = es.weaponInv[sel].damage.ToString();
+        ns2Txt.text = es.weaponInv[sel].ammo.ToString();
+        ns3Txt.text = es.weaponInv[sel].reloadTime.ToString();
+        ns4Txt.text = es.weaponInv[sel].rpm.ToString();
+        ns5Txt.text = es.weaponInv[sel].speed.ToString();
+        ns6Txt.text = es.weaponInv[sel].recoil.ToString();
 
-        if(es.weaponInv[sel].damage > es.weapon[card1ID].damage)
+        if(es.weaponInv[sel].damage < es.weapon[card1ID].damage)
         {
             os1Txt.color = new Color(0,.6f,0,1);
             ns1Txt.color = new Color(.6f,0,0,1);
@@ -303,7 +303,7 @@ public class CardMenu : MonoBehaviour
             os1Txt.color = new Color(.6f,0,0,1);
             ns1Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].ammo > es.weapon[card1ID].ammo)
+        if(es.weaponInv[sel].ammo < es.weapon[card1ID].ammo)
         {
             os2Txt.color = new Color(0,.6f,0,1);
             ns2Txt.color = new Color(.6f,0,0,1);
@@ -311,7 +311,7 @@ public class CardMenu : MonoBehaviour
             os2Txt.color = new Color(.6f,0,0,1);
             ns2Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].reloadTime < es.weapon[card1ID].reloadTime)
+        if(es.weaponInv[sel].reloadTime > es.weapon[card1ID].reloadTime)
         {
             os3Txt.color = new Color(0,.6f,0,1);
             ns3Txt.color = new Color(.6f,0,0,1);
@@ -319,7 +319,7 @@ public class CardMenu : MonoBehaviour
             os3Txt.color = new Color(.6f,0,0,1);
             ns3Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].rpm > es.weapon[card1ID].rpm)
+        if(es.weaponInv[sel].rpm < es.weapon[card1ID].rpm)
         {
             os4Txt.color = new Color(0,.6f,0,1);
             ns4Txt.color = new Color(.6f,0,0,1);
@@ -327,7 +327,7 @@ public class CardMenu : MonoBehaviour
             os4Txt.color = new Color(.6f,0,0,1);
             ns4Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].speed > es.weapon[card1ID].speed)
+        if(es.weaponInv[sel].speed < es.weapon[card1ID].speed)
         {
             os5Txt.color = new Color(0,.6f,0,1);
             ns5Txt.color = new Color(.6f,0,0,1);
@@ -335,7 +335,7 @@ public class CardMenu : MonoBehaviour
             os5Txt.color = new Color(.6f,0,0,1);
             ns5Txt.color = new Color(0,.6f,0,1);
         }
-        if(es.weaponInv[sel].recoil < es.weapon[card1ID].recoil)
+        if(es.weaponInv[sel].recoil > es.weapon[card1ID].recoil)
         {
             os6Txt.color = new Color(0,.6f,0,1);
             ns6Txt.color = new Color(.6f,0,0,1);
