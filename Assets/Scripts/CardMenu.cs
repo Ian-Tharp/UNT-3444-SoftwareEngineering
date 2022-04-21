@@ -291,7 +291,7 @@ public class CardMenu : MonoBehaviour
     void Update()
     {
         //endwave stats
-        waveTxt.text = "Wave " + wm.WaveNumber + " Complete";
+        waveTxt.text = "Wave " + (wm.WaveNumber -1) + " Complete";
         scoreTxt.text = "Score: " + ps.Score;
         timerTxt.text = "Time: " + Time.fixedTime + " sec";
 

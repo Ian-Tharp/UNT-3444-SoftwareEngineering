@@ -84,7 +84,7 @@ public class ShootGun : MonoBehaviour
         recoilBuildup = 0f;
 
         weapon = InvSys.weaponInv[InvSys.weaponSel];
-        ammo = InvSys.weaponInv[InvSys.weaponSel].ammo;
+        ammo = 7;
 
 
         AudioSource[] audioSources = GetComponents<AudioSource>();

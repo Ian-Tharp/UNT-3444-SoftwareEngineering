@@ -68,8 +68,8 @@ public class Bullet : MonoBehaviour
 
         if (other.gameObject.tag != "Player") // for when bullet leaves player
         {
-           // if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
-           //     Destroy(gameObject);
+            if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
+                Destroy(gameObject);
         }
     }
 
