@@ -6,6 +6,8 @@ using WC;
 
 public class Bullet : MonoBehaviour
 {
+    public ParticleSystem explode;
+
     [SerializeField]
     private float speed = 20f; // standard bullet speed, subject to change
 
@@ -13,6 +15,7 @@ public class Bullet : MonoBehaviour
     private int damage;
 
     public GameObject player;
+    private PlayerStats pStats;
     public InventorySystem InvSys;
     public TrailRenderer trail;
     public WeaponsClass weapon;
@@ -33,6 +36,8 @@ public class Bullet : MonoBehaviour
     {
         player = GameObject.Find("InventorySystem");
         InvSys = player.GetComponent<InventorySystem>();
+        GameObject temp = GameObject.FindGameObjectWithTag("Player");
+        pStats = temp.GetComponent<PlayerStats>();
     }
 
     void Update() 
@@ -53,6 +58,12 @@ public class Bullet : MonoBehaviour
             {
                 enemy.SubtractHealth(damage);
             }
+        }
+
+        if (other.gameObject.tag == "Bullet") {
+            ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
+            pStats.explosions += 1;
+            Destroy(other.gameObject);
         }
 
         if (other.gameObject.tag != "Player") // for when bullet leaves player

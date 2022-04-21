@@ -94,9 +94,10 @@ GameObject:
   - component: {fileID: 4103277870667221244}
   - component: {fileID: -6289503235035722493}
   - component: {fileID: -433912716652703066}
-  - component: {fileID: 1637801309096185108}
   - component: {fileID: -5483957154836896983}
   - component: {fileID: 12473528259320073}
+  - component: {fileID: 2808297500570133018}
+  - component: {fileID: -330586409048177616}
   m_Layer: 0
   m_Name: Enemy_BasicRanged_b
   m_TagString: Enemy
@@ -185,20 +186,7 @@ MonoBehaviour:
   Damage: 0
   EnemyType: 2
   EnemyValue: 0
---- !u!114 &1637801309096185108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6701115010875511566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53b3dacc5cf6f494093c31548aeab95f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 2
-  InPosition: 0
+  ProjectileSpeed: 0
 --- !u!114 &-5483957154836896983
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,5 +213,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyProjectile: {fileID: 9066005295415000037, guid: f95394cbcd9d9464784993d49e51418c, type: 3}
+  playerHQ: {fileID: 0}
   Speed: 2
+  FireRate: 30
+  Firing: 0
   WaitTime: 2
+--- !u!114 &2808297500570133018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701115010875511566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c68b99718284da14caebea329536890e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  Speed: 2
+--- !u!114 &-330586409048177616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6701115010875511566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cf87a7ae403d94791c8f65a4bbc58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pivotObject: {fileID: 0}
+  RotationSpeed: 2
+  Speed: 2

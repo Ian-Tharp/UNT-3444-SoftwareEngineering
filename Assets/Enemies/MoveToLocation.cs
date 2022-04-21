@@ -13,6 +13,19 @@ public class MoveToLocation : MonoBehaviour
     public float Speed = 2.0f;
     public bool InPosition = false;
 
+    public bool GetInPosition() {
+        return InPosition;
+    }
+
+    void OnEnable() {
+        StartCoroutine(StartRotating());
+    }
+
+    IEnumerator StartRotating() {
+        yield return new WaitForSeconds(13.0f);
+        InPosition = true;
+    }
+
     void Start() {
         this.gameObject.GetComponent<DealMeleeDamage>().enabled = false;
         enemy = this.gameObject.GetComponent<EnemyStats>();
@@ -27,21 +40,21 @@ public class MoveToLocation : MonoBehaviour
 
     void DetermineSpeed() {
         if (enemy.GetEnemyType() == 2) {
-            Speed = 1.85f;
+            Speed = 2.15f;
         }
         else if (enemy.GetEnemyType() == 3) {
-            Speed = 1.75f;
-        }
-        else if (enemy.GetEnemyType() == 4) {
-            Speed = 1.55f;
-        }
-        else if (enemy.GetEnemyType() == 5) {
-            Speed = 1.65f;
+            Speed = 1.95f;
         }
     }
 
     void Update() {
-        if (InPosition == false) {
+        if (InPosition) {
+            this.gameObject.GetComponent<RotateAroundObject>().enabled = true;
+            GameObject temp = GameObject.FindGameObjectWithTag("Player");
+            this.gameObject.GetComponent<RotateAroundObject>().SetPivot(temp);
+            this.gameObject.GetComponent<MoveToLocation>().enabled = false;
+        }
+        else {
             //Calculate direction and angle for enemies to look at player
             Vector3 Direction = locationToMove.transform.position - this.transform.position;
             Quaternion Rotation = Quaternion.LookRotation(Vector3.forward, Direction);
@@ -61,7 +74,9 @@ public class MoveToLocation : MonoBehaviour
         Vector3 Position = transform.position;
         foreach (GameObject location in locations) {
             if (location == TaggedLocation) {
-                continue;
+                this.gameObject.GetComponent<MoveTowardsPlayer>().enabled = true;
+                GameObject temp = GameObject.FindGameObjectWithTag("Player");
+                this.gameObject.GetComponent<RotateAroundObject>().SetPivot(temp);
             }
             Vector3 diff = location.transform.position - Position;
             float curDistance = diff.sqrMagnitude;
@@ -79,18 +94,11 @@ public class MoveToLocation : MonoBehaviour
             rb.MovePosition((Vector2)transform.position + (Direction * Speed * Time.deltaTime));
         }
         else {
-            rb.MovePosition((Vector2)transform.position + (Direction * 0 * Time.deltaTime));
+            this.gameObject.GetComponent<MoveToLocation>().enabled = false;
         }
     }
 
     void FixedUpdate() {
         MoveEnemy(Movement);
-    }
-
-    void OnCollisionEnter2D(Collision2D other) {
-        if (other.gameObject.tag == "ShootingLocation") {
-            InPosition = true;
-            Debug.Log("InPosition: " + InPosition);
-        }
     }
 }

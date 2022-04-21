@@ -11,6 +11,8 @@ TagManager:
   - WaveManager
   - RangedArea
   - ShootingLocation
+  - Collider
+  - Bullet
   layers:
   - Default
   - TransparentFX

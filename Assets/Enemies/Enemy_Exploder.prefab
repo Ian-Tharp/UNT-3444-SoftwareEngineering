@@ -50,11 +50,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parts: {fileID: 8881824710410716826, guid: 22c625265ce20804292e7958a4a54009, type: 3}
   blood: {fileID: 5617722096624366508, guid: b097182a42e58ce479fb3f7998735c6d, type: 3}
-  explode: {fileID: 4481832562959298378, guid: f1984201e9f83b64b88e687d108f8dac, type: 3}
+  explode: {fileID: 4481832562959298378, guid: e08f84c1d4f5425419d3618deb6f8ce4, type: 3}
   Health: 0
   Damage: 0
   EnemyType: 1
   EnemyValue: 0
+  ProjectileSpeed: 0
 --- !u!114 &7276485499192767741
 MonoBehaviour:
   m_ObjectHideFlags: 0

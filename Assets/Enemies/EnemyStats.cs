@@ -20,6 +20,7 @@ public class EnemyStats : MonoBehaviour
     public int Damage = 0;
     public int EnemyType = 0;
     public int EnemyValue = 0;
+    public float ProjectileSpeed = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -44,6 +45,9 @@ public class EnemyStats : MonoBehaviour
     }
     public int GetEnemyValue() {
         return EnemyValue;
+    }
+    public float GetProjectileSpeed() {
+        return ProjectileSpeed;
     }
     //Public functions to allow for enemy stats to change during gameplay
     //Additions
@@ -84,9 +88,12 @@ public class EnemyStats : MonoBehaviour
                 Damage = 2;
                 EnemyType = 2;
                 EnemyValue = 2;
+                ProjectileSpeed = 4.0f;
                 if (waveManager.GetWaveNumber() > 5) {
                     Health += 1;
-                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
+                if (waveManager.GetWaveNumber() > 10) {
+                    Damage += 1;
                 }
                 break;
             case 3:
@@ -94,9 +101,12 @@ public class EnemyStats : MonoBehaviour
                 Damage = 3;
                 EnemyType = 3;
                 EnemyValue = 3;
+                ProjectileSpeed = 5.0f;
                 if (waveManager.GetWaveNumber() > 5) {
                     Health += 1;
-                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                }
+                if (waveManager.GetWaveNumber() > 10) {
+                    Damage +=1;
                 }
                 break;
             case 4:

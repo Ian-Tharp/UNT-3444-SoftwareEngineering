@@ -191,13 +191,13 @@ public class WaveManager : MonoBehaviour
             if (randomizer == 0) {
                 SpawnExploderAtLocation(Location);
             }
-            else if (randomizer == 1 || randomizer == 2) {
+            else if (randomizer == 1) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else if (randomizer == 3) {
+            else if (randomizer == 2) {
                 SpawnBasicRanged2AtLocation(Location);
             }
-            else if (randomizer >= 4 && randomizer <= 6) {
+            else if (randomizer >= 3 && randomizer <= 6) {
                 SpawnBasicMelee1AtLocation(Location);
             }
             else {
@@ -246,7 +246,58 @@ public class WaveManager : MonoBehaviour
                 SpawnExploderAtLocation(Location);
             }
         }
-        //Wave 20 and above
+        //Wave 20/30/40/...100 - All exploders
+        else if (WaveNumber == 20) {
+            SpawnExploderAtLocation(Location);
+        }
+        else if (WaveNumber == 30) {
+            SpawnExploderAtLocation(Location);
+        }
+        else if (WaveNumber == 40) {
+            SpawnExploderAtLocation(Location);
+        }
+        else if (WaveNumber == 50) {
+            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(0,9);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+        }
+        else if (WaveNumber == 60) {
+            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(0,8);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+        }
+        else if (WaveNumber == 70) {
+            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(0,7);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+        }
+        else if (WaveNumber == 80) {
+            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(0,6);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+        }
+        else if (WaveNumber == 90) {
+            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(0,5);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+        }
+        else if (WaveNumber == 100) {
+            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(0,4);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+        }
         //will change spawning later but just continue old spawn percentages
         //to make it endless
         else {
@@ -278,6 +329,9 @@ public class WaveManager : MonoBehaviour
     //Public Getters
     public int GetWaveNumber() {
         return WaveNumber;
+    }
+    public int GetRemainingEnemyCount() {
+        return RemainingEnemyCount;
     }
 
     public void StartWave() {
