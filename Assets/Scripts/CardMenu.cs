@@ -29,6 +29,24 @@ public class CardMenu : MonoBehaviour
     public Text card2Txt;
     public Text card2desc;
 
+    public Text oldwTxt;
+    public Text newwTxt;
+
+    public Text os1Txt;
+    public Text os2Txt;
+    public Text os3Txt;
+    public Text os4Txt;
+    public Text os5Txt;
+    public Text os6Txt;
+
+    public Text ns1Txt;
+    public Text ns2Txt;
+    public Text ns3Txt;
+    public Text ns4Txt;
+    public Text ns5Txt;
+    public Text ns6Txt;
+
+    public Text upgradeTxt;
     
     PlayerStats ps;
     ShootGun sg;
@@ -38,9 +56,13 @@ public class CardMenu : MonoBehaviour
     int card1ID;
     int card2ID;
 
+    int[] upgradeStats = new int[6] {0,0,0,0,0,0};  
+
     static int deckSize = 5;
     static int wdeckSize = 11;//change to weapon num invsystem
     string[] weaponDeck = new string[wdeckSize];
+
+    int sel;
 
     string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum", "Turret"};
    
@@ -56,6 +78,7 @@ public class CardMenu : MonoBehaviour
         p = stop.GetComponent<Pause>();
         es = inventory.GetComponent<InventorySystem>();
         wavePause = false;
+
         
     }
 
@@ -108,6 +131,7 @@ public class CardMenu : MonoBehaviour
         cardMenu.SetActive(false);
         wavePause = false;
         p.paused = false;
+        upgradeStats[0] +=1;
     }
 
     public void cardChosen2(Text name)
@@ -139,6 +163,7 @@ public class CardMenu : MonoBehaviour
    public void healthUp()
    {
        ps.AddTotalHealth(25);
+       upgradeStats[1] +=1;
        p.paused = false; 
    }
 
@@ -148,6 +173,7 @@ public class CardMenu : MonoBehaviour
        {
             es.weaponInv[i].damage = es.weaponInv[i].damage + 1;
        }
+       upgradeStats[2] +=1;
        p.paused = false;
    }
 
@@ -155,6 +181,7 @@ public class CardMenu : MonoBehaviour
    {
        ps.regenAmount = ps.regenAmount + 10;
        ps.AddCurrentHealth(10);
+       upgradeStats[3] +=1;
        p.paused = false;
    }
    
@@ -164,6 +191,7 @@ public class CardMenu : MonoBehaviour
        {
             es.weaponInv[i].ammo = (int)(1.5 * es.weaponInv[i].ammo);
        }
+       upgradeStats[4] +=1;
        p.paused = false;
    }
 
@@ -186,6 +214,7 @@ public class CardMenu : MonoBehaviour
            tower4.SetActive(true);
             towerFull = true;
        }
+       upgradeStats[5] +=1;
         p.paused = false;
    }
 
@@ -196,7 +225,7 @@ public class CardMenu : MonoBehaviour
         if(card1ID == 1)//m1911
                 card1desc.text = "Pistol";
         if(card1ID == 2)//DE
-                card1desc.text = "Pistol";
+                card1desc.text = "Hand Cannon";
         if(card1ID == 3)//c96
                 card1desc.text = "Machine Pistol";
         if(card1ID == 4)//ak
@@ -213,8 +242,17 @@ public class CardMenu : MonoBehaviour
                 card1desc.text = "Semi-Automatic Rifle";
         if(card1ID == 10)//svd
                 card1desc.text = "Semi-Automatic Sniper Rifle";
+
         card1stat1.text = es.weapon[card1ID].damage + "\n" + es.weapon[card1ID].ammo + "\n" + es.weapon[card1ID].reloadTime;
         card1stat2.text = es.weapon[card1ID].rpm + "\n" + es.weapon[card1ID].speed + "\n" + es.weapon[card1ID].recoil;
+
+        newwTxt.text = es.weapon[card1ID].weaponName;
+        ns1Txt.text = es.weapon[card1ID].damage.ToString();
+        ns2Txt.text = es.weapon[card1ID].ammo.ToString();
+        ns3Txt.text = es.weapon[card1ID].reloadTime.ToString();
+        ns4Txt.text = es.weapon[card1ID].rpm.ToString();
+        ns5Txt.text = es.weapon[card1ID].speed.ToString();
+        ns6Txt.text = es.weapon[card1ID].recoil.ToString();
 
    }
 
@@ -232,4 +270,70 @@ public class CardMenu : MonoBehaviour
             card2desc.text = "Add an automated turret to destroy enemies within range";
 
    }
+
+    void Update()
+    {
+        //weapon compare side
+        sel = es.weaponSel;
+        oldwTxt.text = es.weaponInv[sel].weaponName;
+        os1Txt.text = es.weaponInv[sel].damage.ToString();
+        os2Txt.text = es.weaponInv[sel].ammo.ToString();
+        os3Txt.text = es.weaponInv[sel].reloadTime.ToString();
+        os4Txt.text = es.weaponInv[sel].rpm.ToString();
+        os5Txt.text = es.weaponInv[sel].speed.ToString();
+        os6Txt.text = es.weaponInv[sel].recoil.ToString();
+
+        if(es.weaponInv[sel].damage > es.weapon[card1ID].damage)
+        {
+            os1Txt.color = new Color(0,.6f,0,1);
+            ns1Txt.color = new Color(.6f,0,0,1);
+        } else {
+            os1Txt.color = new Color(.6f,0,0,1);
+            ns1Txt.color = new Color(0,.6f,0,1);
+        }
+        if(es.weaponInv[sel].ammo > es.weapon[card1ID].ammo)
+        {
+            os2Txt.color = new Color(0,.6f,0,1);
+            ns2Txt.color = new Color(.6f,0,0,1);
+        } else {
+            os2Txt.color = new Color(.6f,0,0,1);
+            ns2Txt.color = new Color(0,.6f,0,1);
+        }
+        if(es.weaponInv[sel].reloadTime > es.weapon[card1ID].reloadTime)
+        {
+            os3Txt.color = new Color(0,.6f,0,1);
+            ns3Txt.color = new Color(.6f,0,0,1);
+        } else {
+            os3Txt.color = new Color(.6f,0,0,1);
+            ns3Txt.color = new Color(0,.6f,0,1);
+        }
+        if(es.weaponInv[sel].rpm > es.weapon[card1ID].rpm)
+        {
+            os4Txt.color = new Color(0,.6f,0,1);
+            ns4Txt.color = new Color(.6f,0,0,1);
+        } else {
+            os4Txt.color = new Color(.6f,0,0,1);
+            ns4Txt.color = new Color(0,.6f,0,1);
+        }
+        if(es.weaponInv[sel].speed > es.weapon[card1ID].speed)
+        {
+            os5Txt.color = new Color(0,.6f,0,1);
+            ns5Txt.color = new Color(.6f,0,0,1);
+        } else {
+            os5Txt.color = new Color(.6f,0,0,1);
+            ns5Txt.color = new Color(0,.6f,0,1);
+        }
+        if(es.weaponInv[sel].recoil > es.weapon[card1ID].recoil)
+        {
+            os6Txt.color = new Color(0,.6f,0,1);
+            ns6Txt.color = new Color(.6f,0,0,1);
+        } else {
+            os6Txt.color = new Color(.6f,0,0,1);
+            ns6Txt.color = new Color(0,.6f,0,1);
+        }
+
+        //upgrade stats side
+        upgradeTxt.text = upgradeStats[0].ToString() + "\n" + upgradeStats[1].ToString() + "\n" + upgradeStats[2].ToString() + "\n";
+        upgradeTxt.text += upgradeStats[3].ToString() + "\n" + upgradeStats[4].ToString() + "\n" + upgradeStats[5].ToString() + "\n";
+    }
 }
