@@ -56,7 +56,7 @@ public class Bullet : MonoBehaviour
             EnemyStats enemy = other.gameObject.GetComponent<EnemyStats>();
             if (enemy != null)
             {
-                enemy.SubtractHealth(damage);
+                enemy.SubtractHealth(damage + InvSys.damageAdd);
             }
         }
 
@@ -66,7 +66,7 @@ public class Bullet : MonoBehaviour
             Destroy(other.gameObject);
         }
 
-        if (other.gameObject.tag != "Player") // for when bullet leaves player
+        if (other.gameObject.tag != "Player" && other.gameObject.tag != "DefenseTower") // for when bullet leaves player
         {
             if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
                 Destroy(gameObject);

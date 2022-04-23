@@ -70,6 +70,7 @@ public class CardMenu : MonoBehaviour
     string[] weaponDeck = new string[wdeckSize];
 
     int sel;
+    float ammoMult;
 
     string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum", "Turret"};
    
@@ -93,6 +94,8 @@ public class CardMenu : MonoBehaviour
     public void openCards()
     {
 
+        Debug.Log(ammoMult);
+
         Time.timeScale = 0;
 
         cardMenu.SetActive(true);
@@ -110,14 +113,18 @@ public class CardMenu : MonoBehaviour
             deckSize = deckSize - 1;
         }
         card1ID = Random.Range(0, wdeckSize);
+        while (es.weaponInv[0].weaponName == es.weapon[card1ID].weaponName || es.weaponInv[1].weaponName == es.weapon[card1ID].weaponName || es.weaponInv[2].weaponName == es.weapon[card1ID].weaponName)
+        {
+            card1ID = Random.Range(0, deckSize);
+        }
 
         card2ID = Random.Range(0, deckSize);
 
-
+        /*Change to rarity reroll later
         while (card2ID == card1ID)
         {
             card2ID = Random.Range(0, deckSize);
-        }
+        }*/
         card1Txt.text = es.weapon[card1ID].weaponName;
         C1body();
 
@@ -144,7 +151,14 @@ public class CardMenu : MonoBehaviour
             es.startWeap -=1;
         }
         es.weaponInv[es.weaponSel] = es.weapon[card1ID];
+        
+        
+        for (int i = 0; i < upgradeStats[4]; i++)
+        {
+             es.weaponInv[es.weaponSel].ammo = (int)(1.5 * es.weaponInv[es.weaponSel].ammo);
+        }
         sg.ammo = es.weaponInv[es.weaponSel].ammo;
+
         cardMenu.SetActive(false);
         wavePause = false;
         p.paused = false;
@@ -186,10 +200,6 @@ public class CardMenu : MonoBehaviour
 
    public void damageUp()
    {
-       for (int i = 0; i < 3; i++)
-       {
-            es.weaponInv[i].damage = es.weaponInv[i].damage + 1;
-       }
        upgradeStats[2] +=1;
        p.paused = false;
    }
@@ -204,9 +214,10 @@ public class CardMenu : MonoBehaviour
    
    public void ammoUp()
    {
-       for (int i = 0; i < 3; i++)
+       for (int i = 0; i < 3 - es.startWeap; i++)
        {
             es.weaponInv[i].ammo = (int)(1.5 * es.weaponInv[i].ammo);
+            //reload all later
        }
        upgradeStats[4] +=1;
        p.paused = false;
@@ -260,12 +271,25 @@ public class CardMenu : MonoBehaviour
         if(card1ID == 10)//svd
                 card1desc.text = "Semi-Automatic Sniper Rifle";
 
-        card1stat1.text = es.weapon[card1ID].damage + "\n" + es.weapon[card1ID].ammo + "\n" + es.weapon[card1ID].reloadTime;
+        card1stat1.text = es.weapon[card1ID].damage+ "\n";
+        card1stat1.text += es.weapon[card1ID].ammo + "\n" + es.weapon[card1ID].reloadTime;
         card1stat2.text = es.weapon[card1ID].rpm + "\n" + es.weapon[card1ID].speed + "\n" + es.weapon[card1ID].recoil;
 
         oldwTxt.text = es.weapon[card1ID].weaponName;
-        os1Txt.text = es.weapon[card1ID].damage.ToString();
-        os2Txt.text = es.weapon[card1ID].ammo.ToString();
+        if( upgradeStats[2] > 0)
+        {
+            os1Txt.text = es.weapon[card1ID].damage + " (+" + upgradeStats[2] + ")";
+        }else{
+            os1Txt.text = es.weapon[card1ID].damage.ToString();
+        }
+
+        if(upgradeStats[4] > 0)
+        {
+            os2Txt.text = es.weapon[card1ID].ammo + " (+" + (int)((es.weapon[card1ID].ammo* ammoMult)-es.weapon[card1ID].ammo) + ")";
+        }else{
+            os2Txt.text = es.weapon[card1ID].ammo.ToString();
+        }
+
         os3Txt.text = es.weapon[card1ID].reloadTime.ToString();
         os4Txt.text = es.weapon[card1ID].rpm.ToString();
         os5Txt.text = es.weapon[card1ID].speed.ToString();
@@ -290,6 +314,8 @@ public class CardMenu : MonoBehaviour
 
     void Update()
     {
+        ammoMult = Mathf.Pow(1.5f, (float)upgradeStats[4]);
+        
         //endwave stats
         waveTxt.text = "Wave " + (wm.WaveNumber -1) + " Complete";
         scoreTxt.text = "Score: " + ps.Score;
@@ -298,8 +324,18 @@ public class CardMenu : MonoBehaviour
         //weapon compare side
         sel = es.weaponSel;
         newwTxt.text = es.weaponInv[sel].weaponName;
-        ns1Txt.text = es.weaponInv[sel].damage.ToString();
-        ns2Txt.text = es.weaponInv[sel].ammo.ToString();
+        if (upgradeStats[2] > 0)
+        {
+            ns1Txt.text = es.weaponInv[sel].damage.ToString() + " (+" + upgradeStats[2].ToString() + ")";
+        } else {
+            ns1Txt.text = es.weaponInv[sel].damage.ToString();
+        }
+        if (upgradeStats[4] > 0)
+        {
+            ns2Txt.text = (es.weaponInv[sel].ammo/ammoMult) + " (+" + (int)(es.weaponInv[sel].ammo - (es.weaponInv[sel].ammo/ammoMult)) + ")" ;
+        } else {
+            ns2Txt.text = es.weaponInv[sel].ammo.ToString();
+        }
         ns3Txt.text = es.weaponInv[sel].reloadTime.ToString();
         ns4Txt.text = es.weaponInv[sel].rpm.ToString();
         ns5Txt.text = es.weaponInv[sel].speed.ToString();
@@ -356,6 +392,12 @@ public class CardMenu : MonoBehaviour
 
         //upgrade stats side
         upgradeTxt.text = upgradeStats[0].ToString() + "\n" + upgradeStats[1].ToString() + "\n" + upgradeStats[2].ToString() + "\n";
-        upgradeTxt.text += upgradeStats[3].ToString() + "\n" + upgradeStats[4].ToString() + "\n" + upgradeStats[5].ToString() + "\n";
+        if (upgradeStats[5] > 3)
+        {
+            upgradeTxt.text += upgradeStats[3].ToString() + "\n" + upgradeStats[4].ToString() + "\nMAX\n";
+        }else{
+            upgradeTxt.text += upgradeStats[3].ToString() + "\n" + upgradeStats[4].ToString() + "\n" + upgradeStats[5].ToString() + "\n";
+        }
     }
+
 }

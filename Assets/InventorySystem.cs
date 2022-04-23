@@ -10,6 +10,7 @@ public class InventorySystem : MonoBehaviour
 {
     
     [SerializeField] CardMenu cm;
+    public int damageAdd;
     
     //increment weaponNum for each one you add
     public static int weaponNum = 11;
@@ -101,6 +102,7 @@ public class InventorySystem : MonoBehaviour
 
     void Update()
     {
+        damageAdd = cm.upgradeStats[2];
         if(Time.timeScale == 0 && !cm.wavePause)
         {
             next.Disable();
