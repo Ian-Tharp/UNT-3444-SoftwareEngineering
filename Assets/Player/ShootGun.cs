@@ -176,7 +176,7 @@ public class ShootGun : MonoBehaviour
                     return;
                 }
 
-                recoilBuildup += recoil * .09f; //each shot adds recoil buildup over time
+                recoilBuildup += recoil * .07f; //each shot adds recoil buildup over time
                 ammo = ammo - 1;
                 source.time= .1f; //weird sound effect in beginning, skips to 1/10th of sec
                 source.PlayOneShot(gunshotSFX, 0.7f);

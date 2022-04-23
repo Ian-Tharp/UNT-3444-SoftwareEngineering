@@ -13,6 +13,8 @@ TagManager:
   - ShootingLocation
   - Collider
   - Bullet
+  - Projectile
+  - Protection
   layers:
   - Default
   - TransparentFX

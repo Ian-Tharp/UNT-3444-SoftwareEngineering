@@ -35,6 +35,9 @@ public class WaveManager : MonoBehaviour
     private GameObject Exploder; //Exploder 1 Enemy Type
 
     [SerializeField]
+    private GameObject Exploder2;
+
+    [SerializeField]
     private GameObject HeavyMelee; //Heavy Melee Enemy Type
 
     [SerializeField]
@@ -57,19 +60,29 @@ public class WaveManager : MonoBehaviour
 
     //Spacing out enemy spawn timer
     IEnumerator SpaceOutSpawn() {
-        randomizer = Random.Range(1, 2);
-        if (randomizer == 1) {
-            randomizer = Random.Range(2, 7);
+        if (WaveNumber > 10) {
+            randomizer = Random.Range(4, 9);
+            yield return new WaitForSeconds(randomizer);
+        }
+        else if (WaveNumber > 20) {
+            randomizer = Random.Range(6, 15);
             yield return new WaitForSeconds(randomizer);
         }
         else {
-            randomizer = Random.Range(3, 10);
-            yield return new WaitForSeconds(randomizer);
+            randomizer = Random.Range(1, 2);
+            if (randomizer == 1) {
+                randomizer = Random.Range(3, 5);
+                yield return new WaitForSeconds(randomizer);
+            }
+            else {
+                randomizer = Random.Range(5, 10);
+                yield return new WaitForSeconds(randomizer);
+            }
         }
     }
 
     IEnumerator WaitToSpawnWave() {
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(3.5f);
     }
 
     //Calculate how many enemies to spawn per wave
@@ -81,14 +94,22 @@ public class WaveManager : MonoBehaviour
             EnemyCount = 10;
         }
         else if (WaveNumber == 5) {
-            EnemyCount = 30;
+            EnemyCount = 20;
         }
         //Wave 10 All Exploders
         else if (WaveNumber == 10) {
+            EnemyCount = 40;
+        }
+        //Wave 20 All Exploders
+        else if (WaveNumber == 20) {
             EnemyCount = 50;
         }
         else {
-            EnemyCount += ((WaveNumber * 2) - WaveNumber) + 2;
+            //EnemyCount += ((WaveNumber * 2) - (WaveNumber + 1)) + 2;
+            EnemyCount += WaveNumber;
+            if (WaveNumber > 10 && WaveNumber < 20) {
+                EnemyCount -= 7;
+            }
         }
         TotalEnemyCount = EnemyCount;
     }
@@ -113,6 +134,9 @@ public class WaveManager : MonoBehaviour
     //Exploder Enemies
     public void SpawnExploderAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(Exploder, Location, transform.rotation);
+    }
+    public void SpawnExploder2AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(Exploder2, Location, transform.rotation);
     }
 
     //Heavy Melee Enemies
@@ -155,18 +179,16 @@ public class WaveManager : MonoBehaviour
             }
         }
         //Wave 4-9
-        //20% chance to spawn basic ranged enemy
-        //80% chance to spawn basic melee enemy
+        //10% chance to spawn basic ranged enemy
+        //50% chance to spawn basic melee enemy
+        //40% chance to spawn basic melee 2
         else if (WaveNumber <= 9 && WaveNumber > 3 && WaveNumber != 5) {
             randomizer = Random.Range(0, 10);
             if (randomizer == 0) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else if (randomizer == 1 || randomizer == 2 || randomizer == 3 || randomizer == 5) {
+            else if (randomizer == 1 || randomizer == 2 || randomizer == 3 || randomizer == 4 || randomizer == 5) {
                 SpawnBasicMelee1AtLocation(Location);
-            }
-            else if (randomizer == 4) {
-                SpawnBasicRanged2AtLocation(Location);
             }
             else {
                 SpawnBasicMelee2AtLocation(Location);
@@ -206,14 +228,14 @@ public class WaveManager : MonoBehaviour
         }
         //Wave 15
         //50% chance to spawn exploder enemy
-        //50% chance to spawn heavy melee
+        //50% chance to spawn exploder 2 enemy
         else if (WaveNumber == 15) {
             randomizer = Random.Range(0, 1);
             if (randomizer == 0) {
                 SpawnExploderAtLocation(Location);
             }
             else {
-                SpawnHeavyMeleeAtLocation(Location);
+                SpawnExploder2AtLocation(Location);
             }
         }
         //Wave 16-19
@@ -223,24 +245,27 @@ public class WaveManager : MonoBehaviour
         //25% chance to spawn heavy ranged enemy
         //13% chance to spawn exploder enemy
         else if (WaveNumber > 15 && WaveNumber < 20) {
-            randomizer = Random.Range(0, 7);
-            if (randomizer == 0) {
+            randomizer = Random.Range(0, 10);
+            if (randomizer == 0 || randomizer == 1) {
                 SpawnBasicMelee1AtLocation(Location);
             }
-            else if (randomizer == 7) {
+            else if (randomizer == 2 || randomizer == 3) {
                 SpawnBasicMelee2AtLocation(Location);
             }
-            else if (randomizer == 1) {
+            else if (randomizer == 4) {
                 SpawnHeavyMeleeAtLocation(Location);
             }
-            else if (randomizer == 2) {
+            else if (randomizer == 5 || randomizer == 6) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else if (randomizer == 3) {
+            else if (randomizer == 7) {
                 SpawnBasicRanged2AtLocation(Location);
             }
-            else if (randomizer == 4 || randomizer == 5) {
+            else if (randomizer == 8) {
                 SpawnHeavyRangedAtLocation(Location);
+            }
+            else if (randomizer == 9) {
+                SpawnExploder2AtLocation(Location);
             }
             else {
                 SpawnExploderAtLocation(Location);
@@ -248,54 +273,114 @@ public class WaveManager : MonoBehaviour
         }
         //Wave 20/30/40/...100 - All exploders
         else if (WaveNumber == 20) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
         }
         else if (WaveNumber == 30) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
         }
         else if (WaveNumber == 40) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
         }
         else if (WaveNumber == 50) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
+
             randomizer = Random.Range(0,9);
             if (randomizer == 1) {
                 SpawnExploderAtLocation(Location);
             }
         }
         else if (WaveNumber == 60) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
+
             randomizer = Random.Range(0,8);
             if (randomizer == 1) {
                 SpawnExploderAtLocation(Location);
             }
         }
         else if (WaveNumber == 70) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
+
             randomizer = Random.Range(0,7);
             if (randomizer == 1) {
                 SpawnExploderAtLocation(Location);
             }
         }
         else if (WaveNumber == 80) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
+
             randomizer = Random.Range(0,6);
             if (randomizer == 1) {
                 SpawnExploderAtLocation(Location);
             }
         }
         else if (WaveNumber == 90) {
-            SpawnExploderAtLocation(Location);
+            randomizer = Random.Range(1,2);
+            if (randomizer == 1) {
+                SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
+
             randomizer = Random.Range(0,5);
             if (randomizer == 1) {
                 SpawnExploderAtLocation(Location);
             }
         }
         else if (WaveNumber == 100) {
-            SpawnExploderAtLocation(Location);
-            randomizer = Random.Range(0,4);
+            randomizer = Random.Range(1,2);
             if (randomizer == 1) {
                 SpawnExploderAtLocation(Location);
+            }
+            else {
+                SpawnExploder2AtLocation(Location);
+            }
+
+            randomizer = Random.Range(0,4);
+            if (randomizer == 1) {
+                SpawnExploder2AtLocation(Location);
             }
         }
         //will change spawning later but just continue old spawn percentages
@@ -319,6 +404,9 @@ public class WaveManager : MonoBehaviour
             }
             else if (randomizer == 6 || randomizer == 7 || randomizer == 8) {
                 SpawnBasicMelee2AtLocation(Location);
+            }
+            else if (randomizer == 9) {
+                SpawnExploder2AtLocation(Location);
             }
             else {
                 SpawnExploderAtLocation(Location);
@@ -390,7 +478,15 @@ public class WaveManager : MonoBehaviour
         else if (Enemies.Length == 0) {
             CanSpawnWave = true;
             WaitToSpawnWave();
-            
+
+            //Clear out any stray bullets or projectiles from enemies
+            //at the end of the wave
+            GameObject[] Projectiles;
+            Projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+            for (int i = 0; i < Projectiles.Length; i++) {
+                GameObject ProjectileToDestroy = Projectiles[i];
+                Destroy(ProjectileToDestroy);
+            }
         }
 
         if (ps.isDead && !killingEnemies)

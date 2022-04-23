@@ -18,7 +18,7 @@ public class ShootProjectile : MonoBehaviour
     private Vector2 Movement;
     public float Speed = 2f;
 
-    public float FireRate = 30.0f;
+    public float FireRate = 20.0f;
     private float ROF = 0.0f;
     public bool Firing;
     public float WaitTime = 2.0f;
@@ -30,11 +30,11 @@ public class ShootProjectile : MonoBehaviour
         enemy = this.gameObject.GetComponent<EnemyStats>();
 
         if (enemy.GetEnemyType() == 2) {
-            FireRate = 30.0f;
+            FireRate = 10.0f;
             Firing = false;
         }
         else if (enemy.GetEnemyType() == 3) {
-            FireRate = 25.0f;
+            FireRate = 20.0f;
             Firing = false;
         }
         
@@ -70,7 +70,7 @@ public class ShootProjectile : MonoBehaviour
 
     IEnumerator WaitToShoot() {
         Firing = true;
-        float RandomTime = Random.Range(1, 5);
+        float RandomTime = Random.Range(3, 7);
         yield return new WaitForSeconds(RandomTime);
         Firing = false;
     }

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Net.NetworkInformation;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
     }
 
     IEnumerator DestroyBullet() {
-        float RandomTime = Random.Range(3, 7);
+        float RandomTime = Random.Range(2, 7);
         yield return new WaitForSeconds(RandomTime);
         ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
@@ -56,6 +57,11 @@ public class EnemyBullet : MonoBehaviour
         }
 
         if (collision.gameObject.tag == "Collider") {
+            ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
+            Destroy(this.gameObject);
+        }
+
+        if (collision.gameObject.tag == "Bullet") {
             ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }

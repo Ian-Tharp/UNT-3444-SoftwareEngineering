@@ -10,6 +10,9 @@ public class EnemyStats : MonoBehaviour
     public ParticleSystem parts;
     public ParticleSystem blood;
     public ParticleSystem explode;
+    public AudioSource source;
+    private AudioClip DeathSFX;
+    
 
     private GameObject player;
     PlayerStats ps;
@@ -26,6 +29,9 @@ public class EnemyStats : MonoBehaviour
     void Start() {
         GameObject gameObj = GameObject.Find("WaveManagerSystem");
         waveManager = gameObj.GetComponent<WaveManager>();
+
+        source = GetComponent<AudioSource>();
+        DeathSFX = source.clip;
 
         player = GameObject.Find("HQ - Player");
         ps = player.GetComponent<PlayerStats>();
@@ -73,69 +79,128 @@ public class EnemyStats : MonoBehaviour
         //switch case here for determining health, damage, and currency based on type
         //balancing values to be determined
         switch (TypeSelector) {
+            //Basic Melee 1
             case 1:
                 Health = 1;
                 Damage = 1;
                 EnemyType = 1;
                 EnemyValue = 1;
-                if (waveManager.GetWaveNumber() > 5) {
+                if (waveManager.GetWaveNumber() > 20) {
                     Health += 1;
-                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                    Damage += 1;
+                }
+                //Maximums for difficulty scaling
+                if (Health > 20) {
+                    Health = 20;
+                }
+                if (Damage > 5) {
+                    Damage = 5;
                 }
                 break;
+            //Basic Ranged 1
             case 2:
-                Health = 5;
+                Health = 3;
                 Damage = 2;
                 EnemyType = 2;
                 EnemyValue = 2;
-                ProjectileSpeed = 4.0f;
-                if (waveManager.GetWaveNumber() > 5) {
+                ProjectileSpeed = 3.0f;
+                if (waveManager.GetWaveNumber() > 20) {
                     Health += 1;
                 }
-                if (waveManager.GetWaveNumber() > 10) {
+                if (waveManager.GetWaveNumber() > 30) {
                     Damage += 1;
                 }
+                //Maximums for difficulty scaling
+                if (Health > 30) {
+                    Health = 30;
+                }
+                if (Damage > 5) {
+                    Damage = 5;
+                }
                 break;
+            //Heavy Ranged 1
             case 3:
-                Health = 5;
+                Health = 4;
                 Damage = 3;
                 EnemyType = 3;
                 EnemyValue = 3;
-                ProjectileSpeed = 5.0f;
-                if (waveManager.GetWaveNumber() > 5) {
+                ProjectileSpeed = 4.0f;
+                if (waveManager.GetWaveNumber() > 20) {
                     Health += 1;
                 }
-                if (waveManager.GetWaveNumber() > 10) {
+                if (waveManager.GetWaveNumber() > 30) {
                     Damage +=1;
                 }
+                //Maximums for difficulty scaling
+                if (Health > 50) {
+                    Health = 50;
+                }
+                if (Damage > 7) {
+                    Damage = 7;
+                }
                 break;
+            //Heavy Melee 1
             case 4:
-                Health = 8;
+                Health = 7;
                 Damage = 5;
                 EnemyType = 4;
                 EnemyValue = 5;
-                if (waveManager.GetWaveNumber() > 5) {
+                if (waveManager.GetWaveNumber() > 30) {
                     Health += 2;
-                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                    Damage += 1;
+                }
+                //Maximums for difficulty scaling
+                if (Health > 50) {
+                    Health = 50;
+                }
+                if (Damage > 6) {
+                    Damage = 6;
                 }
                 break;
+            //Basic Melee 2
             case 5:
-                Health = 14;
-                Damage = 8;
+                Health = 2;
+                Damage = 2;
                 EnemyType = 5;
-                EnemyValue = 8;
-                if (waveManager.GetWaveNumber() > 5) {
-                    Health += 2;
-                    Damage += 1 + waveManager.GetWaveNumber() / 2;
+                EnemyValue = 3;
+                if (waveManager.GetWaveNumber() > 20) {
+                    Health += 1;
+                    Damage += 1;
+                }
+                //Maximums for difficulty scaling
+                if (Health > 25) {
+                    Health = 25;
+                }
+                if (Damage > 6) {
+                    Damage = 6;
                 }
                 break;
+            //Exploder 2
             case 6:
                 Health = 3;
                 Damage = 1;
                 EnemyType = 6;
-                EnemyValue = 7;
+                EnemyValue = 10;
                 if (waveManager.GetWaveNumber() > 20) {
                     Health += 1;
+                }
+                //Maximums for difficulty scaling
+                if (Health > 20) {
+                    Health = 20;
+                }
+                break;
+            //Exploder 1
+            case 7:
+                Health = 1;
+                Damage = 1;
+                EnemyType = 7;
+                EnemyValue = 2;
+                if (waveManager.GetWaveNumber() > 20) {
+                    Health += 1;
+                }
+                //Maximums for difficulty scaling
+                if (Health > 20) {
+                    Health = 20;
                 }
                 break;
             default:
@@ -150,10 +215,14 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Health <= 0) {
-            ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
-            ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
+            if (EnemyType < 6 || EnemyType > 7) {
+                ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
+                ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
+            }
+
             ParticleSystem explofx = Instantiate(explode, transform.position, Quaternion.identity);
-            
+            source.PlayOneShot(DeathSFX, 1.0f);
+
             ps.explosions += 1;
             ps.bloodSpilled += Random.Range(1.0f, 3.0f);
 
@@ -169,10 +238,11 @@ public class EnemyStats : MonoBehaviour
 
     }
 
-
     void Hurt() {
-        ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
-        ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero)); 
-        ps.bloodSpilled += Random.Range(0.1f, 2.0f);
+        if (EnemyType < 6 || EnemyType > 7) {
+            ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
+            ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero)); 
+            ps.bloodSpilled += Random.Range(0.1f, 2.0f);
+        }
     }
 }

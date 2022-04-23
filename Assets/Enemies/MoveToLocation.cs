@@ -10,7 +10,7 @@ public class MoveToLocation : MonoBehaviour
     private Vector2 Movement;
     private GameObject TaggedLocation;
 
-    public float Speed = 2.0f;
+    public float Speed = 1.5f;
     public bool InPosition = false;
 
     public bool GetInPosition() {

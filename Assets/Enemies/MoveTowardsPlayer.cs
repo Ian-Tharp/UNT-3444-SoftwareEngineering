@@ -9,7 +9,7 @@ public class MoveTowardsPlayer : MonoBehaviour
     private EnemyStats enemy;
 
     private Vector2 Movement;
-    public float Speed = 2f;
+    public float Speed = 1.4f;
 
     void Start() {
         //Setup rigidbody component to allow for change of rotation
@@ -23,10 +23,10 @@ public class MoveTowardsPlayer : MonoBehaviour
 
     void DetermineSpeed() {
         if (enemy.GetEnemyType() == 2) {
-            Speed = 1.95f;
+            Speed = 1.35f;
         }
         else if (enemy.GetEnemyType() == 3) {
-            Speed = 1.85f;
+            Speed = 1.30f;
         }
     }
 

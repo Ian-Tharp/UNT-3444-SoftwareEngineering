@@ -60,16 +60,20 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        if (other.gameObject.tag == "Bullet") {
+        if (other.gameObject.tag == "Projectile") {
             ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
             pStats.explosions += 1;
-            Destroy(other.gameObject);
+            Destroy(gameObject);
         }
 
         if (other.gameObject.tag != "Player" && other.gameObject.tag != "DefenseTower") // for when bullet leaves player
         {
             if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
                 Destroy(gameObject);
+        }
+
+        if (other.gameObject.tag == "Protection") {
+            Physics2D.IgnoreCollision(other.gameObject.GetComponent<Collider2D>(), this.gameObject.GetComponent<Collider2D>(), false);
         }
     }
 
