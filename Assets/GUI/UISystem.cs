@@ -16,6 +16,7 @@ public class UISystem : MonoBehaviour
     [SerializeField] GameObject ammoPos;
     [SerializeField] RectTransform rt;
 
+    [SerializeField] WaveManager wm;
     [SerializeField] Pause pa;
 
     [SerializeField] CardMenu cm;
@@ -25,9 +26,12 @@ public class UISystem : MonoBehaviour
     public Text weaponTxt;
     public Text scoreTxt;
     public Text gameoverTxt;
+    public Text waveTxt;
 
     public float weaponAlpha;
-    private float goAlpha;
+    private float goAlpha;//gameover 
+
+
     private string tweap;
     private float timer;
 
@@ -38,6 +42,9 @@ public class UISystem : MonoBehaviour
     private float healthRate;
     private float healthAlpha;
     private float htimer;
+
+    private float waveAlpha;
+    private float wtimer;
 
     void Start()
     {
@@ -52,6 +59,10 @@ public class UISystem : MonoBehaviour
         tempHealth = 100;
         scoreRate = 1;
         goAlpha = 0;
+
+        waveTxt.text = "WAVE 1";
+        waveAlpha = 1.0f;
+        wtimer = 0;
     }
 
     void FixedUpdate()
@@ -130,6 +141,7 @@ public class UISystem : MonoBehaviour
     
     void Update()
     {
+
         if(Time.timeScale == 0)
         {
             rt.anchoredPosition = new Vector3(-119,-415, 0);
@@ -150,6 +162,25 @@ public class UISystem : MonoBehaviour
             healthTxt.color = new Color(.98f, .87f, .05f, 0);
             weaponTxt.color = new Color(.98f, .87f, .05f, 0);
             scoreTxt.color = new Color(.98f, .87f, .05f, 0); 
+
+            
         }
+
+        waveTxt.color = new Color(.98f, .87f, .05f, waveAlpha);
+        if (wtimer > 3)
+        {
+            if (waveAlpha > 0)
+            {
+                waveAlpha -= .01f;
+            }
+        }
+        wtimer += .1f;
+    }
+
+    public void ShowWave()
+    {
+        waveTxt.text = "WAVE " + wm.WaveNumber.ToString();
+        waveAlpha = 1.0f;
+        wtimer = 0;
     }
 }

@@ -8,6 +8,7 @@ public class CardMenu : MonoBehaviour
 {
     [SerializeField] GameObject cardMenu;
     [SerializeField] WaveManager wm;
+    [SerializeField] UISystem uiSys;
 
     public GameObject player;
     private GameObject stop;
@@ -163,6 +164,7 @@ public class CardMenu : MonoBehaviour
         wavePause = false;
         p.paused = false;
         upgradeStats[0] +=1;
+        uiSys.ShowWave();
     }
 
     public void cardChosen2(Text name)
@@ -189,6 +191,7 @@ public class CardMenu : MonoBehaviour
         }
         cardMenu.SetActive(false);
         wavePause = false;
+        uiSys.ShowWave();
     }
    
    public void healthUp()
@@ -397,6 +400,31 @@ public class CardMenu : MonoBehaviour
             upgradeTxt.text += upgradeStats[3].ToString() + "\n" + upgradeStats[4].ToString() + "\nMAX\n";
         }else{
             upgradeTxt.text += upgradeStats[3].ToString() + "\n" + upgradeStats[4].ToString() + "\n" + upgradeStats[5].ToString() + "\n";
+        }
+
+
+        if (es.startWeap > 0)
+        {
+            newwTxt.text = "NEW WEAPON";
+            os1Txt.color = new Color(0,.6f,0,1);
+            os2Txt.color = new Color(0,.6f,0,1);
+            os3Txt.color = new Color(0,.6f,0,1);
+            os4Txt.color = new Color(0,.6f,0,1);
+            os5Txt.color = new Color(0,.6f,0,1);
+            os6Txt.color = new Color(0,.6f,0,1);
+            ns1Txt.color = new Color(.6f,0,0,1);
+            ns2Txt.color = new Color(.6f,0,0,1);
+            ns3Txt.color = new Color(.6f,0,0,1);
+            ns4Txt.color = new Color(.6f,0,0,1);
+            ns5Txt.color = new Color(.6f,0,0,1);
+            ns6Txt.color = new Color(.6f,0,0,1);
+            ns1Txt.text = "0";
+            ns2Txt.text = "0";
+            ns3Txt.text = "0";
+            ns4Txt.text = "0";
+            ns5Txt.text = "0";
+            ns6Txt.text = "0";
+            
         }
     }
 
