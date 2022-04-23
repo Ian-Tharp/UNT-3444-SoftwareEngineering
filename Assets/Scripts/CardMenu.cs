@@ -405,19 +405,19 @@ public class CardMenu : MonoBehaviour
 
         if (es.startWeap > 0)
         {
-            newwTxt.text = "NEW WEAPON";
+            newwTxt.text = "EMPTY SLOT";
             os1Txt.color = new Color(0,.6f,0,1);
             os2Txt.color = new Color(0,.6f,0,1);
             os3Txt.color = new Color(0,.6f,0,1);
             os4Txt.color = new Color(0,.6f,0,1);
             os5Txt.color = new Color(0,.6f,0,1);
             os6Txt.color = new Color(0,.6f,0,1);
-            ns1Txt.color = new Color(.6f,0,0,1);
-            ns2Txt.color = new Color(.6f,0,0,1);
-            ns3Txt.color = new Color(.6f,0,0,1);
-            ns4Txt.color = new Color(.6f,0,0,1);
-            ns5Txt.color = new Color(.6f,0,0,1);
-            ns6Txt.color = new Color(.6f,0,0,1);
+            ns1Txt.color = new Color(0.8f,0.8f,0.8f,1);
+            ns2Txt.color = new Color(0.8f,0.8f,0.8f,1);
+            ns3Txt.color = new Color(0.8f,0.8f,0.8f,1);
+            ns4Txt.color = new Color(0.8f,0.8f,0.8f,1);
+            ns5Txt.color = new Color(0.8f,0.8f,0.8f,1);
+            ns6Txt.color = new Color(0.8f,0.8f,0.8f,1);
             ns1Txt.text = "0";
             ns2Txt.text = "0";
             ns3Txt.text = "0";
