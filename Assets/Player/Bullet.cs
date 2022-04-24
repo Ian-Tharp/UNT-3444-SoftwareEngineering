@@ -58,18 +58,15 @@ public class Bullet : MonoBehaviour
             {
                 enemy.SubtractHealth(damage + InvSys.damageAdd);
             }
+
+            if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
+                Destroy(gameObject);
         }
 
         if (other.gameObject.tag == "Projectile") {
             ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
             pStats.explosions += 1;
             Destroy(gameObject);
-        }
-
-        if (other.gameObject.tag != "Player" && other.gameObject.tag != "DefenseTower") // for when bullet leaves player
-        {
-            if (weapon.piercing == false) //if piercing false, then bullet stays until coroutine ends
-                Destroy(gameObject);
         }
 
         if (other.gameObject.tag == "Protection") {

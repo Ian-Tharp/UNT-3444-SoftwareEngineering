@@ -116,7 +116,7 @@ public class CardMenu : MonoBehaviour
         card1ID = Random.Range(0, wdeckSize);
         while (es.weaponInv[0].weaponName == es.weapon[card1ID].weaponName || es.weaponInv[1].weaponName == es.weapon[card1ID].weaponName || es.weaponInv[2].weaponName == es.weapon[card1ID].weaponName)
         {
-            card1ID = Random.Range(0, deckSize);
+            card1ID = Random.Range(0, wdeckSize);
         }
 
         card2ID = Random.Range(0, deckSize);
@@ -251,6 +251,8 @@ public class CardMenu : MonoBehaviour
 
    void C1body()
     {
+        ammoMult = Mathf.Pow(1.5f, (float)upgradeStats[4]);
+        
         if(card1ID == 0)//g17
                 card1desc.text = "Pistol";
         if(card1ID == 1)//m1911
@@ -317,7 +319,7 @@ public class CardMenu : MonoBehaviour
 
     void Update()
     {
-        ammoMult = Mathf.Pow(1.5f, (float)upgradeStats[4]);
+
         
         //endwave stats
         waveTxt.text = "Wave " + (wm.WaveNumber -1) + " Complete";
@@ -335,7 +337,7 @@ public class CardMenu : MonoBehaviour
         }
         if (upgradeStats[4] > 0)
         {
-            ns2Txt.text = (es.weaponInv[sel].ammo/ammoMult) + " (+" + (int)(es.weaponInv[sel].ammo - (es.weaponInv[sel].ammo/ammoMult)) + ")" ;
+            ns2Txt.text = (int)(es.weaponInv[sel].ammo/ammoMult) + " (+" + (int)(es.weaponInv[sel].ammo - (es.weaponInv[sel].ammo/ammoMult)) + ")" ;
         } else {
             ns2Txt.text = es.weaponInv[sel].ammo.ToString();
         }
