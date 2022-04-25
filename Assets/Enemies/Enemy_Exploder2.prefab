@@ -68,9 +68,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -1748092265
+  m_SortingLayer: 2
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: f4dec37de0d0453439a481215d9fdcf7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -113,7 +113,7 @@ Transform:
   m_GameObject: {fileID: 8492878632830844753}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.75, z: 0.75}
   m_Children:
   - {fileID: 2924653654813608461}
   m_Father: {fileID: 0}
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ed3bf23e69df2c4da9e09fd5717946b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawn: {fileID: 180111111424298908, guid: 1438a8d4df350224795c5030c692d137, type: 3}
   explode: {fileID: 4481832562959298378, guid: f1984201e9f83b64b88e687d108f8dac, type: 3}
 --- !u!82 &-7894806936280366715
 AudioSource:
