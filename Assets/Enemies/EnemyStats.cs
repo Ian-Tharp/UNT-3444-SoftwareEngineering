@@ -228,7 +228,7 @@ public class EnemyStats : MonoBehaviour
 
             if(!ps.isDead)
             {
-                ps.AddScore((int)(EnemyValue * 50 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
+                ps.AddScore((int)(EnemyValue * 2 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
                 ps.killed +=1;
                 if (EnemyValue > 1)
                     ps.eliteKilled +=1;

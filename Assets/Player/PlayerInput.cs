@@ -107,6 +107,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""UseItem"",
+                    ""type"": ""Button"",
+                    ""id"": ""18e63d94-a465-489d-8aac-5498121ac5bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -437,6 +446,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""KillAllEnemiesDebug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""756a1701-386a-44d5-8273-390587c8e99e"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""UseItem"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1033,6 +1053,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Player_Prev = m_Player.FindAction("Prev", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_KillAllEnemiesDebug = m_Player.FindAction("KillAllEnemiesDebug", throwIfNotFound: true);
+        m_Player_UseItem = m_Player.FindAction("UseItem", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1113,6 +1134,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Prev;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_KillAllEnemiesDebug;
+    private readonly InputAction m_Player_UseItem;
     public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
@@ -1126,6 +1148,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Prev => m_Wrapper.m_Player_Prev;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @KillAllEnemiesDebug => m_Wrapper.m_Player_KillAllEnemiesDebug;
+        public InputAction @UseItem => m_Wrapper.m_Player_UseItem;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1162,6 +1185,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @KillAllEnemiesDebug.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKillAllEnemiesDebug;
                 @KillAllEnemiesDebug.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKillAllEnemiesDebug;
                 @KillAllEnemiesDebug.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnKillAllEnemiesDebug;
+                @UseItem.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
+                @UseItem.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
+                @UseItem.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnUseItem;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -1193,6 +1219,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @KillAllEnemiesDebug.started += instance.OnKillAllEnemiesDebug;
                 @KillAllEnemiesDebug.performed += instance.OnKillAllEnemiesDebug;
                 @KillAllEnemiesDebug.canceled += instance.OnKillAllEnemiesDebug;
+                @UseItem.started += instance.OnUseItem;
+                @UseItem.performed += instance.OnUseItem;
+                @UseItem.canceled += instance.OnUseItem;
             }
         }
     }
@@ -1358,6 +1387,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnPrev(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnKillAllEnemiesDebug(InputAction.CallbackContext context);
+        void OnUseItem(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

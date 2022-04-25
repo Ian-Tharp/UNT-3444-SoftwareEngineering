@@ -124,13 +124,5 @@ public class PlayerStats : MonoBehaviour
             CurrentHealth = 0;
             isDead = true;
         }
-        
-        //Checks if player isDead bool is true
-        //If so, quit the game for now
-        //We will implement death screen functionality later
-        if (isDead) {
-            
-            //Application.Quit();
-        }
     }
 }
