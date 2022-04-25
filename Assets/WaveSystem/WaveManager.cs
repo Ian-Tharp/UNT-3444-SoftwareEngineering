@@ -43,6 +43,9 @@ public class WaveManager : MonoBehaviour
     [SerializeField]
     private GameObject HeavyRanged; //Heavy Ranged Enemy Type
 
+    [SerializeField]
+    private GameObject Swarmer;
+
     GameObject[] Enemies; //GameObject list of enemies that are present or spawned in
 
     private GameObject player;
@@ -104,11 +107,29 @@ public class WaveManager : MonoBehaviour
         else if (WaveNumber == 20) {
             EnemyCount = 50;
         }
+        //Wave 30
+        else if (WaveNumber == 30) {
+            EnemyCount = 70;
+        }
+        //Wave 40
+        else if (WaveNumber == 40) {
+            EnemyCount = 90;
+        }
+        //Wave 50
+        else if (WaveNumber == 50) {
+            EnemyCount = 120;
+        }
         else {
             //EnemyCount += ((WaveNumber * 2) - (WaveNumber + 1)) + 2;
             EnemyCount += WaveNumber;
             if (WaveNumber > 10 && WaveNumber < 20) {
                 EnemyCount -= 7;
+            }
+            if (WaveNumber > 20 && WaveNumber < 30) {
+                EnemyCount -= 6;
+            }
+            if (WaveNumber > 30) {
+                EnemyCount -= 5;
             }
         }
         TotalEnemyCount = EnemyCount;
@@ -149,6 +170,11 @@ public class WaveManager : MonoBehaviour
         GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
     } 
 
+    //Swarmer Enemy
+    public void SpawnSwarmerAtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(Swarmer, Location, transform.rotation);
+    }
+
     //Handle all locations to spawn enemies 
     GameObject[] SpawnLocations;
     Vector2 LocationToSpawnEnemy;
@@ -183,11 +209,11 @@ public class WaveManager : MonoBehaviour
         //50% chance to spawn basic melee enemy
         //40% chance to spawn basic melee 2
         else if (WaveNumber <= 9 && WaveNumber > 3 && WaveNumber != 5) {
-            randomizer = Random.Range(0, 10);
-            if (randomizer == 0) {
+            randomizer = Random.Range(1, 10);
+            if (randomizer == 1) {
                 SpawnBasicRanged1AtLocation(Location);
             }
-            else if (randomizer == 1 || randomizer == 2 || randomizer == 3 || randomizer == 4 || randomizer == 5) {
+            else if (randomizer == 2 || randomizer == 3 || randomizer == 4 || randomizer == 5 || randomizer == 6) {
                 SpawnBasicMelee1AtLocation(Location);
             }
             else {
@@ -443,6 +469,12 @@ public class WaveManager : MonoBehaviour
             LocationToSpawnEnemy = DetermineSpawnLocation();
             SpawnEnemyAtLocation(LocationToSpawnEnemy);
             SpaceOutSpawn();
+            if (WaveNumber > 10) {
+                randomizer = Random.Range(1,10);
+                if (randomizer == 1) {
+                    SpawnSwarmerAtLocation(LocationToSpawnEnemy);
+                }
+            }
         }
         Enemies = GameObject.FindGameObjectsWithTag("Enemy");
         RemainingEnemyCount = Enemies.Length;

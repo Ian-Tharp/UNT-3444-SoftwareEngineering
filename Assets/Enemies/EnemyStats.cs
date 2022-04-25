@@ -90,11 +90,11 @@ public class EnemyStats : MonoBehaviour
                     Damage += 1;
                 }
                 //Maximums for difficulty scaling
-                if (Health > 20) {
-                    Health = 20;
+                if (Health > 30) {
+                    Health = 30;
                 }
-                if (Damage > 5) {
-                    Damage = 5;
+                if (Damage > 4) {
+                    Damage = 4;
                 }
                 break;
             //Basic Ranged 1
@@ -135,13 +135,13 @@ public class EnemyStats : MonoBehaviour
                 if (Health > 50) {
                     Health = 50;
                 }
-                if (Damage > 7) {
-                    Damage = 7;
+                if (Damage > 6) {
+                    Damage = 6;
                 }
                 break;
             //Heavy Melee 1
             case 4:
-                Health = 7;
+                Health = 8;
                 Damage = 5;
                 EnemyType = 4;
                 EnemyValue = 5;
@@ -150,8 +150,8 @@ public class EnemyStats : MonoBehaviour
                     Damage += 1;
                 }
                 //Maximums for difficulty scaling
-                if (Health > 50) {
-                    Health = 50;
+                if (Health > 60) {
+                    Health = 60;
                 }
                 if (Damage > 6) {
                     Damage = 6;
@@ -159,7 +159,7 @@ public class EnemyStats : MonoBehaviour
                 break;
             //Basic Melee 2
             case 5:
-                Health = 2;
+                Health = 3;
                 Damage = 2;
                 EnemyType = 5;
                 EnemyValue = 3;
@@ -168,8 +168,8 @@ public class EnemyStats : MonoBehaviour
                     Damage += 1;
                 }
                 //Maximums for difficulty scaling
-                if (Health > 25) {
-                    Health = 25;
+                if (Health > 30) {
+                    Health = 30;
                 }
                 if (Damage > 6) {
                     Damage = 6;
@@ -177,7 +177,7 @@ public class EnemyStats : MonoBehaviour
                 break;
             //Exploder 2
             case 6:
-                Health = 3;
+                Health = 5;
                 Damage = 1;
                 EnemyType = 6;
                 EnemyValue = 10;
@@ -185,8 +185,8 @@ public class EnemyStats : MonoBehaviour
                     Health += 1;
                 }
                 //Maximums for difficulty scaling
-                if (Health > 20) {
-                    Health = 20;
+                if (Health > 25) {
+                    Health = 25;
                 }
                 break;
             //Exploder 1
@@ -203,6 +203,19 @@ public class EnemyStats : MonoBehaviour
                     Health = 20;
                 }
                 break;
+            //Swarmer
+            case 8:
+                Health = 1;
+                Damage = 1;
+                EnemyType = 8;
+                EnemyValue = 1;
+                if (waveManager.GetWaveNumber() > 10) {
+                    Health += 1;
+                }
+                if (Health > 30) {
+                    Health = 30;
+                }
+                break;
             default:
                 Health = 1;
                 Damage = 1;
@@ -215,7 +228,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Health <= 0) {
-            if (EnemyType < 6 || EnemyType > 7) {
+            if (EnemyType < 6 || EnemyType > 8) {
                 ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
                 ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
             }
@@ -228,7 +241,7 @@ public class EnemyStats : MonoBehaviour
 
             if(!ps.isDead)
             {
-                ps.AddScore((int)(EnemyValue * 2 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
+                ps.AddScore((int)(EnemyValue * 5 * waveManager.WaveMultiplier * (Time.fixedTime/10)));
                 ps.killed +=1;
                 if (EnemyValue > 1)
                     ps.eliteKilled +=1;

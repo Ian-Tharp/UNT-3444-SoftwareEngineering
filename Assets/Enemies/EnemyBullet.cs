@@ -9,7 +9,7 @@ public class EnemyBullet : MonoBehaviour
     public ParticleSystem explode;
 
     [SerializeField]
-    private float Speed = 10.0f;
+    private float Speed = 12.0f;
 
     [SerializeField]
     private int Damage;
@@ -23,7 +23,7 @@ public class EnemyBullet : MonoBehaviour
     }
 
     IEnumerator DestroyBullet() {
-        float RandomTime = Random.Range(2, 7);
+        float RandomTime = Random.Range(3, 8);
         yield return new WaitForSeconds(RandomTime);
         ParticleSystem explodeFX = Instantiate(explode, transform.position, Quaternion.identity);
         Destroy(this.gameObject);

@@ -18,7 +18,7 @@ public class ExplodeOnCollide : MonoBehaviour
     void Start() {
         rb = this.GetComponent<Rigidbody2D>();
         enemy = this.gameObject.GetComponent<EnemyStats>();
-        Debug.Log(enemy.GetEnemyType());
+        //Debug.Log(enemy.GetEnemyType());
     }
 
     void OnCollisionEnter2D(Collision2D collision) {

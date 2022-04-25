@@ -26,7 +26,7 @@ public class ShootProjectile : MonoBehaviour
     void Start() {
         this.gameObject.GetComponent<MoveTowardsPlayer>().enabled = false;
         this.gameObject.GetComponent<DealMeleeDamage>().enabled = true;
-        this.gameObject.GetComponent<RotateAroundObject>().enabled = false;
+        //this.gameObject.GetComponent<RotateAroundObject>().enabled = false;
         enemy = this.gameObject.GetComponent<EnemyStats>();
 
         if (enemy.GetEnemyType() == 2) {
@@ -57,7 +57,7 @@ public class ShootProjectile : MonoBehaviour
 
         if (waveManager.GetRemainingEnemyCount() <= 6) {
             this.gameObject.GetComponent<MoveTowardsPlayer>().enabled = true;
-            this.gameObject.GetComponent<RotateAroundObject>().enabled = false;
+            //this.gameObject.GetComponent<RotateAroundObject>().enabled = false;
         }
     }
 

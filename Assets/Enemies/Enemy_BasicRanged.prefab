@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: -2440913720818076737}
   - component: {fileID: 1378069393858542919}
   - component: {fileID: -4392047375226449497}
-  - component: {fileID: -1111638455389212722}
   - component: {fileID: -4349173410915472528}
   m_Layer: 0
   m_Name: Enemy_BasicRanged
@@ -151,21 +150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  Speed: 2
---- !u!114 &-1111638455389212722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 741488129945918922}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54cf87a7ae403d94791c8f65a4bbc58e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pivotObject: {fileID: 0}
-  RotationSpeed: 4
   Speed: 2
 --- !u!82 &-4349173410915472528
 AudioSource:

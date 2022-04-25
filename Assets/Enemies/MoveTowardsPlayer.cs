@@ -23,7 +23,7 @@ public class MoveTowardsPlayer : MonoBehaviour
 
     void DetermineSpeed() {
         if (enemy.GetEnemyType() == 2) {
-            Speed = 1.35f;
+            Speed = 1.25f;
         }
         else if (enemy.GetEnemyType() == 3) {
             Speed = 1.30f;
