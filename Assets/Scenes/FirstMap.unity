@@ -30601,7 +30601,7 @@ Tilemap:
   m_Origin: {x: -75, y: -46, z: 0}
   m_Size: {x: 150, y: 94, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
-  m_TileOrientation: 0
+  m_TileOrientation: 6
   m_TileOrientationMatrix:
     e00: 1
     e01: 0
@@ -33627,7 +33627,7 @@ Grid:
   m_GameObject: {fileID: 1105081381}
   m_Enabled: 1
   m_CellSize: {x: 1, y: 1, z: 0}
-  m_CellGap: {x: 0, y: 0, z: 0}
+  m_CellGap: {x: -0.01, y: -0.01, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
 --- !u!4 &1105081383
