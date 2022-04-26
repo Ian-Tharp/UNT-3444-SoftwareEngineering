@@ -73,7 +73,7 @@ public class CardMenu : MonoBehaviour
     int sel;
     float ammoMult;
 
-    string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum", "Turret"};
+    string[] deck = new string[] {"Health", "Damage", "Regen", "Ammo Drum", "Turret", "Barrier"};
    
 
     void Start()
@@ -109,10 +109,6 @@ public class CardMenu : MonoBehaviour
 
     public void cardSelection()
     {
-        if (towerFull)
-        {
-            deckSize = deckSize - 1;
-        }
         card1ID = Random.Range(0, wdeckSize);
         while (es.weaponInv[0].weaponName == es.weapon[card1ID].weaponName || es.weaponInv[1].weaponName == es.weapon[card1ID].weaponName || es.weaponInv[2].weaponName == es.weapon[card1ID].weaponName)
         {
@@ -120,6 +116,10 @@ public class CardMenu : MonoBehaviour
         }
 
         card2ID = Random.Range(0, deckSize);
+        while (towerFull && card2ID == 4)
+        {
+            card2ID = Random.Range(0, deckSize);
+        }
 
         /*Change to rarity reroll later
         while (card2ID == card1ID)
@@ -131,10 +131,6 @@ public class CardMenu : MonoBehaviour
 
         card2Txt.text = deck[card2ID];
         C2body();
-        if (towerFull)
-        {
-            deckSize = deckSize + 1;
-        }
 
     }
     
@@ -188,12 +184,18 @@ public class CardMenu : MonoBehaviour
         else if (name.text == "Turret")
         {
             defense();
-        }
+        }/*
+        else if (name.text == "Protection Barrier")
+        {
+            barrier();
+        }*/
         cardMenu.SetActive(false);
         wavePause = false;
         uiSys.ShowWave();
     }
    
+
+/// START CARD 2 ITEMS ////////////////////////
    public void healthUp()
    {
        ps.AddTotalHealth(25);
@@ -248,6 +250,16 @@ public class CardMenu : MonoBehaviour
        upgradeStats[5] +=1;
         p.paused = false;
    }
+/*
+    public void barrier()
+    {
+        // set item to barrier or whatever script
+
+        upgradeStats[6] += 1;
+        p.paused = false;
+    }*/
+
+/// END CARD 2 ITEMS ///////////////////
 
    void C1body()
     {
@@ -314,7 +326,10 @@ public class CardMenu : MonoBehaviour
             card2desc.text = "Increase the magazine size for all of your weapons by x 1.5";
         if(card2ID == 4)//turret
             card2desc.text = "Add an automated turret to destroy enemies within range";
-
+        /*
+        if(card2ID == 5)//barrier
+            card2desc.text = "Add an automated turret to destroy enemies within range";
+        */
    }
 
     void Update()
