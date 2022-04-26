@@ -9,10 +9,11 @@ public class CardMenu : MonoBehaviour
     [SerializeField] GameObject cardMenu;
     [SerializeField] WaveManager wm;
     [SerializeField] UISystem uiSys;
+    [SerializeField] InventorySystem es;
 
     public GameObject player;
     private GameObject stop;
-    private GameObject inventory;
+    //private GameObject inventory;
 
     public bool wavePause;
 
@@ -59,7 +60,7 @@ public class CardMenu : MonoBehaviour
     PlayerStats ps;
     ShootGun sg;
     Pause p;
-    InventorySystem es;
+    //InventorySystem es;
 
     int card1ID;
     int card2ID;
@@ -81,11 +82,11 @@ public class CardMenu : MonoBehaviour
 
         player = GameObject.Find("HQ - Player");
         stop = GameObject.Find("InputManager");
-        inventory = GameObject.Find("InventorySystem");
+        //inventory = GameObject.Find("InventorySystem");
         sg = player.GetComponent<ShootGun>();
         ps = player.GetComponent<PlayerStats>();
         p = stop.GetComponent<Pause>();
-        es = inventory.GetComponent<InventorySystem>();
+        //es = inventory.GetComponent<InventorySystem>();
         wavePause = false;
 
         

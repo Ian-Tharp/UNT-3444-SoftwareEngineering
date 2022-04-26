@@ -36815,6 +36815,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1873517033}
   m_CullTransparentMesh: 1
+--- !u!114 &1877003420 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1176939344493927019, guid: 7f5dd6524b251d344a5e886c7eca4cf9, type: 3}
+  m_PrefabInstance: {fileID: 1176939344026518661}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 789e7913f71ede44583bc3e3b3fd58da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1900712851
 GameObject:
   m_ObjectHideFlags: 0
@@ -37164,6 +37175,7 @@ MonoBehaviour:
   cardMenu: {fileID: 1939859344}
   wm: {fileID: 711904523}
   uiSys: {fileID: 1818969419}
+  es: {fileID: 1877003420}
   player: {fileID: 59079607}
   wavePause: 0
   tower1: {fileID: 1376385600}
@@ -38492,7 +38504,8 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 4663017323299376738, guid: bdb3d18052a0c6f4fa33d672fc714fce, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1176939344493927029, guid: 7f5dd6524b251d344a5e886c7eca4cf9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 7f5dd6524b251d344a5e886c7eca4cf9, type: 3}
 --- !u!1001 &4663017323341673948
 PrefabInstance:
