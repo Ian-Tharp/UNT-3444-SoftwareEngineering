@@ -82,10 +82,10 @@ public class Pause : MonoBehaviour
             {
                 menu.wavePause = true;
                 //if (delay == false)
-                pauseTimer -= .01f;
+                pauseTimer -= .06f;
                 if (pauseTimer <= 1)
-                    if (Time.timeScale > 0)
-                        Time.timeScale -= .01f;
+                    if (Time.timeScale > 0.07f)
+                        Time.timeScale -= .06f;
 
                 if (pauseTimer <= .01f)
                 {
@@ -110,13 +110,14 @@ public class Pause : MonoBehaviour
         {
             //Cursor.visible = false;
             Time.timeScale = 1;
-            pauseTimer = 2f;
+            pauseTimer = 1.5f;
         }
     
     }
     
     public void PauseGame()
     {
+        Debug.Log(menu.wavePause);
         if(paused && !pStats.isDead && !menu.wavePause)
         {
             paused = false;

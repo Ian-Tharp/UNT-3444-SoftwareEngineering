@@ -15,7 +15,7 @@ public class CardMenu : MonoBehaviour
     private GameObject stop;
     //private GameObject inventory;
 
-    public bool wavePause;
+    public bool wavePause = false;
 
     public GameObject tower1;
     public GameObject tower2;
@@ -87,7 +87,6 @@ public class CardMenu : MonoBehaviour
         ps = player.GetComponent<PlayerStats>();
         p = stop.GetComponent<Pause>();
         //es = inventory.GetComponent<InventorySystem>();
-        wavePause = false;
 
         
     }

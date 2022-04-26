@@ -20,6 +20,8 @@ public class mainmenuButtons : MonoBehaviour
             howBut.SetActive(false);
         } else{
             toggle1 = true;
+            toggle2 = false;
+            toggle3 = false;
             howBut.SetActive(true);
             setBut.SetActive(false);
             credBut.SetActive(false);
@@ -32,7 +34,9 @@ public class mainmenuButtons : MonoBehaviour
             toggle2 = false;
             setBut.SetActive(false);
         } else{
+            toggle1 = false;
             toggle2 = true;
+            toggle3 = false;
             howBut.SetActive(false);
             setBut.SetActive(true);
             credBut.SetActive(false);
@@ -45,6 +49,8 @@ public class mainmenuButtons : MonoBehaviour
             toggle3 = false;
             credBut.SetActive(false);
         } else{
+            toggle1 = false;
+            toggle2 = false;
             toggle3 = true;
             howBut.SetActive(false);
             setBut.SetActive(false);
