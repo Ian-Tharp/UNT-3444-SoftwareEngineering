@@ -216,6 +216,32 @@ public class EnemyStats : MonoBehaviour
                     Health = 30;
                 }
                 break;
+            //Heavy Melee 2
+            case 9:
+                Health = 10;
+                Damage = 5;
+                EnemyType = 9;
+                EnemyValue = 10;
+                if (waveManager.GetWaveNumber() > 20) {
+                    Health += 1;
+                }
+                if (Health > 50) {
+                    Health = 50;
+                }
+                break;
+            //Heavy Ranged 2
+            case 10:
+                Health = 10;
+                Damage = 3;
+                EnemyType = 10;
+                EnemyValue = 12;
+                if (waveManager.GetWaveNumber() > 20) {
+                    Health += 1;
+                }
+                if (Health > 50) {
+                    Health = 50;
+                }
+                break;
             default:
                 Health = 1;
                 Damage = 1;
@@ -228,7 +254,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update() {
         if (Health <= 0) {
-            if (EnemyType < 6 || EnemyType > 8) {
+            if (EnemyType < 5) {
                 ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
                 ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero));
             }
@@ -252,7 +278,7 @@ public class EnemyStats : MonoBehaviour
     }
 
     void Hurt() {
-        if (EnemyType < 6 || EnemyType > 7) {
+        if (EnemyType < 5) {
             ParticleSystem effect = Instantiate(parts, transform.position, Quaternion.identity);
             ParticleSystem bloodfx = Instantiate(blood, transform.position, Quaternion.FromToRotation(transform.position, Vector3.zero)); 
             ps.bloodSpilled += Random.Range(0.1f, 2.0f);

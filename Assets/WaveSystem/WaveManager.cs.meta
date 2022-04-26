@@ -12,7 +12,9 @@ MonoImporter:
   - Exploder: {fileID: 180111111424298908, guid: 1438a8d4df350224795c5030c692d137, type: 3}
   - Exploder2: {fileID: 8492878632830844753, guid: 7efc2e54d7411c5459dcfd2d31e8ae9d, type: 3}
   - HeavyMelee: {fileID: 3002973274569189328, guid: 9d2c33b2a74581a45af1b5ec84500a0f, type: 3}
+  - HeavyMelee2: {fileID: 3002973274569189328, guid: 15e1fff4a62dfdc4e89d8749dd7ef6c0, type: 3}
   - HeavyRanged: {fileID: 4841663783964700267, guid: a6fe579ee300ad84dba755947f357f9c, type: 3}
+  - HeavyRanged2: {fileID: 4841663783964700267, guid: 19fe79af42acbec4f98a819f4e4b9056, type: 3}
   - Swarmer: {fileID: 7972860224602920399, guid: 60ed361b34fcf104bbefab622f092b86, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}

@@ -41,7 +41,13 @@ public class WaveManager : MonoBehaviour
     private GameObject HeavyMelee; //Heavy Melee Enemy Type
 
     [SerializeField]
+    private GameObject HeavyMelee2;
+
+    [SerializeField]
     private GameObject HeavyRanged; //Heavy Ranged Enemy Type
+
+    [SerializeField]
+    private GameObject HeavyRanged2;
 
     [SerializeField]
     private GameObject Swarmer;
@@ -68,7 +74,11 @@ public class WaveManager : MonoBehaviour
             yield return new WaitForSeconds(randomizer);
         }
         else if (WaveNumber > 20) {
-            randomizer = Random.Range(6, 15);
+            randomizer = Random.Range(10, 20);
+            yield return new WaitForSeconds(randomizer);
+        }
+        else if (WaveNumber > 30) {
+            randomizer = Random.Range(15, 25);
             yield return new WaitForSeconds(randomizer);
         }
         else {
@@ -109,15 +119,15 @@ public class WaveManager : MonoBehaviour
         }
         //Wave 30
         else if (WaveNumber == 30) {
-            EnemyCount = 70;
+            EnemyCount = 75;
         }
         //Wave 40
         else if (WaveNumber == 40) {
-            EnemyCount = 90;
+            EnemyCount = 100;
         }
         //Wave 50
         else if (WaveNumber == 50) {
-            EnemyCount = 120;
+            EnemyCount = 125;
         }
         else {
             //EnemyCount += ((WaveNumber * 2) - (WaveNumber + 1)) + 2;
@@ -164,11 +174,17 @@ public class WaveManager : MonoBehaviour
     public void SpawnHeavyMeleeAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyMelee, Location, transform.rotation);
     }
+    public void SpawnHeavyMelee2AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(HeavyMelee2, Location, transform.rotation);
+    }
 
     //Heavy Ranged Enemies
     public void SpawnHeavyRangedAtLocation(Vector2 Location) {
         GameObject Enemy = Instantiate(HeavyRanged, Location, transform.rotation);
-    } 
+    }
+    public void SpawnHeavyRanged2AtLocation(Vector2 Location) {
+        GameObject Enemy = Instantiate(HeavyRanged2, Location, transform.rotation);
+    }
 
     //Swarmer Enemy
     public void SpawnSwarmerAtLocation(Vector2 Location) {
@@ -412,7 +428,7 @@ public class WaveManager : MonoBehaviour
         //will change spawning later but just continue old spawn percentages
         //to make it endless
         else {
-            randomizer = Random.Range(0, 12);
+            randomizer = Random.Range(0, 15);
             if (randomizer == 0) {
                 SpawnBasicMelee1AtLocation(Location);
             }
@@ -433,6 +449,12 @@ public class WaveManager : MonoBehaviour
             }
             else if (randomizer == 9) {
                 SpawnExploder2AtLocation(Location);
+            }
+            else if (randomizer == 10 || randomizer == 12) {
+                SpawnHeavyMelee2AtLocation(Location);
+            }
+            else if (randomizer == 11) {
+                SpawnHeavyRanged2AtLocation(Location);
             }
             else {
                 SpawnExploderAtLocation(Location);
